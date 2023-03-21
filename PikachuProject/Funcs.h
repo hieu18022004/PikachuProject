@@ -4,6 +4,7 @@ using namespace std;
 #define KEY_DOWN 80
 #define KEY_LEFT 75
 #define KEY_RIGHT 77
+#define KEY_RETURN 13
 //structs
 
 //Functions
@@ -13,5 +14,7 @@ char** tableInit(const int ROWS, const int COLS);
 void tableShuffle(char** &table, const int ROWS, const int COLS);
 void printScreen(char** table, const int ROWS, const int COLS, string user, int points, int stages, int cordX, int cordY);
 void gotoxy(int x, int y);
+void printHighlighted(int curX, int curY, char** table, int cordX, int cordY);
+
 //Game
 void gameInit(string user, int points, int stages);

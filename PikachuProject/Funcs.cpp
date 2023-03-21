@@ -15,6 +15,13 @@ void gotoxy(int x, int y) {
     
 }
 
+void printHighlighted(int curX, int curY, char** table, int cordX, int cordY)
+{
+    gotoxy(curX, curY);
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 116);
+    cout << table[cordX][cordY];
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+}
 
 int randomInt()
 {
@@ -80,10 +87,22 @@ void printTable(char** table, const int ROWS, const int COLS) {
     // print the table
     cout << setw(COLS * 8 + 1) << setfill('-') << "" << endl;
     for (int i = 0; i < ROWS; i++) {
+        cout << "|";
+        for (int c = 0; c < COLS; c++)
+        {
+            cout << setw(8) << setfill(' ') << "|";
+        }
+        cout << endl;
         for (int j = 0; j < COLS; j++) {
             cout << "|   " << table[i][j] << "   ";
         }
         cout << "|" << endl;
+        cout << "|";
+        for (int c = 0; c < COLS; c++)
+        {
+            cout << setw(8) << setfill(' ') << "|";
+        }
+        cout << endl;
         cout << setw(COLS * 8 + 1) << setfill('-') << "" << endl;
     }
 }
