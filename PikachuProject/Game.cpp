@@ -10,57 +10,54 @@ void gameInit(string user,int points, int stages)
 	char** table = tableInit(ROWS, COLS);
 	int cordX = 0, cordY = 0;
 	printScreen(table, ROWS, COLS, user, points, stages, cordX, cordY);
-	char interact = 0;
+	gotoxy(2, 5);
 	while (true)
 	{
 		FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
-		SetCursorPos(cordX, cordY);
-		interact = _getch();
 		printScreen(table, ROWS, COLS, user, points, stages, cordX, cordY);
 		cout << endl;
-		switch (interact)
+		switch (_getch())
 		{
 		case 'x':
+		{
+			cout << "Do you want to exit to main menu? ";
+			char confirm; cin >> confirm;
+			if (confirm == 'y')
+				return;
+			break;
+		}
+		case KEY_UP:
+		{
+			if (cordX == 0)
 			{
-				cout << "Do you want to exit to main menu? ";
-				char confirm; cin >> confirm;
-				if (confirm == 'y')
-					return;
 				break;
 			}
-		default:
-			if (GetKeyState(VK_UP) < 0)
+			cordX--;
+			break;
+		}
+		case KEY_DOWN:
+		{
+			if (cordX == ROWS - 1)
 			{
-				if (cordX == 0)
-				{
-					break;
-				}
-				cordX--;
 				break;
 			}
-			if (GetKeyState(VK_DOWN) < 0 )
-			{
-				if (cordX == ROWS - 1)
-				{
-					break;
-				}
-				cordX++;
+			cordX++;;
+			break;
+		}
+		case KEY_LEFT:
+		{
+			if (cordY == 0)
 				break;
-			}
-			if (GetKeyState(VK_LEFT) < 0)
-			{
-				if (cordY == 0)
-					break;
-				cordY--;
+			cordY--;
+			break;
+		}
+		case KEY_RIGHT:
+		{
+			if (cordY == COLS - 1)
 				break;
-			}
-			if (GetKeyState(VK_RIGHT) < 0)
-			{
-				if (cordY == COLS - 1)
-					break;
-				cordY++;
-				break;
-			}
+			cordY++;
+			break;
+		}
 		}
 	}
 }

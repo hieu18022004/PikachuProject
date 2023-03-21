@@ -6,6 +6,16 @@
 using namespace std;
 
 
+void gotoxy(int x, int y) {
+    HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+    COORD cursorCoord;
+    cursorCoord.X = x;
+    cursorCoord.Y = y;
+    SetConsoleCursorPosition(consoleHandle, cursorCoord);
+    
+}
+
+
 int randomInt()
 {
     random_device rd;
@@ -27,7 +37,34 @@ void tableShuffle(char** &table, const int ROWS, const int COLS)
         }
     }
     index = 0;
-    random_shuffle(setChar, setChar + ROWS * COLS);
+    int n = 0;
+    for (int i = 0; i < ROWS * COLS; i++)
+    {
+        if (setChar[i] != ' ')
+        {
+            n++;
+        }
+    }
+    char* toShuffle = new char[n];
+    for (int i = 0; i < ROWS * COLS; i++)
+    {
+        if (setChar[i] != ' ')
+        {
+            toShuffle[index] = setChar[i];
+            index++;
+        }
+    }
+    random_shuffle(toShuffle, toShuffle + index);
+    index = 0;
+    for (int i = 0; i < ROWS * COLS; i++)
+    {
+        if (setChar[i] != ' ')
+        {
+            setChar[i]=toShuffle[index];
+            index++;
+        }
+    }
+    index = 0;
     for (int i = 0; i < ROWS; i++)
     {
         for (int j = 0; j < COLS; j++)
@@ -56,7 +93,7 @@ void printScreen(char** table, const int ROWS, const int COLS, string user, int 
     COORD cur = { 0, 0 };
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), cur);
     printTable(table, ROWS, COLS);
-    cout << "\n\n Cordinate: " << cordX + 1 << " : " << cordY + 1;
+    cout << "\n\n Cordinate: [" << cordX + 1 << " : " << cordY + 1 << "] : " << table[cordX][cordY];
     cout << "\n\n\n\n";
     cout << "Username: " << user << endl << "Points: " << points << endl << "Stages completed: " << stages << endl << "Press x to exit to menu\n";
 }
@@ -90,5 +127,6 @@ char** tableInit(const int ROWS, const int COLS)
             index++;
         }
     }
+    tableShuffle(table, ROWS, COLS);
     return table;
 }
