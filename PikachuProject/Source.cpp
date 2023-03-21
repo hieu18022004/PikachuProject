@@ -1,8 +1,8 @@
 #include <iostream>
+#include "Funcs.h"
 using namespace std;
 int main()
 {
-	cout << "test";
+	gameInit("Hieu", 0, 0);
 	return 1;
-	cout << "now";
 }
