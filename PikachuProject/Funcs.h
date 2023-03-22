@@ -1,4 +1,5 @@
 #pragma once
+#include <wincontypes.h>
 using namespace std;
 #define KEY_UP 72
 #define KEY_DOWN 80
@@ -6,6 +7,20 @@ using namespace std;
 #define KEY_RIGHT 77
 #define KEY_RETURN 13
 //structs
+struct Node {
+	COORD n;
+	Node* pNext = NULL;
+};
+ 
+struct List {
+	Node* pHead = NULL;
+};
+
+//list
+Node* nodeCreate(int x, int y);
+void headPush(List& list, int x, int y);
+COORD headPop(List& list);
+COORD headGet(List list);
 
 //Functions
 int randomInt();
