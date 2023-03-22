@@ -149,3 +149,8 @@ char** tableInit(const int ROWS, const int COLS)
     tableShuffle(table, ROWS, COLS);
     return table;
 }
+
+bool pathCheck(int coordX, int coordY, int coordX1, int coordY1)
+{
+
+}
