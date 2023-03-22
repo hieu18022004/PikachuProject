@@ -1,5 +1,5 @@
 #pragma once
-#include <wincontypes.h>
+#include <Windows.h>
 using namespace std;
 #define KEY_UP 72
 #define KEY_DOWN 80
@@ -26,10 +26,12 @@ COORD headGet(List list);
 int randomInt();
 void printTable(char** table, const int ROWS, const int COLS);
 char** tableInit(const int ROWS, const int COLS);
+bool** mapCheckInit(const int ROWS, const int COLS);
 void tableShuffle(char** &table, const int ROWS, const int COLS);
 void printScreen(char** table, const int ROWS, const int COLS, string user, int points, int stages, int cordX, int cordY);
 void gotoxy(int x, int y);
 void printHighlighted(int curX, int curY, char** table, int cordX, int cordY);
 
 //Game
+int availablePaths(COORD n, bool** mapCheck, const int ROWS, const int COLS);
 void gameInit(string user, int points, int stages);

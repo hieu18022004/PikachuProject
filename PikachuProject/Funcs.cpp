@@ -150,7 +150,24 @@ char** tableInit(const int ROWS, const int COLS)
     return table;
 }
 
+bool** mapCheckInit(const int ROWS, const int COLS)
+{
+    bool** mapCheck = new bool* [ROWS + 2];
+    for (int i = 0; i < ROWS + 2; i++)
+    {
+        mapCheck[i] = new bool[COLS + 2];
+    }
+    for (int i = 0; i < ROWS + 2; i++)
+    {
+        for (int j = 0; j < COLS + 2; j++)
+        {
+            mapCheck[i][j] = false;
+        }
+    }
+    return mapCheck;
+}
+
 bool pathCheck(int coordX, int coordY, int coordX1, int coordY1)
 {
-
+    return true;
 }

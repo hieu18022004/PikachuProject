@@ -4,10 +4,21 @@
 #include "Funcs.h"
 using namespace std;
 
+int availablePaths(COORD n, bool** mapCheck, const int ROWS, const int COLS)
+{
+	int paths = 0, x = n.X + 1, y = n.Y + 1;
+	if (mapCheck[x + 1][y] == true) paths++;
+	if (mapCheck[x - 1][y] == true) paths++;
+	if (mapCheck[x][y + 1] == true) paths++;
+	if (mapCheck[x][y - 1] == true) paths++;
+	return paths;
+}
+
 void gameInit(string user,int points, int stages)
 {
 	const int ROWS = 3, COLS = 4;
 	char** table = tableInit(ROWS, COLS);
+	bool** mapCheck = mapCheckInit(ROWS, COLS);
 	int coordX = 0, coordY = 0, curX = 4, curY = 2;
 	while (true)
 	{
