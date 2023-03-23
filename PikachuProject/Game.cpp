@@ -6,11 +6,111 @@ using namespace std;
 
 int availablePaths(COORD n, bool** mapCheck, const int ROWS, const int COLS)
 {
-	int paths = 0, x = n.X + 1, y = n.Y + 1;
-	if (mapCheck[x + 1][y] == true) paths++;
-	if (mapCheck[x - 1][y] == true) paths++;
-	if (mapCheck[x][y + 1] == true) paths++;
-	if (mapCheck[x][y - 1] == true) paths++;
+	int paths = 0, x = n.X, y = n.Y;
+	if (n.X == 0)
+	{
+		if (n.X == 0 && n.Y == 0)
+		{
+			if (mapCheck[0][1] == true)
+			{
+				paths++;
+			}
+			if (mapCheck[1][0] == true)
+			{
+				paths++;
+			}
+		}
+		if (n.X == 0 && n.Y == COLS - 1)
+		{
+			if (mapCheck[0][COLS - 2] == true)
+			{
+				paths++;
+			}
+			if (mapCheck[1][COLS - 1] == true)
+			{
+				paths++;
+			}
+		}
+		if (mapCheck[0][n.Y - 1] == true)
+		{
+			paths++;
+		}
+		if (mapCheck[0][n.Y + 1] == true)
+		{
+			paths++;
+		}
+		if (mapCheck[1][n.Y] == true)
+		{
+			paths++;
+		}
+	}
+	if (n.X == ROWS - 1)
+	{
+		if (n.X == ROWS - 1 && n.Y == 0)
+		{
+			if (mapCheck[ROWS - 1][1] == true)
+			{
+				paths++;
+			}
+			if (mapCheck[ROWS - 1][0] == true)
+			{
+				paths++;
+			}
+		}
+		if (n.X == ROWS - 1 && n.Y == COLS - 1)
+		{
+			if (mapCheck[ROWS - 1][COLS - 2] == true)
+			{
+				paths++;
+			}
+			if (mapCheck[ROWS - 2][COLS - 1] == true)
+			{
+				paths++;
+			}
+		}
+		if (mapCheck[ROWS - 1][n.Y - 1] == true)
+		{
+			paths++;
+		}
+		if (mapCheck[ROWS - 1][n.Y + 1] == true)
+		{
+			paths++;
+		}
+		if (mapCheck[ROWS - 2][n.Y] == true)
+		{
+			paths++;
+		}
+	}
+	if (n.Y == 0)
+	{
+		if (mapCheck[n.X - 1][0] == true)
+		{
+			paths++;
+		}
+		if (mapCheck[n.X + 1][0] == true)
+		{
+			paths++;
+		}
+		if (mapCheck[n.X][1] == true)
+		{
+			paths++;
+		}
+	}
+	if (n.Y == COLS - 1)
+	{
+		if (mapCheck[n.X - 1][COLS - 1] == true)
+		{
+			paths++;
+		}
+		if (mapCheck[n.X + 1][COLS - 1] == true)
+		{
+			paths++;
+		}
+		if (mapCheck[n.X][COLS - 2] == true)
+		{
+			paths++;
+		}
+	}
 	return paths;
 }
 

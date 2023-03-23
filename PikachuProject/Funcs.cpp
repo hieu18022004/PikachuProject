@@ -152,14 +152,14 @@ char** tableInit(const int ROWS, const int COLS)
 
 bool** mapCheckInit(const int ROWS, const int COLS)
 {
-    bool** mapCheck = new bool* [ROWS + 2];
+    bool** mapCheck = new bool* [ROWS];
     for (int i = 0; i < ROWS + 2; i++)
     {
-        mapCheck[i] = new bool[COLS + 2];
+        mapCheck[i] = new bool[COLS];
     }
-    for (int i = 0; i < ROWS + 2; i++)
+    for (int i = 0; i < ROWS; i++)
     {
-        for (int j = 0; j < COLS + 2; j++)
+        for (int j = 0; j < COLS; j++)
         {
             mapCheck[i][j] = false;
         }
@@ -167,3 +167,12 @@ bool** mapCheckInit(const int ROWS, const int COLS)
     return mapCheck;
 }
 
+bool pathCheck(COORD start, COORD end, bool** mapCheck, const int ROWS, const int COLS)
+{
+    COORD cur = start;
+    if (availablePaths(cur, mapCheck, ROWS, COLS) == 0)
+    {
+        return false;
+    }
+
+}
