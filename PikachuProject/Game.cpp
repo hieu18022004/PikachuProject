@@ -158,6 +158,8 @@ void gameInit(string user,int points, int stages)
 				}
 				case KEY_RETURN:
 				{
+					COORD coord, coord1;
+					coord.X = coordX; coord.Y = coordY; coord1.X = coordX1; coord1.Y = coordY1;
 					if (table[coordX][coordY] == table[coordX1][coordY1])
 					{
 						table[coordX][coordY] = ' ';

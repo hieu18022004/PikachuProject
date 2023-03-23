@@ -167,7 +167,17 @@ bool** mapCheckInit(const int ROWS, const int COLS)
     return mapCheck;
 }
 
-bool pathCheck(int coordX, int coordY, int coordX1, int coordY1)
+bool pathCheck(COORD coord, COORD coord1,bool** mapCheck, const int ROWS, const int COLS)
 {
+    if (coord.X == 0 && coord1.X == 0) return true;
+    if (coord.X == ROWS - 1 && coord1.X == ROWS - 1) return true;
+    if (coord.Y == 0 && coord1.Y == 0) return true;
+    if (coord.Y == COLS - 1 && coord1.Y == COLS - 1) return true;
+    List stack;
+    COORD cur = coord;
+    while (availablePaths(coord, mapCheck, ROWS, COLS) > 0)
+    {
+        if (a)
+    }
     return true;
 }
