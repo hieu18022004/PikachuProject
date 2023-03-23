@@ -3,7 +3,8 @@
 using namespace std;
 int main()
 {
+	HWND hWnd = GetConsoleWindow();
+	ShowWindow(hWnd, SW_SHOWMAXIMIZED);
 	gameInit("Hieu", 0, 0);
-	cout << "abcsxskljjjjjjjjjjjjjjjjjjjjjjjjj";
 	return 1;
 }

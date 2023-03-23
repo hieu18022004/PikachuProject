@@ -29,7 +29,7 @@ int randomInt()
     mt19937 gen(rd());
     uniform_int_distribution<> distr(65, 90);
     return distr(gen);
-}
+} //ref: https://stackoverflow.com/questions/7560114/random-number-c-in-some-range
 
 void tableShuffle(char** &table, const int ROWS, const int COLS)
 {
