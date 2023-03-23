@@ -265,7 +265,7 @@ COORD getNeighbor(COORD n, bool** mapCheck, const int ROWS, const int COLS)
 
 void gameInit(string user,int points, int stages)
 {
-	const int ROWS = 3, COLS = 4;
+	const int ROWS = 5, COLS = 6;
 	char** table = tableInit(ROWS, COLS);
 	bool** mapCheck = mapCheckInit(ROWS, COLS);
 	int coordX = 0, coordY = 0, curX = 4, curY = 2;
