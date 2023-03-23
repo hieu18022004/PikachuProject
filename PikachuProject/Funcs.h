@@ -31,7 +31,10 @@ void tableShuffle(char** &table, const int ROWS, const int COLS);
 void printScreen(char** table, const int ROWS, const int COLS, string user, int points, int stages, int cordX, int cordY);
 void gotoxy(int x, int y);
 void printHighlighted(int curX, int curY, char** table, int cordX, int cordY);
+void dfs(char** board, int row, int col, int i, int j, char c);
+void removeNonAdjacentMatch(char** board, int row, int col);
 
 //Game
 int availablePaths(COORD n, bool** mapCheck, const int ROWS, const int COLS);
 void gameInit(string user, int points, int stages);
+COORD getNeighbor(COORD n, bool** mapCheck, const int ROWS, const int COLS);
