@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 #include <iomanip>
 #include <random>
 #include <windows.h>
@@ -176,3 +176,45 @@ bool pathCheck(COORD start, COORD end, bool** mapCheck, const int ROWS, const in
     }
 
 }
+
+
+void removeNonAdjacentMatch(char** board, int row, int col) 
+{
+    // Duyệt toàn bộ bảng và kiểm tra từng cặp ô
+    for (int i = 0; i < row; i++) 
+    {
+        for (int j = 0; j < col; j++) 
+        {
+            if (board[i][j] != ' ') 
+            {
+                // Nếu ô chưa được loại bỏ, thực hiện DFS để tìm các ô kề nhau
+                char c = board[i][j];
+                board[i][j] = ' ';
+                dfs(board, row, col, i, j, c);
+            }
+        }
+    }
+}
+
+void dfs(char** board, int row, int col, int i, int j, char c) {
+    // Duyệt các ô kề nhau
+    if (i > 0 && board[i - 1][j] == c) {
+        board[i - 1][j] = ' ';
+        dfs(board, row, col, i - 1, j, c);
+    }
+    if (j > 0 && board[i][j - 1] == c) {
+        board[i][j - 1] = ' ';
+        dfs(board, row, col, i, j - 1, c);
+    }
+    if (i < row - 1 && board[i + 1][j] == c) {
+        board[i + 1][j] = ' ';
+        dfs(board, row, col, i + 1, j, c);
+    }
+    if (j < col - 1 && board[i][j + 1] == c) {
+        board[i][j + 1] = ' ';
+        dfs(board, row, col, i, j + 1, c);
+    }
+}
+
+
+
