@@ -4,6 +4,6 @@ using namespace std;
 int main()
 {
 	gameInit("Hieu", 0, 0);
-	cout << "abcsxskl";
+	cout << "abcsxskljjjjjjjjjjjjjjjjjjjjjjjjj";
 	return 1;
 }
