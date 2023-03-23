@@ -14,6 +14,155 @@ int availablePaths(COORD n, bool** mapCheck, const int ROWS, const int COLS)
 	return paths;
 }
 
+COORD getNeighbor(COORD n, bool** mapCheck, const int ROWS, const int COLS)
+{
+	COORD neighbor;
+	if (n.X == 0)
+	{
+		if (n.X == 0 && n.Y == 0)
+		{
+			if (mapCheck[0][1] == true)
+			{
+				neighbor.X = 0;
+				neighbor.Y = 1;
+				return neighbor;
+			}
+			if (mapCheck[1][0] == true)
+			{
+				neighbor.X = 1;
+				neighbor.Y = 0;
+				return neighbor;
+			}
+		}
+		if (n.X == 0 && n.Y == COLS - 1)
+		{
+			if (mapCheck[0][COLS - 2] == true)
+			{
+				neighbor.X = 0;
+				neighbor.Y = COLS - 2;
+				return neighbor;
+			}
+			if (mapCheck[1][COLS - 1] == true)
+			{
+				neighbor.X = 1;
+				neighbor.Y = COLS - 1;
+				return neighbor;
+			}
+		}
+		if (mapCheck[0][n.Y - 1] == true)
+		{
+			neighbor.X = 0;
+			neighbor.Y = n.Y - 1;
+			return neighbor;
+		}
+		if (mapCheck[0][n.Y + 1] == true)
+		{
+			neighbor.X = 0;
+			neighbor.Y = n.Y + 1;
+			return neighbor;
+		}
+		if (mapCheck[1][n.Y] == true)
+		{
+			neighbor.X = 1;
+			neighbor.Y = n.Y;
+			return neighbor;
+		}
+	}
+	if (n.X == ROWS - 1)
+	{
+		if (n.X == ROWS - 1 && n.Y == 0)
+		{
+			if (mapCheck[ROWS - 1][1] == true)
+			{
+				neighbor.X = ROWS - 1;
+				neighbor.Y = 1;
+				return neighbor;
+			}
+			if (mapCheck[ROWS - 1][0] == true)
+			{
+				neighbor.X = ROWS - 2;
+				neighbor.Y = 0;
+				return neighbor;
+			}
+		}
+		if (n.X == ROWS - 1 && n.Y == COLS - 1)
+		{
+			if (mapCheck[ROWS - 1][COLS - 2] == true)
+			{
+				neighbor.X = ROWS - 1;
+				neighbor.Y = COLS - 2;
+				return neighbor;
+			}
+			if (mapCheck[ROWS - 2][COLS - 1] == true)
+			{
+				neighbor.X = ROWS - 2;
+				neighbor.Y = COLS - 1;
+				return neighbor;
+			}
+		}
+		if (mapCheck[ROWS - 1][n.Y - 1] == true)
+		{
+			neighbor.X = ROWS - 1;
+			neighbor.Y = n.Y - 1;
+			return neighbor;
+		}
+		if (mapCheck[ROWS - 1][n.Y + 1] == true)
+		{
+			neighbor.X = ROWS - 1;
+			neighbor.Y = n.Y + 1;
+			return neighbor;
+		}
+		if (mapCheck[ROWS - 2][n.Y] == true)
+		{
+			neighbor.X = 1;
+			neighbor.Y = n.Y;
+			return neighbor;
+		}
+	}
+	if (n.Y == 0)
+	{
+		if (mapCheck[n.X - 1][0] == true)
+		{
+			neighbor.X = n.X - 1;
+			neighbor.Y = 0;
+			return neighbor;
+		}
+		if (mapCheck[n.X + 1][0] == true)
+		{
+			neighbor.X = n.X + 1;
+			neighbor.Y = 0;
+			return neighbor;
+		}
+		if (mapCheck[n.X][1] == true)
+		{
+			neighbor.X = n.X;
+			neighbor.Y = 1;
+			return neighbor;
+		}
+	}
+	if (n.Y == COLS - 1)
+	{
+		if (mapCheck[n.X - 1][COLS - 1] == true)
+		{
+			neighbor.X = n.X - 1;
+			neighbor.Y = COLS - 1;
+			return neighbor;
+		}
+		if (mapCheck[n.X + 1][COLS - 1] == true)
+		{
+			neighbor.X = n.X + 1;
+			neighbor.Y = COLS - 1;
+			return neighbor;
+		}
+		if (mapCheck[n.X][COLS - 2] == true)
+		{
+			neighbor.X = n.X;
+			neighbor.Y = COLS - 2;
+			return neighbor;
+		}
+	}
+}
+
 void gameInit(string user,int points, int stages)
 {
 	const int ROWS = 3, COLS = 4;
