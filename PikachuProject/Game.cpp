@@ -14,7 +14,8 @@ int availablePaths(COORD n, bool** mapCheck, const int ROWS, const int COLS)
 		int tmpx = x + dx[i], tmpy = y + dy[i];
 		if (tmpx >= 0 && tmpx < ROWS && tmpy >= 0 && tmpy < COLS)
 		{
-			paths++;
+			if (mapCheck[tmpx + 1][tmpy + 1] == true)
+				paths++;
 		}
 	}
 	return paths;
@@ -31,7 +32,7 @@ COORD getNeighbor(COORD n, bool** mapCheck, const int ROWS, const int COLS)
 		int tmpx = n.X + dx[i], tmpy = n.Y + dy[i];
 		if (tmpx >= 0 && tmpx < ROWS && tmpy >= 0 && tmpy < COLS)
 		{
-			if (mapCheck[tmpx][tmpy] == true)
+			if (mapCheck[tmpx + 1][tmpy + 1] == true)
 			{
 				neighbor.X = tmpx;
 				neighbor.Y = tmpy;
