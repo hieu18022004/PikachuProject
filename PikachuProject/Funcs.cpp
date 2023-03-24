@@ -167,13 +167,19 @@ bool** mapCheckInit(const int ROWS, const int COLS)
     return mapCheck;
 }
 
+bool validMove(COORD n, bool** mapCheck, const int ROWS, const int COLS)
+{
+    if (n.X >= 0 && n.X < ROWS && n.Y >= 0 && n.Y < COLS)
+    {
+        if (mapCheck[n.X][n.Y] == true)
+            return true;
+    }
+    return false;
+}
 bool pathCheck(COORD start, COORD end, bool** mapCheck, const int ROWS, const int COLS)
 {
     COORD cur = start;
-    if (availablePaths(cur, mapCheck, ROWS, COLS) == 0)
-    {
-        return false;
-    }
+        
 
 }
 
