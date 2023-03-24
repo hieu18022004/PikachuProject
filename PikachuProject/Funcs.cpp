@@ -179,7 +179,12 @@ bool validMove(COORD n, bool** mapCheck, const int ROWS, const int COLS)
 bool pathCheck(COORD start, COORD end, bool** mapCheck, const int ROWS, const int COLS)
 {
     COORD cur = start;
-        
+    List turn;
+    headPush(turn, cur.X, cur.Y);
+    while (emptyCheck(turn) == false)
+    {
+
+    }
 
 }
 

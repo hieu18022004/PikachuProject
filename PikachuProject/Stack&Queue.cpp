@@ -13,6 +13,15 @@ Node* nodeCreate(int x, int y)
 	return pNew;
 }
 
+bool emptyCheck(List list)
+{
+	if (list.pHead == NULL)
+	{
+		return true;
+	}
+	return false;
+}
+
 void headPush(List& list, int x, int y)
 {
 	if (list.pHead == NULL)

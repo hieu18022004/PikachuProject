@@ -18,6 +18,7 @@ struct List {
 
 //list
 Node* nodeCreate(int x, int y);
+bool emptyCheck(List list);
 void headPush(List& list, int x, int y);
 COORD headPop(List& list);
 COORD headGet(List list);
