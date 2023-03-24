@@ -39,3 +39,10 @@ void removeNonAdjacentMatch(char** board, int row, int col);
 int availablePaths(COORD n, bool** mapCheck, const int ROWS, const int COLS);
 void gameInit(string user, int points, int stages);
 COORD getNeighbor(COORD n, bool** mapCheck, const int ROWS, const int COLS);
+// Data
+struct Player {
+    char name[50];
+    int yearOfBirth;
+    int records;
+    int saveStages;
+};

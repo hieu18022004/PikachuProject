@@ -8,3 +8,6 @@ int main()
 	gameInit("Hieu", 0, 0);
 	return 1;
 }
+
+
+
