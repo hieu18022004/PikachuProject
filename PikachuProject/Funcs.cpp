@@ -251,7 +251,7 @@ bool pathLCheck(COORD start, COORD end, bool** mapCheck, const int ROWS, const i
     }
 }
 
-
+//bỏ luôn cái này
 void removeNonAdjacentMatch(char** board, int row, int col) 
 {
     // Duyệt toàn bộ bảng và kiểm tra từng cặp ô
@@ -270,6 +270,8 @@ void removeNonAdjacentMatch(char** board, int row, int col)
     }
 }
 
+
+// hàm này sai nè bỏ đi nha
 void dfs(char** board, int row, int col, int i, int j, char c) {
     // Duyệt các ô kề nhau
     if (i > 0 && board[i - 1][j] == c) {
