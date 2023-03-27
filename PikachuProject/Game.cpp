@@ -4,9 +4,9 @@
 #include "Funcs.h"
 using namespace std;
 
-int availablePaths(COORD n, bool** mapCheck, const int ROWS, const int COLS)
+int availablePaths(int nX, int nY, bool** mapCheck, const int ROWS, const int COLS)
 {
-	int paths = 0, x = n.X, y = n.Y;
+	int paths = 0, x = nX, y = nY;
 	int dx[4] = { 0,0,1,-1 };
 	int dy[4] = { -1,1,0,0 };
 	for (int i = 0; i < 4; i++)

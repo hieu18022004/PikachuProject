@@ -179,6 +179,13 @@ bool validCheck(COORD n, bool** mapCheck, const int ROWS, const int COLS)
     return n.X >= 0 && n.X < ROWS + 2 && n.Y >= 0 && n.Y < COLS + 2 && mapCheck[n.X][n.Y] == true;
 }
 
-bool bfs()
+bool bfs(COORD start, COORD end, bool** mapCheck, const int ROWS, const int COLS)
+{
+    //covert board coord to mapcheck coord
+    int startX = start.X + 1, startY = start.Y + 1, endX = end.X + 1, endY = end.Y + 1;
+    List queue;
+    mapCheck[startX][startY] = true;
+    tailPush(queue, startX, startY);
+}
 
 

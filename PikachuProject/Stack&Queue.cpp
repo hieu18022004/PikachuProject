@@ -13,6 +13,30 @@ Node* nodeCreate(int x, int y)
 	return pNew;
 }
 
+void removeAll(List& list)
+{
+	if (list.pHead == NULL)
+	{
+		return;
+	}
+	if (list.pHead->pNext == NULL)
+	{
+		delete list.pHead;
+		list.pHead = NULL;
+		return;
+	}
+	Node* pPrev = list.pHead;
+	Node* pCurrent = list.pHead;
+	while (pPrev != NULL)
+	{
+		pCurrent = pCurrent->pNext;
+		pPrev->pNext = NULL;
+		delete pPrev;
+		pPrev = pCurrent;
+	}
+	list.pHead = NULL;
+}
+
 bool emptyCheck(List list)
 {
 	if (list.pHead == NULL)
@@ -75,6 +99,25 @@ COORD headGet(List list)
 		return data;
 	}
 	Node* pCur = list.pHead;
+	data.X = pCur->n.X;
+	data.Y = pCur->n.Y;
+	return data;
+}
+
+COORD tailGet(List list)
+{
+	COORD data;
+	if (list.pHead == NULL)
+	{
+		data.X = -1;
+		data.Y = -1;
+		return data;
+	}
+	Node* pCur = list.pHead;
+	while (pCur->pNext != NULL)
+	{
+		pCur = pCur->pNext;
+	}
 	data.X = pCur->n.X;
 	data.Y = pCur->n.Y;
 	return data;

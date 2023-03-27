@@ -6,20 +6,12 @@ using namespace std;
 #define KEY_LEFT 75
 #define KEY_RIGHT 77
 #define KEY_RETURN 13
-//structs
-struct Node {
-	COORD n;
-	Node* pNext = NULL;
-};
- 
-struct List {
-	Node* pHead = NULL;
-};
 
 //list
 Node* nodeCreate(int x, int y);
 bool emptyCheck(List list);
 void headPush(List& list, int x, int y);
+void tailPush(List& list, int x, int y);
 COORD headPop(List& list);
 COORD headGet(List list);
 
@@ -67,6 +59,16 @@ struct LeaderboardEntry
 {
     string username;
     int timeTaken;
+};
+
+//queue structs
+struct Node {
+    COORD n;
+    Node* pNext = NULL;
+};
+
+struct List {
+    Node* pHead = NULL;
 };
 
 void saveGameData();
