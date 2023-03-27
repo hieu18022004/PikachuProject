@@ -34,6 +34,19 @@ void headPush(List& list, int x, int y)
 	list.pHead = pCur;
 }
 
+void tailPush(List& list, int x, int y)
+{
+	if (list.pHead == NULL)
+	{
+		list.pHead = nodeCreate(x, y);
+		return;
+	}
+	Node* pCur = list.pHead;
+	while (pCur->pNext != NULL)
+		pCur = pCur->pNext;
+	pCur->pNext = nodeCreate(x, y);
+}
+
 COORD headPop(List& list)
 {
 	COORD data;
