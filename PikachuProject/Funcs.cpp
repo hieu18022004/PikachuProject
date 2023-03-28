@@ -251,8 +251,34 @@ bool ZCheck(COORD start, COORD end, char** table)
     return false;
 }
 
-bool UCheck(COORD start, COORD end, char** table)
+bool UCheck(COORD start, COORD end, char** table, const int ROWS, const int COLS)
 {
-    return false;
+    COORD corner1, corner2;
+    //check ngang
+    corner1.X = start.X; corner1.Y = 0; corner2.X = end.X; corner2.Y = 0;
+    if (ICheck(start, corner1, table) && ICheck(corner2, end, table)) return true;
+    corner1.Y = COLS - 1; corner2.Y = COLS - 1;
+    if (ICheck(start, corner1, table) && ICheck(corner2, end, table)) return true;
+    if (start.Y > end.Y)
+    {
+        for (int i = 0; i < end.Y; i++)
+        {
+            corner1.X = end.X; corner1.Y = i; corner2.X = start.X; corner2.Y = i;
+            if (ICheck(end, corner1, table) && ICheck(corner1, corner2, table) && ICheck(corner2, start, table)) return true;
+        }
+        for (int i = start.Y + 1; i < COLS; i++)
+        {
+            corner1.X = end.X; corner1.Y = i; corner2.X = start.X; corner2.Y = i;
+            if (ICheck(end, corner1, table) && ICheck(corner1, corner2, table) && ICheck(corner2, start, table)) return true;
+        }
+    }
+    if (start.Y < end.Y)
+    {
+        for (int i = start.Y + 1; i < end.Y; i++)
+        {
+            corner1.X = start.X; corner1.Y = i; corner2.X = end.X; corner2.Y = i;
+            if (ICheck(start, corner1, table) && ICheck(corner1, corner2, table) && ICheck(corner2, end, table)) return true;
+        }
+    }
 }
 
