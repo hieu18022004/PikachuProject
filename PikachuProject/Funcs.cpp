@@ -91,29 +91,30 @@ void printTable(char** table, const int ROWS, const int COLS) {
     // print the table
     cout << setw(COLS * 8 + 1) << setfill('-') << "" << endl;
     for (int i = 0; i < ROWS; i++) {
-        cout << "|";
+        cout << setw(8) << setfill(' ') << "|";
         for (int c = 0; c < COLS; c++)
         {
             cout << setw(8) << setfill(' ') << "|";
         }
         cout << endl;
+        cout << setw(7) << setfill(' ') << "";
         for (int j = 0; j < COLS; j++) {
             cout << "|   " << table[i][j] << "   ";
         }
         cout << "|" << endl;
-        cout << "|";
+        cout << setw(8) << setfill(' ') << "|";
         for (int c = 0; c < COLS; c++)
         {
             cout << setw(8) << setfill(' ') << "|";
         }
         cout << endl;
-        cout << setw(COLS * 8 + 1) << setfill('-') << "" << endl;
+        cout << setw(7) << setfill(' ') << "" << setw(COLS * 8 + 1) << setfill('-') << "" << endl;
     }
 }
 
 void printScreen(char** table, const int ROWS, const int COLS, string user, int points, int stages, int cordX, int cordY)
 {
-    COORD cur = { 0, 0 };
+    COORD cur = { 7, 2 };
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), cur);
     printTable(table, ROWS, COLS);
     cout << "\n\n\n\n";
@@ -165,42 +166,42 @@ bool ICheck(COORD start, COORD end, char** table)
     {
         if (start.Y > end.Y)
         {
-            for (int i = end.Y + 1; i <= start.Y + 1; i++)
+            for (int i = end.Y + 1; i < start.Y; i++)
             {
-                if (table[start.X + 1][i] == false) return false;
+                if (table[start.X][i] != ' ') return false;
             }
         }
         if (start.Y < end.Y)
         {
-            for (int i = start.Y + 1; i <= end.Y + 1; i++)
+            for (int i = start.Y + 1; i < end.Y; i++)
             {
-                if (table[start.X + 1][i] == false) return false;
+                if (table[start.X][i] != ' ') return false;
             }
         }
+        return true;
     }
     if (start.Y == end.Y)
     {
         if (start.X > end.X)
         {
-            for (int i = end.X + 1; i <= start.X + 1; i++)
+            for (int i = end.X + 1; i < start.X; i++)
             {
-                if (table[i][start.Y + 1] == false) return false;
+                if (table[i][start.Y] != ' ') return false;
             }
         }
         if (start.X < end.X)
         {
-            for (int i = start.X + 1; i <= end.X + 1; i++)
+            for (int i = start.X + 1; i < end.X; i++)
             {
-                if (table[i][start.Y + 1] == false) return false;
+                if (table[i][start.Y] != ' ') return false;
             }
         }
+        return true;
     }
-    return true;
 }
 
 bool LCheck(COORD start, COORD end, char** table)
 {
-    // convert to mapCheck coordinates
     COORD corner;
     corner.X = start.X, corner.Y = end.Y;
     if (ICheck(start, corner, table) && ICheck(end, corner, table)) return true;

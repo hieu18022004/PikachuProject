@@ -47,7 +47,7 @@ void gameInit(string user,int points, int stages)
 {
 	const int ROWS = 5, COLS = 6;
 	char** table = tableInit(ROWS, COLS);
-	int coordX = 0, coordY = 0, curX = 4, curY = 2;
+	int coordX = 0, coordY = 0, curX = 11, curY = 4;
 	while (true)
 	{
 		FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
@@ -126,7 +126,7 @@ void gameInit(string user,int points, int stages)
 		}
 		case KEY_RETURN:
 		{
-			int coordX1 = 0, coordY1 = 0, curX1 = 4, curY1 = 2;
+			int coordX1 = 0, coordY1 = 0, curX1 = 11, curY1 = 4;
 			bool matchCheck = true;
 			while (matchCheck==true)
 			{
@@ -219,7 +219,7 @@ void gameInit(string user,int points, int stages)
 							system("pause");
 							break;
 						}
-						else if (LCheck(coord, coord1, table))
+						else if (LCheck(coord, coord1, table) == true)
 						{
 							table[coordX][coordY] = ' ';
 							table[coordX1][coordY1] = ' ';
