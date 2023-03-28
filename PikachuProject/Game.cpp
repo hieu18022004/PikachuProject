@@ -4,7 +4,7 @@
 #include "Funcs.h"
 using namespace std;
 
-int availablePaths(int nX, int nY, bool** mapCheck, const int ROWS, const int COLS)
+/*int availablePaths(int nX, int nY, bool** mapCheck, const int ROWS, const int COLS)
 {
 	int paths = 0, x = nX, y = nY;
 	int dx[4] = { 0,0,1,-1 };
@@ -12,7 +12,7 @@ int availablePaths(int nX, int nY, bool** mapCheck, const int ROWS, const int CO
 	for (int i = 0; i < 4; i++)
 	{
 		int tmpx = x + dx[i], tmpy = y + dy[i];
-		if (tmpx >= 0 && tmpx < ROWS && tmpy >= 0 && tmpy < COLS)
+		if (tmpx >= 0 && tmpx < ROWS + 1 && tmpy >= 0 && tmpy < COLS + 1)
 		{
 			if (mapCheck[tmpx + 1][tmpy + 1] == true)
 				paths++;
@@ -30,7 +30,7 @@ COORD getNeighbor(COORD n, bool** mapCheck, const int ROWS, const int COLS)
 	for (int i = 0; i < 4; i++)
 	{
 		int tmpx = n.X + dx[i], tmpy = n.Y + dy[i];
-		if (tmpx >= 0 && tmpx < ROWS && tmpy >= 0 && tmpy < COLS)
+		if (tmpx >= 0 && tmpx < ROWS + 2 && tmpy >= 0 && tmpy < COLS + 2)
 		{
 			if (mapCheck[tmpx + 1][tmpy + 1] == true)
 			{
@@ -41,7 +41,7 @@ COORD getNeighbor(COORD n, bool** mapCheck, const int ROWS, const int COLS)
 		}
 	}
 	return neighbor;
-}
+}*/
 
 void gameInit(string user,int points, int stages)
 {
@@ -52,11 +52,16 @@ void gameInit(string user,int points, int stages)
 	while (true)
 	{
 		FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
-		printScreen(table, ROWS, COLS, user, points, stages, coordX, coordY);
+		printScreen(table, mapCheck, ROWS, COLS, user, points, stages, coordX, coordY);
 		printHighlighted(curX, curY, table, coordX, coordY);
 		cout << endl;
 		switch (_getch())
 		{
+		case 's':
+		{
+			tableShuffle(table, ROWS, COLS);
+			break;
+		}
 		case 'x':
 		{
 			system("cls");
@@ -127,7 +132,7 @@ void gameInit(string user,int points, int stages)
 			while (matchCheck==true)
 			{
 				FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
-				printScreen(table, ROWS, COLS, user, points, stages, coordX, coordY);
+				printScreen(table, mapCheck, ROWS, COLS, user, points, stages, coordX, coordY);
 				printHighlighted(curX, curY, table, coordX, coordY);
 				printHighlighted(curX1, curY1, table, coordX1, coordY1);
 				cout << endl;
@@ -187,12 +192,64 @@ void gameInit(string user,int points, int stages)
 				}
 				case KEY_RETURN:
 				{
-					COORD coord, coord1;
-					coord.X = coordX; coord.Y = coordY; coord1.X = coordX1; coord1.Y = coordY1;
 					if (table[coordX][coordY] == table[coordX1][coordY1])
 					{
-						table[coordX][coordY] = ' ';
-						table[coordX1][coordY1] = ' ';
+						COORD coord, coord1;
+						coord.X = coordX; coord.Y = coordY; coord1.X = coordX1; coord1.Y = coordY1;
+						if (coordX == 0 && coordX1 == 0 || coordX == ROWS - 1 && coordX1 == ROWS - 1 || coordY == 0 && coordY1 == 0 || coordY == COLS - 1 && coordY1 == COLS - 1)
+						{
+							table[coordX][coordY] = ' ';
+							table[coordX1][coordY1] = ' ';
+							mapCheck[coordX + 1][coordY + 1] = true;
+							mapCheck[coordX1 + 1][coordY1 + 1] = true;
+							matchCheck = false;
+							break;
+						}
+						else if (coordX == coordX1 && abs(coordY - coordY1) == 1 || coordY == coordY1 && abs(coordX - coordX1) == 1)
+						{
+							table[coordX][coordY] = ' ';
+							table[coordX1][coordY1] = ' ';
+							mapCheck[coordX + 1][coordY + 1] = true;
+							mapCheck[coordX1 + 1][coordY1 + 1] = true;
+							matchCheck = false;
+							break;
+						}
+						else if (ICheck(coord, coord1, mapCheck) == true)
+						{
+							table[coordX][coordY] = ' ';
+							table[coordX1][coordY1] = ' ';
+							mapCheck[coordX + 1][coordY + 1] = true;
+							mapCheck[coordX1 + 1][coordY1 + 1] = true;
+							matchCheck = false;
+							system("cls");
+							cout << "I shape";
+							system("pause");
+							break;
+						}
+						else if (LCheck(coord, coord1, mapCheck))
+						{
+							table[coordX][coordY] = ' ';
+							table[coordX1][coordY1] = ' ';
+							mapCheck[coordX + 1][coordY + 1] = true;
+							mapCheck[coordX1 + 1][coordY1 + 1] = true;
+							matchCheck = false;
+							system("cls");
+							cout << "L shape";
+							system("pause");
+							break;
+						}
+						else if (UCheck(coord, coord1, mapCheck, ROWS, COLS))
+						{
+							table[coordX][coordY] = ' ';
+							table[coordX1][coordY1] = ' ';
+							mapCheck[coordX + 1][coordY + 1] = true;
+							mapCheck[coordX1 + 1][coordY1 + 1] = true;
+							matchCheck = false;
+							system("cls");
+							cout << "U shape";
+							system("pause");
+							break;
+						}
 					}
 					matchCheck = false;
 					break;

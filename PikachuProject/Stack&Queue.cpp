@@ -13,6 +13,22 @@ Node* nodeCreate(int x, int y)
 	return pNew;
 }
 
+int getSize(List list)
+{
+	if (emptyCheck(list))
+	{
+		return 0;
+	}
+	int n = 0;
+	Node* pCur = list.pHead;
+	while (pCur->pNext != NULL)
+	{
+		pCur = pCur->pNext;
+		n++;
+	}
+	return n;
+}
+
 void removeAll(List& list)
 {
 	if (list.pHead == NULL)
@@ -53,9 +69,11 @@ void headPush(List& list, int x, int y)
 		list.pHead = nodeCreate(x, y);
 		return;
 	}
-	Node* pCur = nodeCreate(x,y);
-	pCur->pNext = list.pHead;
-	list.pHead = pCur;
+	Node* pCur = list.pHead;
+	Node* pNew = nodeCreate(x,y);
+	pNew->pNext = pCur;
+	list.pHead = pNew;
+	return;
 }
 
 void tailPush(List& list, int x, int y)

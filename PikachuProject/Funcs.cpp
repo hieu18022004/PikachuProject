@@ -17,9 +17,13 @@ void gotoxy(int x, int y) {
 
 void printHighlighted(int curX, int curY, char** table, int cordX, int cordY)
 {
-    gotoxy(curX, curY);
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 116);
-    cout << table[cordX][cordY];
+    gotoxy(curX - 3, curY - 1);
+    cout << "       " << endl;
+    gotoxy(curX - 3, curY);
+    cout << "   " << table[cordX][cordY] << "   " << endl;
+    gotoxy(curX - 3, curY + 1);
+    cout << "       ";
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
 }
 
@@ -107,14 +111,14 @@ void printTable(char** table, const int ROWS, const int COLS) {
     }
 }
 
-void printScreen(char** table, const int ROWS, const int COLS, string user, int points, int stages, int cordX, int cordY)
+void printScreen(char** table,bool** mapCheck, const int ROWS, const int COLS, string user, int points, int stages, int cordX, int cordY)
 {
     COORD cur = { 0, 0 };
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), cur);
     printTable(table, ROWS, COLS);
-    cout << "\n\n Cordinate: [" << cordX + 1 << " : " << cordY + 1 << "] : " << table[cordX][cordY];
+    cout << "\n\n Cordinate: [" << cordX + 1 << " : " << cordY + 1 << "] : " << mapCheck[cordX + 1][cordY + 1];
     cout << "\n\n\n\n";
-    cout << "Username: " << user << endl << "Points: " << points << endl << "Stages completed: " << stages << endl << "Press x to exit to menu\n";
+    cout << "Username: " << user << endl << "Points: " << points << endl << "Stages completed: " << stages << endl << "Press x to exit to menu" << endl << "s to shuffle" << endl;
 }
 
 char** tableInit(const int ROWS, const int COLS)
@@ -174,18 +178,85 @@ bool** mapCheckInit(const int ROWS, const int COLS)
     return mapCheck;
 }
 
-bool validCheck(COORD n, bool** mapCheck, const int ROWS, const int COLS)
+bool validCheck(int x, int y, bool** mapCheck, const int ROWS, const int COLS)
 {
-    return n.X >= 0 && n.X < ROWS + 2 && n.Y >= 0 && n.Y < COLS + 2 && mapCheck[n.X][n.Y] == true;
+    return x >= 0 && x < ROWS + 2 && y >= 0 && y < COLS + 2 && mapCheck[x][y] == true;
 }
 
-bool bfs(COORD start, COORD end, bool** mapCheck, const int ROWS, const int COLS)
+bool ICheck(COORD start, COORD end, bool** mapCheck)
 {
-    //covert board coord to mapcheck coord
-    int startX = start.X + 1, startY = start.Y + 1, endX = end.X + 1, endY = end.Y + 1;
-    List queue;
-    mapCheck[startX][startY] = true;
-    tailPush(queue, startX, startY);
+    if (start.X == end.X)
+    {
+        if (start.Y > end.Y)
+        {
+            for (int i = end.Y + 1; i <= start.Y + 1; i++)
+            {
+                if (mapCheck[start.X + 1][i] == false) return false;
+            }
+        }
+        if (start.Y < end.Y)
+        {
+            for (int i = start.Y + 1; i <= end.Y + 1; i++)
+            {
+                if (mapCheck[start.X + 1][i] == false) return false;
+            }
+        }
+    }
+    if (start.Y == end.Y)
+    {
+        if (start.X > end.X)
+        {
+            for (int i = end.X + 1; i <= start.X + 1; i++)
+            {
+                if (mapCheck[i][start.Y + 1] == false) return false;
+            }
+        }
+        if (start.X < end.X)
+        {
+            for (int i = start.X + 1; i <= end.X + 1; i++)
+            {
+                if (mapCheck[i][start.Y + 1] == false) return false;
+            }
+        }
+    }
+    return true;
 }
 
+bool LCheck(COORD start, COORD end, bool** mapCheck)
+{
+    // convert to mapCheck coordinates
+    COORD corner;
+    corner.X = start.X, corner.Y = end.Y;
+    if (ICheck(start, corner, mapCheck) && ICheck(end, corner, mapCheck)) return true;
+    corner.X = end.X; corner.Y = start.Y;
+    if (ICheck(start, corner, mapCheck) && ICheck(end, corner, mapCheck)) return true;
+    return false;
+}
+
+bool UCheck(COORD start, COORD end, bool** mapCheck, const int ROWS, const int COLS)
+{
+    // convert to mapCheck coordinates
+    COORD corner1, corner2;
+    //check ngang
+    for (int i = 0; i < COLS + 2; i++)
+    {
+        if (mapCheck[start.X + 1][i] == true && mapCheck[end.X + 1][i] == true)
+        {
+            corner1.X = start.X; corner1.Y = i - 1;
+            corner2.X = end.X; corner2.Y = i - 1;
+            if (ICheck(start, corner1, mapCheck) == true && ICheck(corner2, corner1, mapCheck) == true && ICheck(end, corner2, mapCheck) == true) return true;
+        }
+    }
+    //check dọc
+    for (int i = 0; i < ROWS + 2; i++)
+    {
+        if (mapCheck[i][start.Y + 1] == true && mapCheck[i][end.Y + 1] == true)
+        {
+            corner1.X = i - 1; corner1.Y = start.Y;
+            corner2.X = i - 1; corner2.Y = end.Y;
+            if (ICheck(start, corner1, mapCheck) == true && ICheck(corner2, corner1, mapCheck) == true && ICheck(end, corner2, mapCheck) == true) return true;
+        }
+    }
+    return false;
+}
 
