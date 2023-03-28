@@ -30,14 +30,12 @@ void removeAll(List& list);
 int randomInt();
 void printTable(char** table, const int ROWS, const int COLS);
 char** tableInit(const int ROWS, const int COLS);
-bool** mapCheckInit(const int ROWS, const int COLS);
 void tableShuffle(char** &table, const int ROWS, const int COLS);
-void printScreen(char** table,bool** mapCheck, const int ROWS, const int COLS, string user, int points, int stages, int cordX, int cordY);
+void printScreen(char** table, const int ROWS, const int COLS, string user, int points, int stages, int cordX, int cordY);
 void gotoxy(int x, int y);
 void printHighlighted(int curX, int curY, char** table, int cordX, int cordY);
-bool ICheck(COORD start, COORD end, bool** mapCheck);
-bool LCheck(COORD start, COORD end, bool** mapCheck);
-bool UCheck(COORD start, COORD end, bool** mapCheck, const int ROWS, const int COLS);
+bool ICheck(COORD start, COORD end, char** table);
+bool LCheck(COORD start, COORD end, char** table);
 
 //Game
 //int availablePaths(int nX, int nY, bool** mapCheck, const int ROWS, const int COLS);
