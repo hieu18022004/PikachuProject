@@ -18,7 +18,7 @@ void saveGameData()
     cout << "Enter save stages: ";
     cin >> player.saveStages;
 
-    ofstream outFile("savegame.dat", ios::binary);
+    ofstream outFile("savegame.bin", ios::binary);
     if (outFile) 
     {
         outFile.write(reinterpret_cast<char*>(&player), sizeof(player));
@@ -45,7 +45,7 @@ void SignUp()
     newPlayer.password = password;
 
     // Save player information to binary file
-    ofstream outfile("players.dat", ios::binary | ios::app);
+    ofstream outfile("players.bin", ios::binary | ios::app);
     outfile.write(reinterpret_cast<char*>(&newPlayer), sizeof(Player));
     outfile.close();
 
@@ -70,4 +70,69 @@ void displayDifficultyMenu()
     cout << "3. Hard" << endl;
     cout << "4. Exit" << endl;
     cout << "========================" << endl;
+}
+
+
+//convert ascii art in file txt to file .bin
+//ascii_art.txt & ascii_art.bin
+void convertTxtToBin(const char* txtFileName, const char* binFileName) 
+{
+    ifstream input(txtFileName); 
+    if (!input) 
+    {
+        cerr << "Error!" << endl;
+        return;
+    }
+
+    string asciiArt; 
+    char c;
+    while (input.get(c)) 
+    {
+        asciiArt += c; 
+    }
+
+    input.close(); 
+
+    ofstream output(binFileName, ios::out | ios::binary); 
+    if (!output) {
+        cerr << "Error!" << endl;
+        return;
+    }
+
+    output.write(asciiArt.c_str(), asciiArt.size()); 
+
+    output.close(); 
+}
+
+
+
+void displayAsciiArt(const char* fileName) 
+{
+    ifstream file(fileName, ios::in | ios::binary);
+    if (!file) 
+    {
+        cerr << "Error!" << endl;
+        return;
+    }
+
+    string asciiArt;
+    char c;
+    while (file.get(c)) 
+    {
+        asciiArt += c;
+    }
+
+    file.close();
+
+    for (int i = 0; i < asciiArt.size(); i++) 
+    {
+        if (asciiArt[i] == '\n') 
+        {
+            cout << endl; 
+        }
+        else 
+        {
+            cout << asciiArt[i]; 
+        }
+    }
 }
