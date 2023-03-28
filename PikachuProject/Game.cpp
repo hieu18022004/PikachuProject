@@ -209,24 +209,37 @@ void gameInit(string user,int points, int stages)
 							matchCheck = false;
 							break;
 						}
-						else if (ICheck(coord, coord1, table) == true)
+						else if (ICheck(coord, coord1, table))
 						{
 							table[coordX][coordY] = ' ';
 							table[coordX1][coordY1] = ' ';
 							matchCheck = false;
 							system("cls");
-							cout << "I shape";
+							cout << "I" << endl;
 							system("pause");
+							system("cls");
 							break;
 						}
-						else if (LCheck(coord, coord1, table) == true)
+						else if (LCheck(coord, coord1, table))
 						{
 							table[coordX][coordY] = ' ';
 							table[coordX1][coordY1] = ' ';
 							matchCheck = false;
 							system("cls");
-							cout << "L shape";
+							cout << "L" << endl;
 							system("pause");
+							system("cls");
+							break;
+						}
+						else if (ZCheck(coord, coord1, table))
+						{
+							table[coordX][coordY] = ' ';
+							table[coordX1][coordY1] = ' ';
+							matchCheck = false;
+							system("cls");
+							cout << "Z" << endl;
+							system("pause");
+							system("cls");
 							break;
 						}
 					}

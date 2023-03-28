@@ -36,6 +36,8 @@ void gotoxy(int x, int y);
 void printHighlighted(int curX, int curY, char** table, int cordX, int cordY);
 bool ICheck(COORD start, COORD end, char** table);
 bool LCheck(COORD start, COORD end, char** table);
+bool ZCheck(COORD start, COORD end, char** table);
+
 
 //Game
 //int availablePaths(int nX, int nY, bool** mapCheck, const int ROWS, const int COLS);
