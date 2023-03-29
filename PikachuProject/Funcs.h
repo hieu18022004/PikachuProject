@@ -43,9 +43,7 @@ bool UCheck(COORD start, COORD end, char** table, const int ROWS, const int COLS
 
 
 //Game
-//int availablePaths(int nX, int nY, bool** mapCheck, const int ROWS, const int COLS);
-void gameInit(string user, int points, int stages);
-//COORD getNeighbor(COORD n, bool** mapCheck, const int ROWS, const int COLS);
+void gameInit(string user, int points, int stages, int DifX, int DifY);
 // Data and player infor
 struct Player 
 {

@@ -4,54 +4,16 @@
 #include "Funcs.h"
 using namespace std;
 
-/*int availablePaths(int nX, int nY, bool** mapCheck, const int ROWS, const int COLS)
-{
-	int paths = 0, x = nX, y = nY;
-	int dx[4] = { 0,0,1,-1 };
-	int dy[4] = { -1,1,0,0 };
-	for (int i = 0; i < 4; i++)
-	{
-		int tmpx = x + dx[i], tmpy = y + dy[i];
-		if (tmpx >= 0 && tmpx < ROWS + 1 && tmpy >= 0 && tmpy < COLS + 1)
-		{
-			if (mapCheck[tmpx + 1][tmpy + 1] == true)
-				paths++;
-		}
-	}
-	return paths;
-}
 
-COORD getNeighbor(COORD n, bool** mapCheck, const int ROWS, const int COLS)
-{
-	COORD neighbor;
-	neighbor.X = -1, neighbor.Y = -1;
-	int dx[4] = { 0,0,1,-1 };
-	int dy[4] = { -1,1,0,0 };
-	for (int i = 0; i < 4; i++)
-	{
-		int tmpx = n.X + dx[i], tmpy = n.Y + dy[i];
-		if (tmpx >= 0 && tmpx < ROWS + 2 && tmpy >= 0 && tmpy < COLS + 2)
-		{
-			if (mapCheck[tmpx + 1][tmpy + 1] == true)
-			{
-				neighbor.X = tmpx;
-				neighbor.Y = tmpy;
-				return neighbor;
-			}
-		}
-	}
-	return neighbor;
-}*/
-
-void gameInit(string user,int points, int stages)
+void gameInit(string user,int points, int stages, int DifX, int DifY)
 {
 	const int ROWS = 5, COLS = 6;
 	char** table = tableInit(ROWS, COLS);
-	int coordX = 0, coordY = 0, curX = EZ_X + 4, curY = EZ_Y + 2;
+	int coordX = 0, coordY = 0, curX = DifX + 4, curY = DifY + 2;
 	while (true)
 	{
 		FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
-		printScreen(table, ROWS, COLS, user, points, stages, EZ_X, EZ_Y);
+		printScreen(table, ROWS, COLS, user, points, stages, DifX, DifY);
 		printHighlighted(curX, curY, table, coordX, coordY);
 		cout << endl;
 		switch (_getch())
@@ -90,7 +52,7 @@ void gameInit(string user,int points, int stages)
 			if (coordX == ROWS - 1)
 			{
 				coordX = 0;
-				curY = EZ_Y + 2;
+				curY = DifY + 2;
 				break;
 			}
 			coordX++;
@@ -117,7 +79,7 @@ void gameInit(string user,int points, int stages)
 			if (coordY == COLS - 1)
 			{
 				coordY = 0;
-				curX = EZ_X + 4;
+				curX = DifX + 4;
 				break;
 			}
 			coordY++;
@@ -126,12 +88,12 @@ void gameInit(string user,int points, int stages)
 		}
 		case KEY_RETURN:
 		{
-			int coordX1 = 0, coordY1 = 0, curX1 = EZ_X + 4, curY1 = EZ_Y + 2;
+			int coordX1 = 0, coordY1 = 0, curX1 = DifX + 4, curY1 = DifY + 2;
 			bool matchCheck = true;
 			while (matchCheck==true)
 			{
 				FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
-				printScreen(table, ROWS, COLS, user, points, stages, EZ_X, EZ_Y);
+				printScreen(table, ROWS, COLS, user, points, stages, DifX, DifY);
 				printHighlighted(curX, curY, table, coordX, coordY);
 				printHighlighted(curX1, curY1, table, coordX1, coordY1);
 				cout << endl;
@@ -155,7 +117,7 @@ void gameInit(string user,int points, int stages)
 					if (coordX1 == ROWS - 1)
 					{
 						coordX1 = 0;
-						curY1 = EZ_Y + 2;
+						curY1 = DifY + 2;
 						break;
 					}
 					coordX1++;
@@ -182,7 +144,7 @@ void gameInit(string user,int points, int stages)
 					if (coordY1 == COLS - 1)
 					{
 						coordY1 = 0;
-						curX1 = EZ_X + 4;
+						curX1 = DifX + 4;
 						break;
 					}
 					coordY1++;

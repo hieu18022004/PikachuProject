@@ -154,6 +154,7 @@ char** tableInit(const int ROWS, const int COLS)
     return table;
 }
 
+//path check
 bool ICheck(COORD start, COORD end, char** table)
 {
     if (start.X == end.X)
@@ -295,7 +296,7 @@ bool UCheck(COORD start, COORD end, char** table, const int ROWS, const int COLS
     if (ICheck(start, corner1, table) && ICheck(corner2, end, table) && table[corner1.X][corner1.Y] == ' ' && table[corner2.X][corner2.Y] == ' ') return true;
     corner1.Y = COLS - 1; corner2.Y = COLS - 1;
     if (ICheck(start, corner1, table) && ICheck(corner2, end, table) && table[corner1.X][corner1.Y] == ' ' && table[corner2.X][corner2.Y] == ' ') return true;
-    if (start.Y > end.Y)
+    if (start.Y >= end.Y)
     {
         for (int i = 0; i < end.Y; i++)
         {
@@ -308,7 +309,7 @@ bool UCheck(COORD start, COORD end, char** table, const int ROWS, const int COLS
             if (ICheck(end, corner1, table) && ICheck(corner1, corner2, table) && ICheck(corner2, start, table) && table[corner1.X][corner1.Y] == ' ' && table[corner2.X][corner2.Y] == ' ') return true;
         }
     }
-    if (start.Y < end.Y)
+    if (start.Y <= end.Y)
     {
         for (int i = 0; i < start.Y; i++)
         {
@@ -326,7 +327,7 @@ bool UCheck(COORD start, COORD end, char** table, const int ROWS, const int COLS
     if (ICheck(start, corner1, table) && ICheck(corner2, end, table) && table[corner1.X][corner1.Y] == ' ' && table[corner2.X][corner2.Y] == ' ') return true;
     corner1.Y = ROWS - 1; corner2.Y = ROWS - 1;
     if (ICheck(start, corner1, table) && ICheck(corner2, end, table) && table[corner1.X][corner1.Y] == ' ' && table[corner2.X][corner2.Y] == ' ') return true;
-    if (start.X > end.X)
+    if (start.X >= end.X)
     {
         for (int i = 0; i < end.X; i++)
         {
@@ -339,7 +340,7 @@ bool UCheck(COORD start, COORD end, char** table, const int ROWS, const int COLS
             if (ICheck(end, corner1, table) && ICheck(corner1, corner2, table) && ICheck(corner2, start, table) && table[corner1.X][corner1.Y] == ' ' && table[corner2.X][corner2.Y] == ' ') return true;
         }
     }
-    if (start.X < end.X)
+    if (start.X <= end.X)
     {
         for (int i = 0; i < start.X; i++)
         {
@@ -355,3 +356,28 @@ bool UCheck(COORD start, COORD end, char** table, const int ROWS, const int COLS
     return false;
 }
 
+//help
+int help(char** table, const int ROWS, const int COLS)
+{
+    COORD start, end;
+    start.X = -1; start.Y = -1; end.X = -1; end.Y = -1;
+    for (int i = 0; i < ROWS; i++)
+    {
+        for (int j = 0; j < COLS; j++)
+        {
+            for (int a = 0; a < ROWS; a++)
+            {
+                for (int b = 0; b < COLS; b++)
+                {
+                    if (table[i][j] == table[a][b] && table[i][j] != ' ')
+                    {
+                        if (ICheck(start, end, table) || LCheck(start, end, table) || ZCheck(start, end, table) || UCheck(start, end, table, ROWS, COLS))
+                        {
+
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
