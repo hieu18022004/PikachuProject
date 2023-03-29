@@ -6,6 +6,8 @@ using namespace std;
 #define KEY_LEFT 75
 #define KEY_RIGHT 77
 #define KEY_RETURN 13
+#define EZ_X 72
+#define EZ_Y 8
 //queue structs
 struct Node {
     COORD n;
@@ -28,7 +30,7 @@ void removeAll(List& list);
 
 //Functions
 int randomInt();
-void printTable(char** table, const int ROWS, const int COLS);
+void printTable(char** table, const int ROWS, const int COLS,int curX,int curY);
 char** tableInit(const int ROWS, const int COLS);
 void tableShuffle(char** &table, const int ROWS, const int COLS);
 void printScreen(char** table, const int ROWS, const int COLS, string user, int points, int stages, int cordX, int cordY);
@@ -37,6 +39,7 @@ void printHighlighted(int curX, int curY, char** table, int cordX, int cordY);
 bool ICheck(COORD start, COORD end, char** table);
 bool LCheck(COORD start, COORD end, char** table);
 bool ZCheck(COORD start, COORD end, char** table);
+bool UCheck(COORD start, COORD end, char** table, const int ROWS, const int COLS);
 
 
 //Game

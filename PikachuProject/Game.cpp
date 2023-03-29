@@ -47,11 +47,11 @@ void gameInit(string user,int points, int stages)
 {
 	const int ROWS = 5, COLS = 6;
 	char** table = tableInit(ROWS, COLS);
-	int coordX = 0, coordY = 0, curX = 11, curY = 4;
+	int coordX = 0, coordY = 0, curX = EZ_X + 4, curY = EZ_Y + 2;
 	while (true)
 	{
 		FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
-		printScreen(table, ROWS, COLS, user, points, stages, coordX, coordY);
+		printScreen(table, ROWS, COLS, user, points, stages, EZ_X, EZ_Y);
 		printHighlighted(curX, curY, table, coordX, coordY);
 		cout << endl;
 		switch (_getch())
@@ -90,7 +90,7 @@ void gameInit(string user,int points, int stages)
 			if (coordX == ROWS - 1)
 			{
 				coordX = 0;
-				curY = 2;
+				curY = EZ_Y + 2;
 				break;
 			}
 			coordX++;
@@ -117,7 +117,7 @@ void gameInit(string user,int points, int stages)
 			if (coordY == COLS - 1)
 			{
 				coordY = 0;
-				curX = 4;
+				curX = EZ_X + 4;
 				break;
 			}
 			coordY++;
@@ -126,12 +126,12 @@ void gameInit(string user,int points, int stages)
 		}
 		case KEY_RETURN:
 		{
-			int coordX1 = 0, coordY1 = 0, curX1 = 11, curY1 = 4;
+			int coordX1 = 0, coordY1 = 0, curX1 = EZ_X + 4, curY1 = EZ_Y + 2;
 			bool matchCheck = true;
 			while (matchCheck==true)
 			{
 				FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
-				printScreen(table, ROWS, COLS, user, points, stages, coordX, coordY);
+				printScreen(table, ROWS, COLS, user, points, stages, EZ_X, EZ_Y);
 				printHighlighted(curX, curY, table, coordX, coordY);
 				printHighlighted(curX1, curY1, table, coordX1, coordY1);
 				cout << endl;
@@ -155,7 +155,7 @@ void gameInit(string user,int points, int stages)
 					if (coordX1 == ROWS - 1)
 					{
 						coordX1 = 0;
-						curY1 = 2;
+						curY1 = EZ_Y + 2;
 						break;
 					}
 					coordX1++;
@@ -182,7 +182,7 @@ void gameInit(string user,int points, int stages)
 					if (coordY1 == COLS - 1)
 					{
 						coordY1 = 0;
-						curX1 = 4;
+						curX1 = EZ_X + 4;
 						break;
 					}
 					coordY1++;
@@ -238,6 +238,17 @@ void gameInit(string user,int points, int stages)
 							matchCheck = false;
 							system("cls");
 							cout << "Z" << endl;
+							system("pause");
+							system("cls");
+							break;
+						}
+						else if (UCheck(coord, coord1, table, ROWS, COLS))
+						{
+							table[coordX][coordY] = ' ';
+							table[coordX1][coordY1] = ' ';
+							matchCheck = false;
+							system("cls");
+							cout << "U" << endl;
 							system("pause");
 							system("cls");
 							break;
