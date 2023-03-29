@@ -6,8 +6,8 @@ using namespace std;
 #define KEY_LEFT 75
 #define KEY_RIGHT 77
 #define KEY_RETURN 13
-#define EZ_X 72
-#define EZ_Y 8
+#define EZ_ROWS 6
+#define EZ_COLS 10
 //queue structs
 struct Node {
     COORD n;
@@ -36,16 +36,15 @@ void tableShuffle(char** &table, const int ROWS, const int COLS);
 void printScreen(char** table, const int ROWS, const int COLS, string user, int points, int stages, int cordX, int cordY);
 void gotoxy(int x, int y);
 void printHighlighted(int curX, int curY, char** table, int cordX, int cordY);
+void undoHighlighted(int curX, int curY, char** table, int cordX, int cordY);
 bool ICheck(COORD start, COORD end, char** table);
 bool LCheck(COORD start, COORD end, char** table);
 bool ZCheck(COORD start, COORD end, char** table);
 bool UCheck(COORD start, COORD end, char** table, const int ROWS, const int COLS);
-bool findWays(char** table, const int ROWS, const int COLS, int DifX, int DifY);
-int help(char** table, const int ROWS, const int COLS, int DifX, int DifY);
-
+void deleteBorder(char** table, const int ROWS, const int COLS, int DifX, int DifY);
 
 //Game
-void gameInit(string user, int points, int stages, int DifX, int DifY);
+void gameInit(string user, int points, int stages, const int ROWS, const int COLS);
 // Data and player infor
 struct Player 
 {
