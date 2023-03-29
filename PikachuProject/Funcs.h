@@ -40,6 +40,8 @@ bool ICheck(COORD start, COORD end, char** table);
 bool LCheck(COORD start, COORD end, char** table);
 bool ZCheck(COORD start, COORD end, char** table);
 bool UCheck(COORD start, COORD end, char** table, const int ROWS, const int COLS);
+bool findWays(char** table, const int ROWS, const int COLS, int DifX, int DifY);
+int help(char** table, const int ROWS, const int COLS, int DifX, int DifY);
 
 
 //Game

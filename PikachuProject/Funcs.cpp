@@ -114,10 +114,9 @@ void printTable(char** table, const int ROWS, const int COLS, int curX, int curY
 
 void printScreen(char** table, const int ROWS, const int COLS, string user, int points, int stages, int cordX, int cordY)
 {
-    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), {0, 0});
+    gotoxy(0, 0);
     cout << "Username: " << user << endl << "Points: " << points << endl << "Stages completed: " << stages << endl << "Press x to exit to menu" << endl << "s to shuffle" << endl;
-    COORD cur = { cordX, cordY };
-    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), cur);
+    gotoxy(cordX, cordY);
     printTable(table, ROWS, COLS, cordX, cordY);
 }
 
@@ -357,7 +356,7 @@ bool UCheck(COORD start, COORD end, char** table, const int ROWS, const int COLS
 }
 
 //help
-int help(char** table, const int ROWS, const int COLS)
+bool findWays(char** table, const int ROWS, const int COLS, int DifX, int DifY)
 {
     COORD start, end;
     start.X = -1; start.Y = -1; end.X = -1; end.Y = -1;
@@ -371,13 +370,63 @@ int help(char** table, const int ROWS, const int COLS)
                 {
                     if (table[i][j] == table[a][b] && table[i][j] != ' ')
                     {
+                        start.X = i; start.Y = j; end.X = a; end.Y = b;
+                        if (start.X == 0 && end.X == 0 || start.X == ROWS - 1 && end.X == ROWS - 1 || start.Y == 0 && end.Y == 0 || start.Y == COLS - 1 && end.Y == COLS - 1)
+                        {
+                            return true;
+                        }
+                        if (start.X == end.X && abs(start.Y - end.Y) == 1 || start.Y == end.Y && abs(start.X - end.X) == 1)
+                        {
+                            return true;
+                        }
                         if (ICheck(start, end, table) || LCheck(start, end, table) || ZCheck(start, end, table) || UCheck(start, end, table, ROWS, COLS))
                         {
-
+                            return true;
                         }
                     }
                 }
             }
         }
     }
+    return false;
+}
+int help(char** table, const int ROWS, const int COLS, int DifX, int DifY)
+{
+    COORD start, end;
+    start.X = -1; start.Y = -1; end.X = -1; end.Y = -1;
+    for (int i = 0; i < ROWS; i++)
+    {
+        for (int j = 0; j < COLS; j++)
+        {
+            for (int a = 0; a < ROWS; a++)
+            {
+                for (int b = 0; b < COLS; b++)
+                {
+                    if (table[i][j] == table[a][b] && table[i][j] != ' ')
+                    {
+                        start.X = i; start.Y = j; end.X = a; end.Y = b;
+                        if (start.X == 0 && end.X == 0 || start.X == ROWS - 1 && end.X == ROWS - 1 || start.Y == 0 && end.Y == 0 || start.Y == COLS - 1 && end.Y == COLS - 1)
+                        {
+                            printHighlighted((DifX + 4) + (i + 1) * 4, (DifY + 2) + (j + 1) * 8, table, i, j);
+                            printHighlighted((DifX + 4) + (a + 1) * 4, (DifY + 2) + (b + 1) * 8, table, a, b);
+                            return 1;
+                        }
+                        if (start.X == end.X && abs(start.Y - end.Y) == 1 || start.Y == end.Y && abs(start.X - end.X) == 1)
+                        {
+                            printHighlighted((DifX + 4) + (i + 1) * 4, (DifY + 2) + (j + 1) * 8, table, i, j);
+                            printHighlighted((DifX + 4) + (a + 1) * 4, (DifY + 2) + (b + 1) * 8, table, a, b);
+                            return 1;
+                        }
+                        if (ICheck(start, end, table) || LCheck(start, end, table) || ZCheck(start, end, table) || UCheck(start, end, table, ROWS, COLS))
+                        {
+                            printHighlighted((DifX + 4) + (i + 1) * 4, (DifY + 2) + (j + 1) * 8, table, i, j);
+                            printHighlighted((DifX + 4) + (a + 1) * 4, (DifY + 2) + (b + 1) * 8, table, a, b);
+                            return 1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return 0;
 }

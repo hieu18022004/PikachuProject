@@ -13,6 +13,11 @@ void gameInit(string user,int points, int stages, int DifX, int DifY)
 	while (true)
 	{
 		FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
+		if (findWays(table, ROWS, COLS, DifX, DifY) == false)
+		{
+			system("cls");
+			tableShuffle(table, ROWS, COLS);
+		}
 		printScreen(table, ROWS, COLS, user, points, stages, DifX, DifY);
 		printHighlighted(curX, curY, table, coordX, coordY);
 		cout << endl;
