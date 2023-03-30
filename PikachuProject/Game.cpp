@@ -14,6 +14,7 @@ void gameInit(string user,int points, int stages, const int ROWS, const int COLS
 	char** table = tableInit(ROWS, COLS);
 	int coordX = 0, coordY = 0, curX = DifX + 4, curY = DifY + 2;
 	printScreen(table, ROWS, COLS, user, points, stages, DifX, DifY);
+	deleteBorder(table, ROWS, COLS, DifX, DifY);
 	while (true)
 	{
 		FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
@@ -101,7 +102,7 @@ void gameInit(string user,int points, int stages, const int ROWS, const int COLS
 		}
 		case KEY_RETURN:
 		{
-			int coordX1 = 0, coordY1 = 0, curX1 = DifX + 4, curY1 = DifY + 2;
+			int coordX1 = coordX, coordY1 = coordY, curX1 = curX, curY1 = curY;
 			bool matchCheck = true;
 			while (matchCheck==true)
 			{
@@ -170,8 +171,13 @@ void gameInit(string user,int points, int stages, const int ROWS, const int COLS
 				}
 				case KEY_RETURN:
 				{
-					if (table[coordX][coordY] == table[coordX1][coordY1])
+					if (table[coordX][coordY] == table[coordX1][coordY1] && table[coordX][coordY] != ' ')
 					{
+						if (coordX == coordX1 && coordY == coordY1)
+						{
+							matchCheck = false;
+							break;
+						}
 						COORD coord, coord1;
 						coord.X = coordX; coord.Y = coordY; coord1.X = coordX1; coord1.Y = coordY1;
 						if (coordX == 0 && coordX1 == 0 || coordX == ROWS - 1 && coordX1 == ROWS - 1 || coordY == 0 && coordY1 == 0 || coordY == COLS - 1 && coordY1 == COLS - 1)
@@ -180,6 +186,7 @@ void gameInit(string user,int points, int stages, const int ROWS, const int COLS
 							table[coordX1][coordY1] = ' ';
 							matchCheck = false;
 							printScreen(table, ROWS, COLS, user, points, stages, DifX, DifY);
+							deleteBorder(table, ROWS, COLS, DifX, DifY);
 							break;
 						}
 						else if (coordX == coordX1 && abs(coordY - coordY1) == 1 || coordY == coordY1 && abs(coordX - coordX1) == 1)
@@ -188,6 +195,7 @@ void gameInit(string user,int points, int stages, const int ROWS, const int COLS
 							table[coordX1][coordY1] = ' ';
 							matchCheck = false;
 							printScreen(table, ROWS, COLS, user, points, stages, DifX, DifY);
+							deleteBorder(table, ROWS, COLS, DifX, DifY);
 							break;
 						}
 						else if (ICheck(coord, coord1, table))
@@ -200,6 +208,7 @@ void gameInit(string user,int points, int stages, const int ROWS, const int COLS
 							system("pause");
 							system("cls");
 							printScreen(table, ROWS, COLS, user, points, stages, DifX, DifY);
+							deleteBorder(table, ROWS, COLS, DifX, DifY);
 							break;
 						}
 						else if (LCheck(coord, coord1, table))
@@ -212,6 +221,7 @@ void gameInit(string user,int points, int stages, const int ROWS, const int COLS
 							system("pause");
 							system("cls");
 							printScreen(table, ROWS, COLS, user, points, stages, DifX, DifY);
+							deleteBorder(table, ROWS, COLS, DifX, DifY);
 							break;
 						}
 						else if (ZCheck(coord, coord1, table))
@@ -224,6 +234,7 @@ void gameInit(string user,int points, int stages, const int ROWS, const int COLS
 							system("pause");
 							system("cls");
 							printScreen(table, ROWS, COLS, user, points, stages, DifX, DifY);
+							deleteBorder(table, ROWS, COLS, DifX, DifY);
 							break;
 						}
 						else if (UCheck(coord, coord1, table, ROWS, COLS))
@@ -236,10 +247,12 @@ void gameInit(string user,int points, int stages, const int ROWS, const int COLS
 							system("pause");
 							system("cls");
 							printScreen(table, ROWS, COLS, user, points, stages, DifX, DifY);
+							deleteBorder(table, ROWS, COLS, DifX, DifY);
 							break;
 						}
 					}
 					printScreen(table, ROWS, COLS, user, points, stages, DifX, DifY);
+					deleteBorder(table, ROWS, COLS, DifX, DifY);
 					matchCheck = false;
 					break;
 				}

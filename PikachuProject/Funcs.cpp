@@ -123,13 +123,27 @@ void printTable(char** table, const int ROWS, const int COLS, int curX, int curY
     }
 }
 
+void printTableV2(char** table, const int ROWS, const int COLS, int curX, int curY)
+{
+    cout << setw(COLS * 8 + 1) << setfill('-') << "" << endl;
+    for (int i = 0; i < ROWS; i++)
+    {
+        cout << setw(curX + 1) << setfill(' ') << "|";
+        for (int j = 0; j < COLS; j++)
+        {
+            gotoxy(curX + 4 + j * 8, curY + 2 + i * 4);
+            cout << table[i][j];
+        }
+    }
+}
+
 void printScreen(char** table, const int ROWS, const int COLS, string user, int points, int stages, int cordX, int cordY)
 {
     gotoxy(0, 0);
     cout << "Username: " << user << endl << "Points: " << points << endl << "Stages completed: " << stages << endl << "Press x to exit to menu - "
          << "Press s to shuffle ( 10% chance of getting punished :/ )" << endl;
     gotoxy(cordX, cordY);
-    printTable(table, ROWS, COLS, cordX, cordY);
+    printTableV2(table, ROWS, COLS, cordX, cordY);
 }
 
 char** tableInit(const int ROWS, const int COLS)
