@@ -128,11 +128,54 @@ void printTableV2(char** table, const int ROWS, const int COLS, int curX, int cu
     cout << setw(COLS * 8 + 1) << setfill('-') << "" << endl;
     for (int i = 0; i < ROWS; i++)
     {
-        cout << setw(curX + 1) << setfill(' ') << "|";
+        cout << setw(curX + 1) << setfill(' ') << "|" << endl;
+        cout << setw(curX + 1) << setfill(' ') << "|" << endl;
+        cout << setw(curX + 1) << setfill(' ') << "|" << endl;
+        cout << endl;
+    }
+    for (int i = 0; i < ROWS; i++)
+    {
         for (int j = 0; j < COLS; j++)
         {
             gotoxy(curX + 4 + j * 8, curY + 2 + i * 4);
             cout << table[i][j];
+            if (j == COLS - 1)
+            {
+                gotoxy(curX + 4 + j * 8 + 4, curY + 2 + i * 4 - 1); cout << "|";
+                gotoxy(curX + 4 + j * 8 + 4, curY + 2 + i * 4); cout << "|";
+                gotoxy(curX + 4 + j * 8 + 4, curY + 2 + i * 4 + 1); cout << "|";
+                gotoxy(curX + 4 + j * 8 + 4, curY + 2 + i * 4 + 2); cout << "-";
+            }
+            else
+            {
+                if (table[i][j] != ' ' && table[i][j + 1] != ' ')
+                {
+                    gotoxy(curX + 4 + j * 8 + 4, curY + 2 + i * 4 - 1); cout << "|";
+                    gotoxy(curX + 4 + j * 8 + 4, curY + 2 + i * 4); cout << "|";
+                    gotoxy(curX + 4 + j * 8 + 4, curY + 2 + i * 4 + 1); cout << "|";
+                }
+            }
+            if (i == ROWS - 1)
+            {
+                gotoxy(curX + 8 * j, curY + 4 * (i + 1));
+                cout << "--------";
+            }
+            else
+            {
+                if (table[i][j] == ' ' && table[i + 1][j] == ' ')
+                {
+                    if (i == 0)
+                    {
+                        gotoxy(curX + 8 * j, curY + 4 * (i + 1));
+                        cout << "-";
+                    }
+                }
+                if (table[i][j] != ' ' && table[i + 1][j] != ' ')
+                {
+                    gotoxy(curX + 8 * j, curY + 4 * (i + 1));
+                    cout << "--------";
+                }
+            }
         }
     }
 }
