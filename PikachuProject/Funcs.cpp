@@ -97,7 +97,7 @@ void tableShuffle(char** &table, const int ROWS, const int COLS)
     }
 }
 
-void printTable(char** table, const int ROWS, const int COLS, int curX, int curY) {
+/*void printTable(char** table, const int ROWS, const int COLS, int curX, int curY) {
 
     // print the table
     cout << setw(COLS * 8 + 1) << setfill('-') << "" << endl;
@@ -121,7 +121,7 @@ void printTable(char** table, const int ROWS, const int COLS, int curX, int curY
         cout << endl;
         cout << setw(curX) << setfill(' ') << "" << setw(COLS * 8 + 1) << setfill('-') << "" << endl;
     }
-}
+}*/
 
 void printTableV2(char** table, const int ROWS, const int COLS, int curX, int curY)
 {
@@ -458,4 +458,17 @@ bool UCheck(COORD start, COORD end, char** table, const int ROWS, const int COLS
         }
     }
     return false;
+}
+
+
+//UI functions
+void ShowConsoleCursor(bool showFlag) //hide cursor ref:https://stackoverflow.com/questions/18028808/remove-blinking-underscore-on-console-cmd-prompt
+{
+    HANDLE out = GetStdHandle(STD_OUTPUT_HANDLE);
+
+    CONSOLE_CURSOR_INFO     cursorInfo;
+
+    GetConsoleCursorInfo(out, &cursorInfo);
+    cursorInfo.bVisible = showFlag; // set the cursor visibility
+    SetConsoleCursorInfo(out, &cursorInfo);
 }

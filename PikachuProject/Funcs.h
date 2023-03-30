@@ -35,7 +35,7 @@ void removeAll(List& list);
 
 //Functions
 int randomInt();
-void printTable(char** table, const int ROWS, const int COLS,int curX,int curY);
+void printTableV2(char** table, const int ROWS, const int COLS,int curX,int curY);
 char** tableInit(const int ROWS, const int COLS);
 void tableShuffle(char** &table, const int ROWS, const int COLS);
 void printScreen(char** table, const int ROWS, const int COLS, string user, int points, int stages, int cordX, int cordY);
@@ -86,3 +86,6 @@ void SignUp();
 void displayMainMenu();
 void displayDifficultyMenu();
 void convertTxtToBin(const char* txtFileName, const char* binFileName);
+
+// UI Funcs
+void ShowConsoleCursor(bool showFlag);
