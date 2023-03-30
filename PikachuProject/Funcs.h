@@ -6,8 +6,13 @@ using namespace std;
 #define KEY_LEFT 75
 #define KEY_RIGHT 77
 #define KEY_RETURN 13
-#define EZ_ROWS 6
-#define EZ_COLS 10
+#define EZ_ROWS 4
+#define EZ_COLS 8
+#define MED_ROWS 6
+#define MED_COLS 10
+#define HARD_ROWS 10
+#define HARD_COLS 14
+
 //queue structs
 struct Node {
     COORD n;

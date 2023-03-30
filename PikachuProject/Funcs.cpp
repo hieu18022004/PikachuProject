@@ -126,7 +126,7 @@ void printTable(char** table, const int ROWS, const int COLS, int curX, int curY
 void printScreen(char** table, const int ROWS, const int COLS, string user, int points, int stages, int cordX, int cordY)
 {
     gotoxy(0, 0);
-    cout << "Username: " << user << endl << "Points: " << points << endl << "Stages completed: " << stages << endl << "Press x to exit to menu" << endl 
+    cout << "Username: " << user << endl << "Points: " << points << endl << "Stages completed: " << stages << endl << "Press x to exit to menu - "
          << "Press s to shuffle ( 10% chance of getting punished :/ )" << endl;
     gotoxy(cordX, cordY);
     printTable(table, ROWS, COLS, cordX, cordY);
