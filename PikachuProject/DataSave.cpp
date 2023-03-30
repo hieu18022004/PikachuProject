@@ -68,7 +68,8 @@ void displayDifficultyMenu()
     cout << "1. Easy" << endl;
     cout << "2. Medium" << endl;
     cout << "3. Hard" << endl;
-    cout << "4. Exit" << endl;
+    cout << "4. Asian+" << endl;
+    cout << "0. Exit" << endl;
     cout << "========================" << endl;
 }
 

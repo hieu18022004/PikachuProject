@@ -146,7 +146,7 @@ char** tableInit(const int ROWS, const int COLS)
             table[i][j] = i * j;
         }
     }    int* setChar = new int[COLS * ROWS];
-    for (int i = 0; i < ROWS * COLS; i++)
+    for (int i = 0; i < ROWS * COLS - 1; i++)
     {
         setChar[i] = randomInt();
         setChar[i + 1] = setChar[i];

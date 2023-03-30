@@ -29,6 +29,7 @@ void gameInit(string user,int points, int stages, const int ROWS, const int COLS
 			uniform_int_distribution<> distr(1, 10);
 			if (distr(gen) == 4) exit(1);
 			tableShuffle(table, ROWS, COLS);
+			printScreen(table, ROWS, COLS, user, points, stages, DifX, DifY);
 			break;
 		}
 		case 'x':
@@ -238,6 +239,7 @@ void gameInit(string user,int points, int stages, const int ROWS, const int COLS
 							break;
 						}
 					}
+					printScreen(table, ROWS, COLS, user, points, stages, DifX, DifY);
 					matchCheck = false;
 					break;
 				}
