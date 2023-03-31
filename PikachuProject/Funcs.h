@@ -1,5 +1,6 @@
 #pragma once
 #include <Windows.h>
+#include <iostream>
 using namespace std;
 #define KEY_UP 72
 #define KEY_DOWN 80
@@ -89,4 +90,3 @@ void convertTxtToBin(const char* txtFileName, const char* binFileName);
 
 // UI & VFX Funcs
 void ShowConsoleCursor(bool showFlag);
-void playBgMusic();

@@ -17,7 +17,3 @@ void ShowConsoleCursor(bool showFlag) //hide cursor ref:https://stackoverflow.co
 }
 
 
-void playBgMusic()
-{
-	PlaySound(TEXT("Suki Dakara.mp3"), NULL, SND_SYNC);
-}
