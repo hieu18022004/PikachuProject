@@ -87,5 +87,6 @@ void displayMainMenu();
 void displayDifficultyMenu();
 void convertTxtToBin(const char* txtFileName, const char* binFileName);
 
-// UI Funcs
+// UI & VFX Funcs
 void ShowConsoleCursor(bool showFlag);
+void playBgMusic();

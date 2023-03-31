@@ -460,15 +460,3 @@ bool UCheck(COORD start, COORD end, char** table, const int ROWS, const int COLS
     return false;
 }
 
-
-//UI functions
-void ShowConsoleCursor(bool showFlag) //hide cursor ref:https://stackoverflow.com/questions/18028808/remove-blinking-underscore-on-console-cmd-prompt
-{
-    HANDLE out = GetStdHandle(STD_OUTPUT_HANDLE);
-
-    CONSOLE_CURSOR_INFO     cursorInfo;
-
-    GetConsoleCursorInfo(out, &cursorInfo);
-    cursorInfo.bVisible = showFlag; // set the cursor visibility
-    SetConsoleCursorInfo(out, &cursorInfo);
-}

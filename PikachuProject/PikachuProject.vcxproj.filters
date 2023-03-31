@@ -30,6 +30,9 @@
     <ClCompile Include="DataSave.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="UI&amp;VFX.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Funcs.h">
