@@ -43,10 +43,10 @@ void printScreen(char** table, const int ROWS, const int COLS, string user, int 
 void gotoxy(int x, int y);
 void printHighlighted(int curX, int curY, char** table, int cordX, int cordY);
 void undoHighlighted(int curX, int curY, char** table, int cordX, int cordY);
-bool ICheck(COORD start, COORD end, char** table);
-bool LCheck(COORD start, COORD end, char** table);
-bool ZCheck(COORD start, COORD end, char** table);
-bool UCheck(COORD start, COORD end, char** table, const int ROWS, const int COLS);
+bool ICheck(COORD start, COORD end, char** table, int cordX, int cordY);
+bool LCheck(COORD start, COORD end, char** table, int cordX, int cordY);
+bool ZCheck(COORD start, COORD end, char** table, int cordX, int cordY);
+bool UCheck(COORD start, COORD end, char** table, const int ROWS, const int COLS, int cordX, int cordY);
 void deleteBorder(char** table, const int ROWS, const int COLS, int DifX, int DifY);
 
 //Game

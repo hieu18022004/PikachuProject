@@ -181,7 +181,7 @@ void gameInit(string user,int points, int stages, const int ROWS, const int COLS
 						}
 						COORD coord, coord1;
 						coord.X = coordX; coord.Y = coordY; coord1.X = coordX1; coord1.Y = coordY1;
-						if (coordX == 0 && coordX1 == 0 || coordX == ROWS - 1 && coordX1 == ROWS - 1 || coordY == 0 && coordY1 == 0 || coordY == COLS - 1 && coordY1 == COLS - 1)
+						if (coordX == coordX1 && abs(coordY - coordY1) == 1 || coordY == coordY1 && abs(coordX - coordX1) == 1)
 						{
 							table[coordX][coordY] = ' ';
 							table[coordX1][coordY1] = ' ';
@@ -189,7 +189,7 @@ void gameInit(string user,int points, int stages, const int ROWS, const int COLS
 							matchMusic();
 							break;
 						}
-						else if (coordX == coordX1 && abs(coordY - coordY1) == 1 || coordY == coordY1 && abs(coordX - coordX1) == 1)
+						else if (coordX == 0 && coordX1 == 0 || coordX == ROWS - 1 && coordX1 == ROWS - 1 || coordY == 0 && coordY1 == 0 || coordY == COLS - 1 && coordY1 == COLS - 1)
 						{
 							table[coordX][coordY] = ' ';
 							table[coordX1][coordY1] = ' ';
@@ -197,51 +197,35 @@ void gameInit(string user,int points, int stages, const int ROWS, const int COLS
 							matchMusic();
 							break;
 						}
-						else if (ICheck(coord, coord1, table))
+						else if (ICheck(coord, coord1, table, DifX, DifY))
 						{
 							table[coordX][coordY] = ' ';
 							table[coordX1][coordY1] = ' ';
 							matchCheck = false;
-							system("cls");
-							cout << "I" << endl;
-							system("pause");
-							system("cls");
 							matchMusic();
 							break;
 						}
-						else if (LCheck(coord, coord1, table))
+						else if (LCheck(coord, coord1, table, DifX, DifY))
 						{
 							table[coordX][coordY] = ' ';
 							table[coordX1][coordY1] = ' ';
 							matchCheck = false;
-							system("cls");
-							cout << "L" << endl;
-							system("pause");
-							system("cls");
 							matchMusic();
 							break;
 						}
-						else if (ZCheck(coord, coord1, table))
+						else if (ZCheck(coord, coord1, table, DifX, DifY))
 						{
 							table[coordX][coordY] = ' ';
 							table[coordX1][coordY1] = ' ';
 							matchCheck = false;
-							system("cls");
-							cout << "Z" << endl;
-							system("pause");
-							system("cls");
 							matchMusic();
 							break;
 						}
-						else if (UCheck(coord, coord1, table, ROWS, COLS))
+						else if (UCheck(coord, coord1, table, ROWS, COLS, DifX, DifY))
 						{
 							table[coordX][coordY] = ' ';
 							table[coordX1][coordY1] = ' ';
 							matchCheck = false;
-							system("cls");
-							cout << "U" << endl;
-							system("pause");
-							system("cls");
 							matchMusic();
 							break;
 						}
