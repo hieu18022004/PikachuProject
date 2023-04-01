@@ -197,10 +197,11 @@ void gameInit(string user,int points, int stages, const int ROWS, const int COLS
 							matchMusic();
 							break;
 						}
-						else if (ICheck(coord, coord1, table, DifX, DifY))
+						else if (ICheck(coord, coord1, table))
 						{
 							table[coordX][coordY] = ' ';
 							table[coordX1][coordY1] = ' ';
+							pathI(coord, coord1, DifX, DifY);
 							matchCheck = false;
 							matchMusic();
 							break;
