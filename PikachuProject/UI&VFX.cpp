@@ -16,4 +16,8 @@ void ShowConsoleCursor(bool showFlag) //hide cursor ref:https://stackoverflow.co
     SetConsoleCursorInfo(out, &cursorInfo);
 }
 
+void playBG(bool flag)
+{
+    mciSendString(L" open \" music\\BG.mp3\ type mpegvideo alias mp3", NULL, 0, NULL);
 
+}
