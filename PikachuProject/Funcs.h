@@ -90,3 +90,4 @@ void convertTxtToBin(const char* txtFileName, const char* binFileName);
 
 // UI & VFX Funcs
 void ShowConsoleCursor(bool showFlag);
+void playBG(bool flag);

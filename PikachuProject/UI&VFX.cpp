@@ -2,6 +2,7 @@
 #include <iostream>
 
 #include <windows.h>
+#pragma comment (lib,"Winmm.lib")
 using namespace std;
 
 
@@ -18,6 +19,14 @@ void ShowConsoleCursor(bool showFlag) //hide cursor ref:https://stackoverflow.co
 
 void playBG(bool flag)
 {
-    mciSendString(L" open \" music\\BG.mp3\ type mpegvideo alias mp3", NULL, 0, NULL);
-
+    mciSendString(L" open \"music\\BG.mp3\" type mpegvideo alias mp3", NULL, 0, NULL);
+    if (flag)
+    {
+        mciSendString(L"setaudio mp3 volume to 250", NULL, 0, NULL);
+        mciSendString(L"play mp3 repeat", NULL, 0, NULL);
+    }
+    if (!flag)
+    {
+        mciSendString(L"close mp3", NULL, 0, NULL);
+    }
 }
