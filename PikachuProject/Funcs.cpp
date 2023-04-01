@@ -259,7 +259,7 @@ void deleteBorder(char** table, const int ROWS, const int COLS, int DifX, int Di
 }
 
 //path check
-bool ICheck(COORD start, COORD end, char** table)
+bool ICheck(COORD start, COORD end, char** table, int cordX, int cordY)
 {
     if (start.X == end.X)
     {
@@ -269,6 +269,12 @@ bool ICheck(COORD start, COORD end, char** table)
             {
                 if (table[start.X][i] != ' ') return false;
             }
+            for (int i = cordX + 4 + 8 * (end.Y); i <= cordX + 4 + 8 * (start.Y); i++)
+            {
+                gotoxy(i, cordY + 2 + 4 * (start.X));
+                cout << "+";
+            }
+            return true;
         }
         if (start.Y < end.Y)
         {
@@ -276,8 +282,13 @@ bool ICheck(COORD start, COORD end, char** table)
             {
                 if (table[start.X][i] != ' ') return false;
             }
+            for (int i = cordX + 4 + 8 * (start.Y); i <= cordX + 4 + 8 * (end.Y); i++)
+            {
+                gotoxy(i, cordY + 2 + 4 * (start.X));
+                cout << "+";
+            }
+            return true;
         }
-        return true;
     }
     if (start.Y == end.Y)
     {
@@ -287,6 +298,12 @@ bool ICheck(COORD start, COORD end, char** table)
             {
                 if (table[i][start.Y] != ' ') return false;
             }
+            for (int i = cordY + 2 + 4 * (end.X); i <= cordY + 2 + 8 * (start.X); i++)
+            {
+                gotoxy(cordX + 4 + 8 * (start.Y), i);
+                cout << "+";
+            }
+            return true;
         }
         if (start.X < end.X)
         {
@@ -294,8 +311,13 @@ bool ICheck(COORD start, COORD end, char** table)
             {
                 if (table[i][start.Y] != ' ') return false;
             }
+            for (int i = cordY + 2 + 4 * (start.X); i <= cordY + 2 + 8 * (end.X); i++)
+            {
+                gotoxy(cordX + 4 + 8 * (start.Y), i);
+                cout << "+";
+            }
+            return true;
         }
-        return true;
     }
     return false;
 }
@@ -459,4 +481,8 @@ bool UCheck(COORD start, COORD end, char** table, const int ROWS, const int COLS
     }
     return false;
 }
+ //path print
+void marginPath(COORD coord, COORD coord1)
+{
 
+}
