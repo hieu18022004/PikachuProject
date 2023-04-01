@@ -186,6 +186,7 @@ void gameInit(string user,int points, int stages, const int ROWS, const int COLS
 							table[coordX][coordY] = ' ';
 							table[coordX1][coordY1] = ' ';
 							matchCheck = false;
+							matchMusic();
 							break;
 						}
 						else if (coordX == coordX1 && abs(coordY - coordY1) == 1 || coordY == coordY1 && abs(coordX - coordX1) == 1)
@@ -204,6 +205,7 @@ void gameInit(string user,int points, int stages, const int ROWS, const int COLS
 							cout << "I" << endl;
 							system("pause");
 							system("cls");
+							matchMusic();
 							break;
 						}
 						else if (LCheck(coord, coord1, table))
@@ -215,6 +217,7 @@ void gameInit(string user,int points, int stages, const int ROWS, const int COLS
 							cout << "L" << endl;
 							system("pause");
 							system("cls");
+							matchMusic();
 							break;
 						}
 						else if (ZCheck(coord, coord1, table))
@@ -226,6 +229,7 @@ void gameInit(string user,int points, int stages, const int ROWS, const int COLS
 							cout << "Z" << endl;
 							system("pause");
 							system("cls");
+							matchMusic();
 							break;
 						}
 						else if (UCheck(coord, coord1, table, ROWS, COLS))
@@ -237,6 +241,7 @@ void gameInit(string user,int points, int stages, const int ROWS, const int COLS
 							cout << "U" << endl;
 							system("pause");
 							system("cls");
+							matchMusic();
 							break;
 						}
 					}

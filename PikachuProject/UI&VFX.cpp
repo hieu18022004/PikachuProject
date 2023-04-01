@@ -30,3 +30,11 @@ void playBG(bool flag)
         mciSendString(L"close mp3", NULL, 0, NULL);
     }
 }
+
+void matchMusic()
+{
+    mciSendString(L" open \"music\\match.wav\" type waveaudio alias match", NULL, 0, NULL);
+    mciSendString(L"setaudio match volume to 1000", NULL, 0, NULL);
+    mciSendString(L"play match wait", NULL, 0, NULL);
+    mciSendString(L"close match", NULL, 0, NULL);
+}
