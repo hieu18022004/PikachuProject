@@ -176,7 +176,7 @@ void printTableV2(char** table, const int ROWS, const int COLS, int curX, int cu
                 if (table[i][j] != ' ' || table[i + 1][j] != ' ')
                 {
                     gotoxy(curX + 8 * j, curY + 4 * (i + 1));
-                    for (int k = 0; k < 8; k++)
+                    for (int k = 0; k < 9; k++)
                     {
                         cout << char(196);
                     }
@@ -316,6 +316,7 @@ bool LCheck(COORD start, COORD end, char** table, int cordX, int cordY)
     {
         pathI(start, corner, cordX, cordY);
         pathI(end, corner, cordX, cordY);
+        pathCorner(start, corner, end, cordX, cordY);
         return true;
     }
     corner.X = end.X; corner.Y = start.Y;
@@ -323,6 +324,7 @@ bool LCheck(COORD start, COORD end, char** table, int cordX, int cordY)
     {
         pathI(start, corner, cordX, cordY);
         pathI(end, corner, cordX, cordY);
+        pathCorner(start, corner, end, cordX, cordY);
         return true;
     }
     return false;
@@ -342,6 +344,8 @@ bool ZCheck(COORD start, COORD end, char** table, int cordX, int cordY)
                 pathI(start, corner2, cordX, cordY);
                 pathI(end, corner1, cordX, cordY);
                 pathI(corner2, corner1, cordX, cordY);
+                pathCorner(start, corner2, corner1, cordX, cordY);
+                pathCorner(corner2, corner1, end, cordX, cordY);
                 return true;
             }
         }
@@ -356,6 +360,8 @@ bool ZCheck(COORD start, COORD end, char** table, int cordX, int cordY)
                 pathI(start, corner1, cordX, cordY);
                 pathI(end, corner2, cordX, cordY);
                 pathI(corner2, corner1, cordX, cordY);
+                pathCorner(start, corner1, corner2, cordX, cordY);
+                pathCorner(corner1, corner2, end, cordX, cordY);
                 return true;
             }
         }
@@ -371,6 +377,8 @@ bool ZCheck(COORD start, COORD end, char** table, int cordX, int cordY)
                 pathI(start, corner2, cordX, cordY);
                 pathI(end, corner1, cordX, cordY);
                 pathI(corner2, corner1, cordX, cordY);
+                pathCorner(start, corner2, corner1, cordX, cordY);
+                pathCorner(corner2, corner1, end, cordX, cordY);
                 return true;
             }
         }
@@ -385,6 +393,8 @@ bool ZCheck(COORD start, COORD end, char** table, int cordX, int cordY)
                 pathI(start, corner1, cordX, cordY);
                 pathI(end, corner2, cordX, cordY);
                 pathI(corner2, corner1, cordX, cordY);
+                pathCorner(start, corner1, corner2, cordX, cordY);
+                pathCorner(corner1, corner2, end, cordX, cordY);
                 return true;
             }
         }
@@ -399,60 +409,138 @@ bool UCheck(COORD start, COORD end, char** table, const int ROWS, const int COLS
     if (start.X == 0)
     {
         corner1.X = 0; corner1.Y = end.Y;
-        if (ICheck(end, corner1, table) && table[corner1.X][corner1.Y] == ' ') return true;
+        if (ICheck(end, corner1, table) && table[corner1.X][corner1.Y] == ' ')
+        {
+            marginPath(start, corner1, ROWS, COLS, cordX, cordY);
+            corner1.X--;
+            pathI(corner1, end, cordX, cordY);
+            return true;
+        }
     }
     if (start.X == ROWS - 1)
     {
         corner1.X = ROWS - 1; corner1.Y = end.Y;
-        if (ICheck(end, corner1, table) && table[corner1.X][corner1.Y] == ' ') return true;
+        if (ICheck(end, corner1, table) && table[corner1.X][corner1.Y] == ' ')
+        {
+            marginPath(start, corner1, ROWS, COLS, cordX, cordY);
+            corner1.X++;
+            pathI(corner1, end, cordX, cordY);
+            return true;
+        }
     }
     if (start.Y == 0)
     {
         corner1.X = end.X; corner1.Y = 0;
-        if (ICheck(end, corner1, table) && table[corner1.X][corner1.Y] == ' ') return true;
+        if (ICheck(end, corner1, table) && table[corner1.X][corner1.Y] == ' ')
+        {
+            marginPath(start, corner1, ROWS, COLS, cordX, cordY);
+            corner1.Y--;
+            pathI(corner1, end, cordX, cordY);
+            return true;
+        }
     }
     if (start.Y == COLS - 1)
     {
         corner1.X = end.X; corner1.Y = COLS - 1;
-        if (ICheck(end, corner1, table) && table[corner1.X][corner1.Y] == ' ') return true;
+        if (ICheck(end, corner1, table) && table[corner1.X][corner1.Y] == ' ')
+        {
+            marginPath(start, corner1, ROWS, COLS, cordX, cordY);
+            corner1.Y++;
+            pathI(corner1, end, cordX, cordY);
+            return true;
+        }
     }
     //check end ở biên
     if (end.X == 0)
     {
         corner1.X = 0; corner1.Y = start.Y;
-        if (ICheck(start, corner1, table) && table[corner1.X][corner1.Y] == ' ') return true;
+        if (ICheck(start, corner1, table) && table[corner1.X][corner1.Y] == ' ')
+        {
+            marginPath(end, corner1, ROWS, COLS, cordX, cordY);
+            corner1.X--;
+            pathI(corner1, start, cordX, cordY);
+            return true;
+        }
     }
     if (end.X == ROWS - 1)
     {
         corner1.X = ROWS - 1; corner1.Y = start.Y;
-        if (ICheck(start, corner1, table) && table[corner1.X][corner1.Y] == ' ') return true;
+        if (ICheck(start, corner1, table) && table[corner1.X][corner1.Y] == ' ')
+        {
+            marginPath(end, corner1, ROWS, COLS, cordX, cordY);
+            corner1.X++;
+            pathI(corner1, start, cordX, cordY);
+            return true;
+        }
     }
     if (end.Y == 0)
     {
         corner1.X = start.X; corner1.Y = 0;
-        if (ICheck(start, corner1, table) && table[corner1.X][corner1.Y] == ' ') return true;
+        if (ICheck(start, corner1, table) && table[corner1.X][corner1.Y] == ' ')
+        {
+            marginPath(end, corner1, ROWS, COLS, cordX, cordY);
+            corner1.Y--;
+            pathI(corner1, start, cordX, cordY);
+            return true;
+        }
     }
     if (end.Y == COLS - 1)
     {
         corner1.X = start.X; corner1.Y = COLS - 1;
-        if (ICheck(start, corner1, table) && table[corner1.X][corner1.Y] == ' ') return true;
+        if (ICheck(start, corner1, table) && table[corner1.X][corner1.Y] == ' ')
+        {
+            marginPath(end, corner1, ROWS, COLS, cordX, cordY);
+            corner1.Y++;
+            pathI(corner1, start, cordX, cordY);
+            return true;
+        }
     }
     //check ngang
     corner1.X = start.X; corner1.Y = 0; corner2.X = end.X; corner2.Y = 0;
-    if (ICheck(start, corner1, table) && ICheck(corner2, end, table) && table[corner1.X][corner1.Y] == ' ' && table[corner2.X][corner2.Y] == ' ') return true;
+    //check start tới biên và end tới biên
+    if (ICheck(start, corner1, table) && ICheck(corner2, end, table) && table[corner1.X][corner1.Y] == ' ' && table[corner2.X][corner2.Y] == ' ')
+    {
+        pathI(start, corner1, cordX, cordY);
+        pathI(corner2, end, cordX, cordY);
+        marginPath(corner1, corner2, ROWS, COLS, cordX, cordY);
+        return true;
+    }
     corner1.Y = COLS - 1; corner2.Y = COLS - 1;
-    if (ICheck(start, corner1, table) && ICheck(corner2, end, table) && table[corner1.X][corner1.Y] == ' ' && table[corner2.X][corner2.Y] == ' ') return true;
+    if (ICheck(start, corner1, table) && ICheck(corner2, end, table) && table[corner1.X][corner1.Y] == ' ' && table[corner2.X][corner2.Y] == ' ')
+    {
+        pathI(start, corner1, cordX, cordY);
+        pathI(corner2, end, cordX, cordY);
+        marginPath(corner1, corner2, ROWS, COLS, cordX, cordY);
+        return true;
+    }
+    //check U ngang
     if (start.Y >= end.Y)
     {
         for (int i = 0; i < end.Y; i++)
         {
             corner1.X = end.X; corner1.Y = i; corner2.X = start.X; corner2.Y = i;
-            if (ICheck(end, corner1, table) && ICheck(corner1, corner2, table) && ICheck(corner2, start, table) && table[corner1.X][corner1.Y] == ' ' && table[corner2.X][corner2.Y] == ' ') return true;
+            if (ICheck(end, corner1, table) && ICheck(corner1, corner2, table) && ICheck(corner2, start, table) && table[corner1.X][corner1.Y] == ' ' && table[corner2.X][corner2.Y] == ' ')
+            {
+                pathI(end, corner1, cordX, cordY);
+                pathCorner(end, corner1, corner2, cordX, cordY);
+                pathI(corner1, corner2, cordX, cordY);
+                pathCorner(corner1, corner2, start, cordX, cordY);
+                pathI(corner2, start, cordX, cordY);
+                return true;
+            }
         }
         for (int i = start.Y + 1; i < COLS; i++)
         {
             corner1.X = end.X; corner1.Y = i; corner2.X = start.X; corner2.Y = i;
-            if (ICheck(end, corner1, table) && ICheck(corner1, corner2, table) && ICheck(corner2, start, table) && table[corner1.X][corner1.Y] == ' ' && table[corner2.X][corner2.Y] == ' ') return true;
+            if (ICheck(end, corner1, table) && ICheck(corner1, corner2, table) && ICheck(corner2, start, table) && table[corner1.X][corner1.Y] == ' ' && table[corner2.X][corner2.Y] == ' ')
+            {
+                pathI(end, corner1, cordX, cordY);
+                pathCorner(end, corner1, corner2, cordX, cordY);
+                pathI(corner1, corner2, cordX, cordY);
+                pathCorner(corner1, corner2, start, cordX, cordY);
+                pathI(corner2, start, cordX, cordY);
+                return true;
+            }
         }
     }
     if (start.Y <= end.Y)
@@ -460,30 +548,76 @@ bool UCheck(COORD start, COORD end, char** table, const int ROWS, const int COLS
         for (int i = 0; i < start.Y; i++)
         {
             corner1.X = end.X; corner1.Y = i; corner2.X = start.X; corner2.Y = i;
-            if (ICheck(end, corner1, table) && ICheck(corner1, corner2, table) && ICheck(corner2, start, table) && table[corner1.X][corner1.Y] == ' ' && table[corner2.X][corner2.Y] == ' ') return true;
+            if (ICheck(end, corner1, table) && ICheck(corner1, corner2, table) && ICheck(corner2, start, table) && table[corner1.X][corner1.Y] == ' ' && table[corner2.X][corner2.Y] == ' ')
+            {
+                pathI(end, corner1, cordX, cordY);
+                pathCorner(end, corner1, corner2, cordX, cordY);
+                pathI(corner1, corner2, cordX, cordY);
+                pathCorner(corner1, corner2, start, cordX, cordY);
+                pathI(corner2, start, cordX, cordY);
+                return true;
+            }
         }
         for (int i = end.Y + 1; i < COLS; i++)
         {
             corner1.X = end.X; corner1.Y = i; corner2.X = start.X; corner2.Y = i;
-            if (ICheck(end, corner1, table) && ICheck(corner1, corner2, table) && ICheck(corner2, start, table) && table[corner1.X][corner1.Y] == ' ' && table[corner2.X][corner2.Y] == ' ') return true;
+            if (ICheck(end, corner1, table) && ICheck(corner1, corner2, table) && ICheck(corner2, start, table) && table[corner1.X][corner1.Y] == ' ' && table[corner2.X][corner2.Y] == ' ')
+            {
+                pathI(end, corner1, cordX, cordY);
+                pathCorner(end, corner1, corner2, cordX, cordY);
+                pathI(corner1, corner2, cordX, cordY);
+                pathCorner(corner1, corner2, start, cordX, cordY);
+                pathI(corner2, start, cordX, cordY);
+                return true;
+            }
         }
     }
     //check dọc
     corner1.X = 0; corner1.Y = start.Y; corner2.X = 0; corner2.Y = end.Y;
-    if (ICheck(start, corner1, table) && ICheck(corner2, end, table) && table[corner1.X][corner1.Y] == ' ' && table[corner2.X][corner2.Y] == ' ') return true;
+    //check start tới biên và end tới biên
+    if (ICheck(start, corner1, table) && ICheck(corner2, end, table) && table[corner1.X][corner1.Y] == ' ' && table[corner2.X][corner2.Y] == ' ')
+    {
+        pathI(start, corner1, cordX, cordY);
+        pathI(corner2, end, cordX, cordY);
+        marginPath(corner1, corner2, ROWS, COLS, cordX, cordY);
+        return true;
+    }
     corner1.Y = ROWS - 1; corner2.Y = ROWS - 1;
-    if (ICheck(start, corner1, table) && ICheck(corner2, end, table) && table[corner1.X][corner1.Y] == ' ' && table[corner2.X][corner2.Y] == ' ') return true;
+    if (ICheck(start, corner1, table) && ICheck(corner2, end, table) && table[corner1.X][corner1.Y] == ' ' && table[corner2.X][corner2.Y] == ' ')
+    {
+        pathI(start, corner1, cordX, cordY);
+        pathI(corner2, end, cordX, cordY);
+        marginPath(corner1, corner2, ROWS, COLS, cordX, cordY);
+        return true;
+    }
+    //check U dọc
     if (start.X >= end.X)
     {
         for (int i = 0; i < end.X; i++)
         {
             corner1.X = i; corner1.Y = end.Y; corner2.X = i; corner2.Y = start.Y;
-            if (ICheck(end, corner1, table) && ICheck(corner1, corner2, table) && ICheck(corner2, start, table) && table[corner1.X][corner1.Y] == ' ' && table[corner2.X][corner2.Y] == ' ') return true;
+            if (ICheck(end, corner1, table) && ICheck(corner1, corner2, table) && ICheck(corner2, start, table) && table[corner1.X][corner1.Y] == ' ' && table[corner2.X][corner2.Y] == ' ')
+            {
+                pathI(end, corner1, cordX, cordY);
+                pathCorner(end, corner1, corner2, cordX, cordY);
+                pathI(corner1, corner2, cordX, cordY);
+                pathCorner(corner1, corner2, start, cordX, cordY);
+                pathI(corner2, start, cordX, cordY);
+                return true;
+            }
         }
         for (int i = start.X + 1; i < COLS; i++)
         {
             corner1.X = i; corner1.Y = end.Y; corner2.X = i; corner2.Y = start.Y;
-            if (ICheck(end, corner1, table) && ICheck(corner1, corner2, table) && ICheck(corner2, start, table) && table[corner1.X][corner1.Y] == ' ' && table[corner2.X][corner2.Y] == ' ') return true;
+            if (ICheck(end, corner1, table) && ICheck(corner1, corner2, table) && ICheck(corner2, start, table) && table[corner1.X][corner1.Y] == ' ' && table[corner2.X][corner2.Y] == ' ')
+            {
+                pathI(end, corner1, cordX, cordY);
+                pathCorner(end, corner1, corner2, cordX, cordY);
+                pathI(corner1, corner2, cordX, cordY);
+                pathCorner(corner1, corner2, start, cordX, cordY);
+                pathI(corner2, start, cordX, cordY);
+                return true;
+            }
         }
     }
     if (start.X <= end.X)
@@ -491,12 +625,28 @@ bool UCheck(COORD start, COORD end, char** table, const int ROWS, const int COLS
         for (int i = 0; i < start.X; i++)
         {
             corner1.X = i; corner1.Y = end.Y; corner2.X = i; corner2.Y = start.Y;
-            if (ICheck(end, corner1, table) && ICheck(corner1, corner2, table) && ICheck(corner2, start, table) && table[corner1.X][corner1.Y] == ' ' && table[corner2.X][corner2.Y] == ' ') return true;
+            if (ICheck(end, corner1, table) && ICheck(corner1, corner2, table) && ICheck(corner2, start, table) && table[corner1.X][corner1.Y] == ' ' && table[corner2.X][corner2.Y] == ' ')
+            {
+                pathI(end, corner1, cordX, cordY);
+                pathCorner(end, corner1, corner2, cordX, cordY);
+                pathI(corner1, corner2, cordX, cordY);
+                pathCorner(corner1, corner2, start, cordX, cordY);
+                pathI(corner2, start, cordX, cordY);
+                return true;
+            }
         }
         for (int i = end.X + 1; i < COLS; i++)
         {
             corner1.X = i; corner1.Y = end.Y; corner2.X = i; corner2.Y = start.Y;
-            if (ICheck(end, corner1, table) && ICheck(corner1, corner2, table) && ICheck(corner2, start, table) && table[corner1.X][corner1.Y] == ' ' && table[corner2.X][corner2.Y] == ' ') return true;
+            if (ICheck(end, corner1, table) && ICheck(corner1, corner2, table) && ICheck(corner2, start, table) && table[corner1.X][corner1.Y] == ' ' && table[corner2.X][corner2.Y] == ' ')
+            {
+                pathI(end, corner1, cordX, cordY);
+                pathCorner(end, corner1, corner2, cordX, cordY);
+                pathI(corner1, corner2, cordX, cordY);
+                pathCorner(corner1, corner2, start, cordX, cordY);
+                pathI(corner2, start, cordX, cordY);
+                return true;
+            }
         }
     }
     return false;
@@ -547,7 +697,87 @@ void pathI(COORD start, COORD end, int cordX, int cordY)
         }
     }
 }
-void marginPath(COORD coord, COORD coord1)
+void marginPath(COORD coord, COORD coord1, const int ROWS, const int COLS, int cordX, int cordY)
 {
+    if (coord.X == 0 && coord1.X == 0)
+    {
+        COORD corner1, corner2;
+        corner1.X = coord.X - 1; corner1.Y = coord.Y;
+        corner2.X = coord1.X - 1; corner2.Y = coord1.Y;
+        pathI(coord, corner1, cordX, cordY);
+        pathI(coord1, corner2, cordX, cordY);
+        pathI(corner2, corner1, cordX, cordY);
+        pathCorner(coord, corner1, corner2, cordX, cordY);
+        pathCorner(corner1, corner2, coord1, cordX, cordY);
+        return;
+    }
+    if (coord.Y == 0 && coord1.Y == 0)
+    {
+        COORD corner1, corner2;
+        corner1.X = coord.X; corner1.Y = coord.Y - 1;
+        corner2.X = coord1.X; corner2.Y = coord1.Y - 1;
+        pathI(coord, corner1, cordX, cordY);
+        pathI(coord1, corner2, cordX, cordY);
+        pathI(corner2, corner1, cordX, cordY);
+        pathCorner(coord, corner1, corner2, cordX, cordY);
+        pathCorner(corner1, corner2, coord1, cordX, cordY);
+        return;
+    }
+    if (coord.X == ROWS - 1 && coord1.X == ROWS - 1)
+    {
+        COORD corner1, corner2;
+        corner1.X = coord.X + 1; corner1.Y = coord.Y;
+        corner2.X = coord1.X + 1; corner2.Y = coord1.Y;
+        pathI(coord, corner1, cordX, cordY);
+        pathI(coord1, corner2, cordX, cordY);
+        pathI(corner2, corner1, cordX, cordY);
+        pathCorner(coord, corner1, corner2, cordX, cordY);
+        pathCorner(corner1, corner2, coord1, cordX, cordY);
+        return;
+    }
+    if (coord.Y == COLS - 1 && coord1.Y == COLS - 1)
+    {
+        COORD corner1, corner2;
+        corner1.X = coord.X; corner1.Y = coord.Y + 1;
+        corner2.X = coord1.X; corner2.Y = coord1.Y + 1;
+        pathI(coord, corner1, cordX, cordY);
+        pathI(coord1, corner2, cordX, cordY);
+        pathI(corner2, corner1, cordX, cordY);
+        pathCorner(coord, corner1, corner2, cordX, cordY);
+        pathCorner(corner1, corner2, coord1, cordX, cordY);
+        return;
+    }
+}
 
+void pathCorner(COORD start, COORD corner, COORD end, int cordX, int cordY)
+{
+    for (int i = 0; i < 2; i++)
+    {
+        if (corner.X > start.X && corner.Y > end.Y)
+        {
+            gotoxy(cordX + 4 + 8 * (corner.Y), cordY + 2 + 4 * (corner.X));
+            cout << char(217);
+            return;
+        }
+        if (corner.X > start.X && corner.Y < end.Y)
+        {
+            gotoxy(cordX + 4 + 8 * (corner.Y), cordY + 2 + 4 * (corner.X));
+            cout << char(192);
+            return;
+        }
+        if (corner.X < start.X && corner.Y > end.Y)
+        {
+            gotoxy(cordX + 4 + 8 * (corner.Y), cordY + 2 + 4 * (corner.X));
+            cout << char(191);
+            return;
+        }
+        if (corner.X < start.X && corner.Y < end.Y)
+        {
+            gotoxy(cordX + 4 + 8 * (corner.Y), cordY + 2 + 4 * (corner.X));
+            cout << char(218);
+            return;
+        }
+        swap(start.X, end.X);
+        swap(start.Y, end.Y);
+    }
 }

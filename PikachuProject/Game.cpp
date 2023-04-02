@@ -192,19 +192,11 @@ void gameInit(string user,int points, int stages, const int ROWS, const int COLS
 							system("cls");
 							break;
 						}
-						else if (coordX == coordX1 && abs(coordY - coordY1) == 1 || coordY == coordY1 && abs(coordX - coordX1) == 1)
-						{
-							table[coordX][coordY] = ' ';
-							table[coordX1][coordY1] = ' ';
-							matchCheck = false;
-							matchMusic();
-							system("cls");
-							break;
-						}
 						else if (coordX == 0 && coordX1 == 0 || coordX == ROWS - 1 && coordX1 == ROWS - 1 || coordY == 0 && coordY1 == 0 || coordY == COLS - 1 && coordY1 == COLS - 1)
 						{
 							table[coordX][coordY] = ' ';
 							table[coordX1][coordY1] = ' ';
+							marginPath(coord, coord1, ROWS, COLS, DifX, DifY);
 							matchCheck = false;
 							matchMusic();
 							system("cls");
