@@ -97,32 +97,6 @@ void tableShuffle(char** &table, const int ROWS, const int COLS)
     }
 }
 
-/*void printTable(char** table, const int ROWS, const int COLS, int curX, int curY) {
-
-    // print the table
-    cout << setw(COLS * 8 + 1) << setfill('-') << "" << endl;
-    for (int i = 0; i < ROWS; i++) {
-        cout << setw(curX + 1) << setfill(' ') << "|";
-        for (int c = 0; c < COLS; c++)
-        {
-            cout << setw(8) << setfill(' ') << "|";
-        }
-        cout << endl;
-        cout << setw(curX) << setfill(' ') << "";
-        for (int j = 0; j < COLS; j++) {
-            cout << "|   " << table[i][j] << "   ";
-        }
-        cout << "|" << endl;
-        cout << setw(curX + 1) << setfill(' ') << "|";
-        for (int c = 0; c < COLS; c++)
-        {
-            cout << setw(8) << setfill(' ') << "|";
-        }
-        cout << endl;
-        cout << setw(curX) << setfill(' ') << "" << setw(COLS * 8 + 1) << setfill('-') << "" << endl;
-    }
-}*/
-
 void printTableV2(char** table, const int ROWS, const int COLS, int curX, int curY) //ref https://cplusplus.com/forum/beginner/248878/
 {
     cout << setw(COLS * 8 + 1) << setfill(char(196)) << "" << endl;
@@ -165,14 +139,6 @@ void printTableV2(char** table, const int ROWS, const int COLS, int curX, int cu
             }
             else
             {
-                if (table[i][j] == ' ' || table[i + 1][j] == ' ')
-                {
-                    if (i == 0)
-                    {
-                        gotoxy(curX + 8 * j, curY + 4 * (i + 1));
-                        cout << char(196);
-                    }
-                }
                 if (table[i][j] != ' ' || table[i + 1][j] != ' ')
                 {
                     gotoxy(curX + 8 * j, curY + 4 * (i + 1));
@@ -497,22 +463,6 @@ bool UCheck(COORD start, COORD end, char** table, const int ROWS, const int COLS
     }
     //check ngang
     corner1.X = start.X; corner1.Y = 0; corner2.X = end.X; corner2.Y = 0;
-    //check start tới biên và end tới biên
-    if (ICheck(start, corner1, table) && ICheck(corner2, end, table) && table[corner1.X][corner1.Y] == ' ' && table[corner2.X][corner2.Y] == ' ')
-    {
-        pathI(start, corner1, cordX, cordY);
-        pathI(corner2, end, cordX, cordY);
-        marginPath(corner1, corner2, ROWS, COLS, cordX, cordY);
-        return true;
-    }
-    corner1.Y = COLS - 1; corner2.Y = COLS - 1;
-    if (ICheck(start, corner1, table) && ICheck(corner2, end, table) && table[corner1.X][corner1.Y] == ' ' && table[corner2.X][corner2.Y] == ' ')
-    {
-        pathI(start, corner1, cordX, cordY);
-        pathI(corner2, end, cordX, cordY);
-        marginPath(corner1, corner2, ROWS, COLS, cordX, cordY);
-        return true;
-    }
     //check U ngang
     if (start.Y >= end.Y)
     {
@@ -572,24 +522,33 @@ bool UCheck(COORD start, COORD end, char** table, const int ROWS, const int COLS
             }
         }
     }
+    //check start tới biên và end tới biên
+    corner1.X = start.X; corner1.Y = 0; corner2.X = end.X; corner2.Y = 0;
+    if (ICheck(start, corner1, table) && ICheck(corner2, end, table) && table[corner1.X][corner1.Y] == ' ' && table[corner2.X][corner2.Y] == ' ')
+    {
+        pathI(start, corner1, cordX, cordY);
+        pathI(corner2, end, cordX, cordY);
+        marginPath(corner1, corner2, ROWS, COLS, cordX, cordY);
+        gotoxy(cordX + 4 + 8 * (corner1.Y), cordY + 2 + 4 * (corner1.X));
+        cout << char(196);
+        gotoxy(cordX + 4 + 8 * (corner2.Y), cordY + 2 + 4 * (corner2.X));
+        cout << char(196);
+        return true;
+    }
+    corner1.Y = COLS - 1; corner2.Y = COLS - 1;
+    if (ICheck(start, corner1, table) && ICheck(corner2, end, table) && table[corner1.X][corner1.Y] == ' ' && table[corner2.X][corner2.Y] == ' ')
+    {
+        pathI(start, corner1, cordX, cordY);
+        pathI(corner2, end, cordX, cordY);
+        marginPath(corner1, corner2, ROWS, COLS, cordX, cordY);
+        gotoxy(cordX + 4 + 8 * (corner1.Y), cordY + 2 + 4 * (corner1.X));
+        cout << char(196);
+        gotoxy(cordX + 4 + 8 * (corner2.Y), cordY + 2 + 4 * (corner2.X));
+        cout << char(196);
+        return true;
+    }
     //check dọc
     corner1.X = 0; corner1.Y = start.Y; corner2.X = 0; corner2.Y = end.Y;
-    //check start tới biên và end tới biên
-    if (ICheck(start, corner1, table) && ICheck(corner2, end, table) && table[corner1.X][corner1.Y] == ' ' && table[corner2.X][corner2.Y] == ' ')
-    {
-        pathI(start, corner1, cordX, cordY);
-        pathI(corner2, end, cordX, cordY);
-        marginPath(corner1, corner2, ROWS, COLS, cordX, cordY);
-        return true;
-    }
-    corner1.Y = ROWS - 1; corner2.Y = ROWS - 1;
-    if (ICheck(start, corner1, table) && ICheck(corner2, end, table) && table[corner1.X][corner1.Y] == ' ' && table[corner2.X][corner2.Y] == ' ')
-    {
-        pathI(start, corner1, cordX, cordY);
-        pathI(corner2, end, cordX, cordY);
-        marginPath(corner1, corner2, ROWS, COLS, cordX, cordY);
-        return true;
-    }
     //check U dọc
     if (start.X >= end.X)
     {
@@ -648,6 +607,31 @@ bool UCheck(COORD start, COORD end, char** table, const int ROWS, const int COLS
                 return true;
             }
         }
+    }
+    //check start tới biên và end tới biên
+    corner1.X = 0; corner1.Y = start.Y; corner2.X = 0; corner2.Y = end.Y;
+    if (ICheck(start, corner1, table) && ICheck(corner2, end, table) && table[corner1.X][corner1.Y] == ' ' && table[corner2.X][corner2.Y] == ' ')
+    {
+        pathI(start, corner1, cordX, cordY);
+        pathI(corner2, end, cordX, cordY);
+        marginPath(corner1, corner2, ROWS, COLS, cordX, cordY);
+        gotoxy(cordX + 4 + 8 * (corner1.Y), cordY + 2 + 4 * (corner1.X));
+        cout << char(179);
+        gotoxy(cordX + 4 + 8 * (corner2.Y), cordY + 2 + 4 * (corner2.X));
+        cout << char(179);
+        return true;
+    }
+    corner1.Y = ROWS - 1; corner2.Y = ROWS - 1;
+    if (ICheck(start, corner1, table) && ICheck(corner2, end, table) && table[corner1.X][corner1.Y] == ' ' && table[corner2.X][corner2.Y] == ' ')
+    {
+        pathI(start, corner1, cordX, cordY);
+        pathI(corner2, end, cordX, cordY);
+        marginPath(corner1, corner2, ROWS, COLS, cordX, cordY);
+        gotoxy(cordX + 4 + 8 * (corner1.Y), cordY + 2 + 4 * (corner1.X));
+        cout << char(179);
+        gotoxy(cordX + 4 + 8 * (corner2.Y), cordY + 2 + 4 * (corner2.X));
+        cout << char(179);
+        return true;
     }
     return false;
 }
