@@ -306,9 +306,19 @@ bool LCheck(COORD start, COORD end, char** table, int cordX, int cordY)
 {
     COORD corner;
     corner.X = start.X, corner.Y = end.Y;
-    if (ICheck(start, corner, table) && ICheck(end, corner, table) && table[corner.X][corner.Y] == ' ') return true;
+    if (ICheck(start, corner, table) && ICheck(end, corner, table) && table[corner.X][corner.Y] == ' ')
+    {
+        pathI(start, corner, cordX, cordY);
+        pathI(end, corner, cordX, cordY);
+        return true;
+    }
     corner.X = end.X; corner.Y = start.Y;
-    if (ICheck(start, corner, table) && ICheck(end, corner, table) && table[corner.X][corner.Y] == ' ') return true;
+    if (ICheck(start, corner, table) && ICheck(end, corner, table) && table[corner.X][corner.Y] == ' ')
+    {
+        pathI(start, corner, cordX, cordY);
+        pathI(end, corner, cordX, cordY);
+        return true;
+    }
     return false;
 }
 
@@ -321,7 +331,13 @@ bool ZCheck(COORD start, COORD end, char** table, int cordX, int cordY)
         for (int i = end.Y + 1; i < start.Y; i++)
         {
             corner1.X = end.X; corner1.Y = i; corner2.X = start.X; corner2.Y = i;
-            if (ICheck(end, corner1, table) && ICheck(corner1, corner2, table) && ICheck(corner2, start, table) && table[corner1.X][corner1.Y] == ' ' && table[corner2.X][corner2.Y] == ' ') return true;
+            if (ICheck(end, corner1, table) && ICheck(corner1, corner2, table) && ICheck(corner2, start, table) && table[corner1.X][corner1.Y] == ' ' && table[corner2.X][corner2.Y] == ' ')
+            {
+                pathI(start, corner2, cordX, cordY);
+                pathI(end, corner1, cordX, cordY);
+                pathI(corner2, corner1, cordX, cordY);
+                return true;
+            }
         }
     }
     if (start.Y < end.Y)
@@ -329,7 +345,13 @@ bool ZCheck(COORD start, COORD end, char** table, int cordX, int cordY)
         for (int i = start.Y + 1; i < end.Y; i++)
         {
             corner1.X = start.X; corner1.Y = i; corner2.X = end.X; corner2.Y = i;
-            if (ICheck(start, corner1, table) && ICheck(corner1, corner2, table) && ICheck(corner2, end, table) && table[corner1.X][corner1.Y] == ' ' && table[corner2.X][corner2.Y] == ' ') return true;
+            if (ICheck(start, corner1, table) && ICheck(corner1, corner2, table) && ICheck(corner2, end, table) && table[corner1.X][corner1.Y] == ' ' && table[corner2.X][corner2.Y] == ' ')
+            {
+                pathI(start, corner1, cordX, cordY);
+                pathI(end, corner2, cordX, cordY);
+                pathI(corner2, corner1, cordX, cordY);
+                return true;
+            }
         }
     }
     //check dọc
@@ -338,7 +360,13 @@ bool ZCheck(COORD start, COORD end, char** table, int cordX, int cordY)
         for (int i = end.X + 1; i < start.X; i++)
         {
             corner1.X = i; corner1.Y = end.Y; corner2.X = i; corner2.Y = start.Y;
-            if (ICheck(end, corner1, table) && ICheck(corner1, corner2, table) && ICheck(corner2, start, table) && table[corner1.X][corner1.Y] == ' ' && table[corner2.X][corner2.Y] == ' ') return true;
+            if (ICheck(end, corner1, table) && ICheck(corner1, corner2, table) && ICheck(corner2, start, table) && table[corner1.X][corner1.Y] == ' ' && table[corner2.X][corner2.Y] == ' ')
+            {
+                pathI(start, corner2, cordX, cordY);
+                pathI(end, corner1, cordX, cordY);
+                pathI(corner2, corner1, cordX, cordY);
+                return true;
+            }
         }
     }
     if (start.X < end.X)
@@ -346,7 +374,13 @@ bool ZCheck(COORD start, COORD end, char** table, int cordX, int cordY)
         for (int i = start.X + 1; i < end.X; i++)
         {
             corner1.X = i; corner1.Y = start.Y; corner2.X = i; corner2.Y = end.Y;
-            if (ICheck(start, corner1, table) && ICheck(corner1, corner2, table) && ICheck(corner2, end, table) && table[corner1.X][corner1.Y] == ' ' && table[corner2.X][corner2.Y] == ' ') return true;
+            if (ICheck(start, corner1, table) && ICheck(corner1, corner2, table) && ICheck(corner2, end, table) && table[corner1.X][corner1.Y] == ' ' && table[corner2.X][corner2.Y] == ' ')
+            {
+                pathI(start, corner1, cordX, cordY);
+                pathI(end, corner2, cordX, cordY);
+                pathI(corner2, corner1, cordX, cordY);
+                return true;
+            }
         }
     }
     return false;
