@@ -742,7 +742,6 @@ int Help(char** table,const int ROWS, const int COLS, int DifX,int DifY)
             {
                 for (int b = 0; b < COLS; b++)
                 {
-                    cout << i << ":" << j << "=" << a << ":" << b << " ";
                     if (table[i][j] == table[a][b] && table[i][j] != ' ')
                     {
                         if (i == a && j == b)
