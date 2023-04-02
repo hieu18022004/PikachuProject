@@ -148,7 +148,7 @@ void printTableV2(char** table, const int ROWS, const int COLS, int curX, int cu
             }
             else
             {
-                if (table[i][j] != ' ' && table[i][j + 1] != ' ')
+                if (table[i][j] != ' ' || table[i][j + 1] != ' ')
                 {
                     gotoxy(curX + 4 + j * 8 + 4, curY + 2 + i * 4 - 1); cout << char(179);
                     gotoxy(curX + 4 + j * 8 + 4, curY + 2 + i * 4); cout << char(179);
@@ -165,7 +165,7 @@ void printTableV2(char** table, const int ROWS, const int COLS, int curX, int cu
             }
             else
             {
-                if (table[i][j] == ' ' && table[i + 1][j] == ' ')
+                if (table[i][j] == ' ' || table[i + 1][j] == ' ')
                 {
                     if (i == 0)
                     {
@@ -173,7 +173,7 @@ void printTableV2(char** table, const int ROWS, const int COLS, int curX, int cu
                         cout << char(196);
                     }
                 }
-                if (table[i][j] != ' ' && table[i + 1][j] != ' ')
+                if (table[i][j] != ' ' || table[i + 1][j] != ' ')
                 {
                     gotoxy(curX + 8 * j, curY + 4 * (i + 1));
                     for (int k = 0; k < 8; k++)
@@ -508,19 +508,19 @@ void pathI(COORD start, COORD end, int cordX, int cordY)
     {
         if (start.Y > end.Y)
         {
-            for (int i = cordX + 4 + 8 * (end.Y); i <= cordX + 4 + 8 * (start.Y); i++)
+            for (int i = cordX + 4 + 8 * (end.Y) + 1; i < cordX + 4 + 8 * (start.Y); i++)
             {
                 gotoxy(i, cordY + 2 + 4 * (start.X));
-                cout << "+";
+                cout << char(196);
             }
             return;
         }
         if (start.Y < end.Y)
         {
-            for (int i = cordX + 4 + 8 * (start.Y); i <= cordX + 4 + 8 * (end.Y); i++)
+            for (int i = cordX + 4 + 8 * (start.Y) + 1; i < cordX + 4 + 8 * (end.Y); i++)
             {
                 gotoxy(i, cordY + 2 + 4 * (start.X));
-                cout << "+";
+                cout << char(196);
             }
             return;
         }
@@ -529,19 +529,19 @@ void pathI(COORD start, COORD end, int cordX, int cordY)
     {
         if (start.X > end.X)
         {
-            for (int i = cordY + 2 + 4 * (end.X); i <= cordY + 2 + 4 * (start.X); i++)
+            for (int i = cordY + 2 + 4 * (end.X) + 1; i < cordY + 2 + 4 * (start.X); i++)
             {
                 gotoxy(cordX + 4 + 8 * (start.Y), i);
-                cout << "+";
+                cout << char(179);
             }
             return;
         }
         if (start.X < end.X)
         {
-            for (int i = cordY + 2 + 4 * (start.X); i <= cordY + 2 + 4 * (end.X); i++)
+            for (int i = cordY + 2 + 4 * (start.X) + 1; i < cordY + 2 + 4 * (end.X); i++)
             {
                 gotoxy(cordX + 4 + 8 * (start.Y), i);
-                cout << "+";
+                cout << char(179);
             }
             return;
         }

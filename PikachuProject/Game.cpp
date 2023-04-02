@@ -18,7 +18,7 @@ void gameInit(string user,int points, int stages, const int ROWS, const int COLS
 	{
 		FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
 		printScreen(table, ROWS, COLS, user, points, stages, DifX, DifY);
-		deleteBorder(table, ROWS, COLS, DifX, DifY);
+		//deleteBorder(table, ROWS, COLS, DifX, DifY);
 		printHighlighted(curX, curY, table, coordX, coordY);
 		cout << endl;
 		switch (_getch())
@@ -107,7 +107,7 @@ void gameInit(string user,int points, int stages, const int ROWS, const int COLS
 			while (matchCheck==true)
 			{
 				FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
-				deleteBorder(table, ROWS, COLS, DifX, DifY);
+				//deleteBorder(table, ROWS, COLS, DifX, DifY);
 				printHighlighted(curX, curY, table, coordX, coordY);
 				printHighlighted(curX1, curY1, table, coordX1, coordY1);
 				cout << endl;
@@ -172,6 +172,7 @@ void gameInit(string user,int points, int stages, const int ROWS, const int COLS
 				case KEY_RETURN:
 				{
 					undoHighlighted(curX1, curY1, table, coordX1, coordY1);
+					undoHighlighted(curX, curY, table, coordX, coordY);
 					if (table[coordX][coordY] == table[coordX1][coordY1] && table[coordX][coordY] != ' ')
 					{
 						if (coordX == coordX1 && coordY == coordY1)
@@ -181,12 +182,23 @@ void gameInit(string user,int points, int stages, const int ROWS, const int COLS
 						}
 						COORD coord, coord1;
 						coord.X = coordX; coord.Y = coordY; coord1.X = coordX1; coord1.Y = coordY1;
-						if (coordX == coordX1 && abs(coordY - coordY1) == 1 || coordY == coordY1 && abs(coordX - coordX1) == 1)
+						if (ICheck(coord, coord1, table))
+						{
+							table[coordX][coordY] = ' ';
+							table[coordX1][coordY1] = ' ';
+							pathI(coord, coord1, DifX, DifY);
+							matchCheck = false;
+							matchMusic();
+							system("cls");
+							break;
+						}
+						else if (coordX == coordX1 && abs(coordY - coordY1) == 1 || coordY == coordY1 && abs(coordX - coordX1) == 1)
 						{
 							table[coordX][coordY] = ' ';
 							table[coordX1][coordY1] = ' ';
 							matchCheck = false;
 							matchMusic();
+							system("cls");
 							break;
 						}
 						else if (coordX == 0 && coordX1 == 0 || coordX == ROWS - 1 && coordX1 == ROWS - 1 || coordY == 0 && coordY1 == 0 || coordY == COLS - 1 && coordY1 == COLS - 1)
@@ -195,15 +207,7 @@ void gameInit(string user,int points, int stages, const int ROWS, const int COLS
 							table[coordX1][coordY1] = ' ';
 							matchCheck = false;
 							matchMusic();
-							break;
-						}
-						else if (ICheck(coord, coord1, table))
-						{
-							table[coordX][coordY] = ' ';
-							table[coordX1][coordY1] = ' ';
-							pathI(coord, coord1, DifX, DifY);
-							matchCheck = false;
-							matchMusic();
+							system("cls");
 							break;
 						}
 						else if (LCheck(coord, coord1, table, DifX, DifY))
@@ -212,6 +216,7 @@ void gameInit(string user,int points, int stages, const int ROWS, const int COLS
 							table[coordX1][coordY1] = ' ';
 							matchCheck = false;
 							matchMusic();
+							system("cls");
 							break;
 						}
 						else if (ZCheck(coord, coord1, table, DifX, DifY))
@@ -220,6 +225,7 @@ void gameInit(string user,int points, int stages, const int ROWS, const int COLS
 							table[coordX1][coordY1] = ' ';
 							matchCheck = false;
 							matchMusic();
+							system("cls");
 							break;
 						}
 						else if (UCheck(coord, coord1, table, ROWS, COLS, DifX, DifY))
@@ -228,9 +234,11 @@ void gameInit(string user,int points, int stages, const int ROWS, const int COLS
 							table[coordX1][coordY1] = ' ';
 							matchCheck = false;
 							matchMusic();
+							system("cls");
 							break;
 						}
 					}
+					system("cls");
 					matchCheck = false;
 					break;
 				}
