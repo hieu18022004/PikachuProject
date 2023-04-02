@@ -44,7 +44,7 @@ int randomInt()
     mt19937 gen(rd());
     uniform_int_distribution<> distr(65, 90);
     return distr(gen);
-} //ref: https://stackoverflow.com/questions/7560114/random-number-c-in-some-range
+} 
 
 void tableShuffle(char** &table, const int ROWS, const int COLS)
 {
@@ -192,42 +192,6 @@ char** tableInit(const int ROWS, const int COLS)
     }
     tableShuffle(table, ROWS, COLS);
     return table;
-}
-
-void deleteBorder(char** table, const int ROWS, const int COLS, int DifX, int DifY)
-{
-    for (int i = 0; i < ROWS; i++)
-    {
-        for (int j = 0; j < COLS - 1; j++)
-        {
-            if (table[i][j] == ' ' && table[i][j + 1] == ' ')
-            {
-                gotoxy(DifX + 8 * (j + 1), DifY + 4 * (i) + 1);
-                cout << " ";
-                gotoxy(DifX + 8 * (j + 1), DifY + 4 * (i) + 2);
-                cout << " ";
-                gotoxy(DifX + 8 * (j + 1), DifY + 4 * (i) + 3);
-                cout << " ";
-                if (i != ROWS - 1)
-                {
-                    gotoxy(DifX + 8 * (j + 1), DifY + 4 * (i) + 4);
-                    cout << " ";
-                }
-            }
-        }
-    }
-    for (int j = 0; j < COLS; j++)
-    {
-        for (int i = 0; i < ROWS - 1; i++)
-        {
-            if (table[i][j] == ' ' && table[i + 1][j] == ' ')
-            {
-                gotoxy(DifX + 8 * (j) + 1, DifY + 4 * (i + 1));
-                cout << "       ";
-
-            }
-        }
-    }
 }
 
 //path check

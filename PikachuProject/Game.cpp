@@ -18,7 +18,6 @@ void gameInit(string user,int points, int stages, const int ROWS, const int COLS
 	{
 		FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
 		printScreen(table, ROWS, COLS, user, points, stages, DifX, DifY);
-		//deleteBorder(table, ROWS, COLS, DifX, DifY);
 		printHighlighted(curX, curY, table, coordX, coordY);
 		cout << endl;
 		switch (_getch())
@@ -107,7 +106,6 @@ void gameInit(string user,int points, int stages, const int ROWS, const int COLS
 			while (matchCheck==true)
 			{
 				FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
-				//deleteBorder(table, ROWS, COLS, DifX, DifY);
 				printHighlighted(curX, curY, table, coordX, coordY);
 				printHighlighted(curX1, curY1, table, coordX1, coordY1);
 				cout << endl;

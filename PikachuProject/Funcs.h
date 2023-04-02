@@ -35,19 +35,20 @@ COORD tailGet(List list);
 void removeAll(List& list);
 
 //Functions
-int randomInt();
-void printTableV2(char** table, const int ROWS, const int COLS,int curX,int curY);
+int randomInt(); //ref: https://stackoverflow.com/questions/7560114/random-number-c-in-some-range
+void printTableV2(char** table, const int ROWS, const int COLS,int curX,int curY); //ref:https://cplusplus.com/forum/beginner/248878/
 char** tableInit(const int ROWS, const int COLS);
 void tableShuffle(char** &table, const int ROWS, const int COLS);
 void printScreen(char** table, const int ROWS, const int COLS, string user, int points, int stages, int cordX, int cordY);
-void gotoxy(int x, int y);
+void gotoxy(int x, int y); //ref:https://stackoverflow.com/questions/55635791/how-to-use-function-gotoxyint-x-int-y
+//color ref:https://stackoverflow.com/questions/9965710/how-to-change-text-and-background-color
 void printHighlighted(int curX, int curY, char** table, int cordX, int cordY);
 void undoHighlighted(int curX, int curY, char** table, int cordX, int cordY);
+//path ref:https://cplusplus.com/forum/beginner/248878/
 bool ICheck(COORD start, COORD end, char** table);
 bool LCheck(COORD start, COORD end, char** table, int cordX, int cordY);
 bool ZCheck(COORD start, COORD end, char** table, int cordX, int cordY);
 bool UCheck(COORD start, COORD end, char** table, const int ROWS, const int COLS, int cordX, int cordY);
-void deleteBorder(char** table, const int ROWS, const int COLS, int DifX, int DifY);
 void pathI(COORD start, COORD end, int cordX, int cordY);
 void marginPath(COORD coord, COORD coord1, const int ROWS, const int COLS, int cordX, int cordY);
 void pathCorner(COORD start, COORD corner, COORD end, int cordX, int cordY);
