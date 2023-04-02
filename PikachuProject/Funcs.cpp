@@ -729,3 +729,60 @@ void pathCorner(COORD start, COORD corner, COORD end, int cordX, int cordY)
         swap(start.Y, end.Y);
     }
 }
+
+//help move
+
+int Help(char** table,const int ROWS, const int COLS, int DifX,int DifY)
+{
+    for (int i = 0; i < ROWS; i++)
+    {
+        for (int j = 0; j < COLS; j++)
+        {
+            for (int a = 0; a < ROWS; a++)
+            {
+                for (int b = 0; b < COLS; b++)
+                {
+                    cout << i << ":" << j << "=" << a << ":" << b << " ";
+                    if (table[i][j] == table[a][b] && table[i][j] != ' ')
+                    {
+                        if (i == a && j == b)
+                        {
+                            continue;
+                        }
+                        COORD coord, coord1;
+                        coord.X = i; coord.Y = j; coord1.X = a; coord1.Y = b;
+                        int curX = DifY + 2 + 4 * j, curY = DifX + 4 + 8 * i, cur1X = DifY + 2 + 4 * b, cur1Y = DifX + 4 + 8 * a;
+                        if (ICheck(coord, coord1, table))
+                        {
+                            pathI(coord, coord1, DifX, DifY);
+                            Sleep(1000);
+                            return 1;
+                        }
+                        else if (i == 0 && a == 0 || i == ROWS - 1 && a == ROWS - 1 || j == 0 && b == 0 || j == COLS - 1 && b == COLS - 1)
+                        {
+                            marginPath(coord, coord1, ROWS, COLS, DifX, DifY);
+                            Sleep(1000);
+                            return 1;
+                        }
+                        else if (LCheck(coord, coord1, table, DifX, DifY))
+                        {
+                            Sleep(1000);
+                            return 1;
+                        }
+                        else if (ZCheck(coord, coord1, table, DifX, DifY))
+                        {
+                            Sleep(1000);
+                            return 1;
+                        }
+                        else if (UCheck(coord, coord1, table, ROWS, COLS, DifX, DifY))
+                        {
+                            Sleep(1000);
+                            return 1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return 0;
+}
