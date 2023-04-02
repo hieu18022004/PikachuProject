@@ -123,14 +123,14 @@ void tableShuffle(char** &table, const int ROWS, const int COLS)
     }
 }*/
 
-void printTableV2(char** table, const int ROWS, const int COLS, int curX, int curY)
+void printTableV2(char** table, const int ROWS, const int COLS, int curX, int curY) //ref https://cplusplus.com/forum/beginner/248878/
 {
-    cout << setw(COLS * 8 + 1) << setfill('-') << "" << endl;
+    cout << setw(COLS * 8 + 1) << setfill(char(196)) << "" << endl;
     for (int i = 0; i < ROWS; i++)
     {
-        cout << setw(curX + 1) << setfill(' ') << "|" << endl;
-        cout << setw(curX + 1) << setfill(' ') << "|" << endl;
-        cout << setw(curX + 1) << setfill(' ') << "|" << endl;
+        cout << setw(curX + 1) << setfill(' ') << char(179) << endl;
+        cout << setw(curX + 1) << setfill(' ') << char(179) << endl;
+        cout << setw(curX + 1) << setfill(' ') << char(179) << endl;
         cout << endl;
     }
     for (int i = 0; i < ROWS; i++)
@@ -141,24 +141,27 @@ void printTableV2(char** table, const int ROWS, const int COLS, int curX, int cu
             cout << table[i][j];
             if (j == COLS - 1)
             {
-                gotoxy(curX + 4 + j * 8 + 4, curY + 2 + i * 4 - 1); cout << "|";
-                gotoxy(curX + 4 + j * 8 + 4, curY + 2 + i * 4); cout << "|";
-                gotoxy(curX + 4 + j * 8 + 4, curY + 2 + i * 4 + 1); cout << "|";
-                gotoxy(curX + 4 + j * 8 + 4, curY + 2 + i * 4 + 2); cout << "-";
+                gotoxy(curX + 4 + j * 8 + 4, curY + 2 + i * 4 - 1); cout << char(179);
+                gotoxy(curX + 4 + j * 8 + 4, curY + 2 + i * 4); cout << char(179);
+                gotoxy(curX + 4 + j * 8 + 4, curY + 2 + i * 4 + 1); cout << char(179);
+                gotoxy(curX + 4 + j * 8 + 4, curY + 2 + i * 4 + 2); cout << char(196);
             }
             else
             {
                 if (table[i][j] != ' ' && table[i][j + 1] != ' ')
                 {
-                    gotoxy(curX + 4 + j * 8 + 4, curY + 2 + i * 4 - 1); cout << "|";
-                    gotoxy(curX + 4 + j * 8 + 4, curY + 2 + i * 4); cout << "|";
-                    gotoxy(curX + 4 + j * 8 + 4, curY + 2 + i * 4 + 1); cout << "|";
+                    gotoxy(curX + 4 + j * 8 + 4, curY + 2 + i * 4 - 1); cout << char(179);
+                    gotoxy(curX + 4 + j * 8 + 4, curY + 2 + i * 4); cout << char(179);
+                    gotoxy(curX + 4 + j * 8 + 4, curY + 2 + i * 4 + 1); cout << char(179);
                 }
             }
             if (i == ROWS - 1)
             {
                 gotoxy(curX + 8 * j, curY + 4 * (i + 1));
-                cout << "--------";
+                for (int k = 0; k < 8; k++)
+                {
+                    cout << char(196);
+                }
             }
             else
             {
@@ -167,13 +170,16 @@ void printTableV2(char** table, const int ROWS, const int COLS, int curX, int cu
                     if (i == 0)
                     {
                         gotoxy(curX + 8 * j, curY + 4 * (i + 1));
-                        cout << "-";
+                        cout << char(196);
                     }
                 }
                 if (table[i][j] != ' ' && table[i + 1][j] != ' ')
                 {
                     gotoxy(curX + 8 * j, curY + 4 * (i + 1));
-                    cout << "--------";
+                    for (int k = 0; k < 8; k++)
+                    {
+                        cout << char(196);
+                    }
                 }
             }
         }
