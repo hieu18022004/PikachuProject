@@ -105,7 +105,7 @@ void printTableV2(char** table, const int ROWS, const int COLS, int curX, int cu
         cout << setw(curX + 1) << setfill(' ') << char(179) << endl;
         cout << setw(curX + 1) << setfill(' ') << char(179) << endl;
         cout << setw(curX + 1) << setfill(' ') << char(179) << endl;
-        cout << endl;
+        cout << setw(curX + 1) << setfill(' ') << char(196) << endl;
     }
     for (int i = 0; i < ROWS; i++)
     {
