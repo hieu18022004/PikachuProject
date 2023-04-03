@@ -69,6 +69,14 @@ void asianDif(char** &table, const int ROWS, const int COLS);
 
 //Game
 void gameInit(string user, int points, int stages, const int ROWS, const int COLS);
+// UI & VFX Funcs
+void ShowConsoleCursor(bool showFlag);
+void playBG(bool flag);
+void matchMusic();
+//menu and leaderboard
+void printLogo();
+int launchMenu();
+int difficultyMenu();
 // Data and player infor
 struct Player 
 {
@@ -106,7 +114,3 @@ void displayMainMenu();
 void displayDifficultyMenu();
 void convertTxtToBin(const char* txtFileName, const char* binFileName);
 
-// UI & VFX Funcs
-void ShowConsoleCursor(bool showFlag);
-void playBG(bool flag);
-void matchMusic();

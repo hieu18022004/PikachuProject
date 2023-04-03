@@ -8,8 +8,47 @@ int main()
 	HWND hWnd = GetConsoleWindow(); //console full screen ref: https://www.daniweb.com/programming/software-development/threads/31665/how-to-make-console-programs-full-screen.
 	ShowWindow(hWnd, SW_SHOWMAXIMIZED);
 	ShowConsoleCursor(false);
+	bool exitFlag = false;
 	playBG(true);
-	gameInit("Hieu", 0, 0, MED_ROWS, MED_COLS);
+	while (exitFlag == false)
+	{
+		switch (launchMenu())
+		{
+		case 1:
+		{
+			system("cls");
+			switch (difficultyMenu())
+			{
+			case 1:
+			{
+				system("cls");
+				gameInit("Hieu", 0, 0, EZ_ROWS, EZ_COLS);
+				break;
+			}
+			case 2:
+			{
+				system("cls");
+				gameInit("Hieu", 0, 0, MED_ROWS, MED_COLS);
+				break;
+			}
+			case 3:
+			{
+				system("cls");
+				gameInit("Hieu", 0, 0, HARD_ROWS, HARD_COLS);
+				break;
+			}
+			case 4:
+			{
+				system("cls");
+				gameInit("Hieu", 0, 0, ASIAN_ROWS, ASIAN_COLS);
+				break;
+			}
+			}
+			system("cls");
+			break;
+		}
+		}
+	}
 	return 1;
 }
 
