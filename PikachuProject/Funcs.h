@@ -17,8 +17,6 @@ using namespace std;
 #define ASIAN_COLS 16
 
 //queue structs
-
-
 struct Node {
     COORD n;
     Node* pNext = NULL;
@@ -27,6 +25,7 @@ struct Node {
 struct List {
     Node* pHead = NULL;
 };
+
 //list
 Node* nodeCreate(int x, int y);
 bool emptyCheck(List list);
@@ -44,10 +43,13 @@ void printTableV2(char** table, const int ROWS, const int COLS,int curX,int curY
 char** tableInit(const int ROWS, const int COLS);
 void tableShuffle(char** &table, const int ROWS, const int COLS);
 void printScreen(char** table, const int ROWS, const int COLS, string user, int points, int stages, int cordX, int cordY);
+
 void gotoxy(int x, int y); //ref:https://stackoverflow.com/questions/55635791/how-to-use-function-gotoxyint-x-int-y
+
 //color ref:https://stackoverflow.com/questions/9965710/how-to-change-text-and-background-color
 void printHighlighted(int curX, int curY, char** table, int cordX, int cordY);
 void undoHighlighted(int curX, int curY, char** table, int cordX, int cordY);
+
 //path ref:https://cplusplus.com/forum/beginner/248878/
 bool ICheck(COORD start, COORD end, char** table);
 bool LCheck(COORD start, COORD end, char** table, int cordX, int cordY);
@@ -57,26 +59,34 @@ bool UCheck(COORD start, COORD end, char** table, const int ROWS, const int COLS
 void pathI(COORD start, COORD end, int cordX, int cordY);
 void marginPath(COORD coord, COORD coord1, const int ROWS, const int COLS, int cordX, int cordY);
 void pathCorner(COORD start, COORD corner, COORD end, int cordX, int cordY);
+
 //help move
 bool L_Availability(COORD start, COORD end, char** table);
 bool Z_Availability(COORD start, COORD end, char** table);
 bool U_Availability(COORD start, COORD end, char** table, const int ROWS, const int COLS);
 bool moveAvailability(char** table, const int ROWS, const int COLS);
 int Help(char** table, const int ROWS, const int COLS, int DifX, int DifY);
+
 //ASIAN Difficulty
 void swapChar(char& a, char& b);
 void asianDif(char** &table, const int ROWS, const int COLS);
 
 //Game
 void gameInit(string user, int points, int stages, const int ROWS, const int COLS);
+
 // UI & VFX Funcs
 void ShowConsoleCursor(bool showFlag);
 void playBG(bool flag);
 void matchMusic();
+void printCharizardMascot();
+void printVenusaurMascot();
+void printBlastoiseMascot();
+
 //menu and leaderboard
 void printLogo();
 int launchMenu();
 int difficultyMenu();
+
 // Data and player infor
 struct Player 
 {

@@ -14,6 +14,18 @@ void gameInit(string user,int points, int stages, const int ROWS, const int COLS
 	printScreen(table, ROWS, COLS, user, points, stages, DifX, DifY);
 	while (true)
 	{
+		if (ROWS == EZ_ROWS && COLS == EZ_COLS)
+		{
+			printVenusaurMascot();
+		}
+		if (ROWS == MED_ROWS && COLS == MED_COLS)
+		{
+			printCharizardMascot();
+		}
+		if (ROWS == HARD_ROWS && COLS == HARD_COLS)
+		{
+			printBlastoiseMascot();
+		}
 		FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
 		if (ROWS == ASIAN_ROWS && COLS == ASIAN_COLS) asianDif(table, ROWS, COLS);
 		if (moveAvailability(table, ROWS, COLS) == false)
