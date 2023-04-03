@@ -155,7 +155,9 @@ int launchMenu()
 		cout << "   START   ";
 		gotoxy(98, 25);
 		cout << "   LEADERBOARD   ";
-		gotoxy(101, 26);
+		gotoxy(99, 26);
+		cout << "   BEST SCORE   ";
+		gotoxy(101, 27);
 		cout << "   EXIT   ";
 		switch (choice)
 		{
@@ -179,12 +181,22 @@ int launchMenu()
 			cout << char(17) << char(196) << char(196);
 			break;
 		}
-		case 3:
+		case 4:
 		{
-			gotoxy(101, 26);
+			gotoxy(101, 27);
 			cout << char(196) << char(196) << char(16);
 			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15 * 9 + 0);
 			cout << "EXIT";
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+			cout << char(17) << char(196) << char(196);
+			break;
+		}
+		case 3:
+		{
+			gotoxy(99, 27);
+			cout << char(196) << char(196) << char(16);
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15 * 9 + 0);
+			cout << "BEST SCORE";
 			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
 			cout << char(17) << char(196) << char(196);
 			break;
@@ -194,7 +206,7 @@ int launchMenu()
 		{
 		case KEY_DOWN:
 		{
-			if (choice == 3)
+			if (choice == 4)
 			{
 				choice = 1;
 				break;
@@ -206,7 +218,7 @@ int launchMenu()
 		{
 			if (choice == 1)
 			{
-				choice = 3;
+				choice = 4;
 				break;
 			}
 			choice--;
