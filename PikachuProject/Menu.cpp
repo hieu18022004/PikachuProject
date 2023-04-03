@@ -155,8 +155,8 @@ int launchMenu()
 		cout << "   START   ";
 		gotoxy(98, 25);
 		cout << "   LEADERBOARD   ";
-		gotoxy(99, 26);
-		cout << "   BEST SCORE   ";
+		gotoxy(98, 26);
+		cout << "   BEST SCORES   ";
 		gotoxy(101, 27);
 		cout << "   EXIT   ";
 		switch (choice)
@@ -193,7 +193,7 @@ int launchMenu()
 		}
 		case 3:
 		{
-			gotoxy(99, 27);
+			gotoxy(98, 26);
 			cout << char(196) << char(196) << char(16);
 			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15 * 9 + 0);
 			cout << "BEST SCORE";
