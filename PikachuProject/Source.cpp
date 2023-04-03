@@ -9,7 +9,7 @@ int main()
 	ShowWindow(hWnd, SW_SHOWMAXIMIZED);
 	ShowConsoleCursor(false);
 	playBG(true);
-	gameInit("Hieu", 0, 0, HARD_ROWS, HARD_COLS);
+	gameInit("Hieu", 0, 0, ASIAN_ROWS, ASIAN_COLS);
 	return 1;
 }
 

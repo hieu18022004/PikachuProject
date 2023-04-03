@@ -13,6 +13,8 @@ using namespace std;
 #define MED_COLS 10
 #define HARD_ROWS 10
 #define HARD_COLS 14
+#define ASIAN_ROWS 10
+#define ASIAN_COLS 16
 
 //queue structs
 

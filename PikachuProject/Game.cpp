@@ -17,6 +17,7 @@ void gameInit(string user,int points, int stages, const int ROWS, const int COLS
 	while (true)
 	{
 		FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
+		if (ROWS == ASIAN_ROWS && COLS == ASIAN_COLS) asianDif(table, ROWS, COLS);
 		printScreen(table, ROWS, COLS, user, points, stages, DifX, DifY);
 		printHighlighted(curX, curY, table, coordX, coordY);
 		cout << endl;
