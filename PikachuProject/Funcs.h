@@ -15,6 +15,8 @@ using namespace std;
 #define HARD_COLS 14
 
 //queue structs
+
+
 struct Node {
     COORD n;
     Node* pNext = NULL;

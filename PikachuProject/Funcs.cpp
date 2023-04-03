@@ -99,28 +99,14 @@ void tableShuffle(char** &table, const int ROWS, const int COLS)
 
 void printTableV2(char** table, const int ROWS, const int COLS, int curX, int curY) //ref https://cplusplus.com/forum/beginner/248878/
 {
-    cout << setw(COLS * 8 + 1) << setfill(char(196)) << "" << endl;
-    for (int i = 0; i < ROWS; i++)
-    {
-        cout << setw(curX + 1) << setfill(' ') << char(179) << endl;
-        cout << setw(curX + 1) << setfill(' ') << char(179) << endl;
-        cout << setw(curX + 1) << setfill(' ') << char(179) << endl;
-        cout << setw(curX + 1) << setfill(' ') << char(196) << endl;
-    }
+    //print table
     for (int i = 0; i < ROWS; i++)
     {
         for (int j = 0; j < COLS; j++)
         {
             gotoxy(curX + 4 + j * 8, curY + 2 + i * 4);
             cout << table[i][j];
-            if (j == COLS - 1)
-            {
-                gotoxy(curX + 4 + j * 8 + 4, curY + 2 + i * 4 - 1); cout << char(179);
-                gotoxy(curX + 4 + j * 8 + 4, curY + 2 + i * 4); cout << char(179);
-                gotoxy(curX + 4 + j * 8 + 4, curY + 2 + i * 4 + 1); cout << char(179);
-                gotoxy(curX + 4 + j * 8 + 4, curY + 2 + i * 4 + 2); cout << char(196);
-            }
-            else
+            if (j != COLS - 1)
             {
                 if (table[i][j] != ' ' || table[i][j + 1] != ' ')
                 {
@@ -129,27 +115,52 @@ void printTableV2(char** table, const int ROWS, const int COLS, int curX, int cu
                     gotoxy(curX + 4 + j * 8 + 4, curY + 2 + i * 4 + 1); cout << char(179);
                 }
             }
-            if (i == ROWS - 1)
-            {
-                gotoxy(curX + 8 * j, curY + 4 * (i + 1));
-                for (int k = 0; k < 8; k++)
-                {
-                    cout << char(196);
-                }
-            }
-            else
+            if (i != ROWS - 1)
             {
                 if (table[i][j] != ' ' || table[i + 1][j] != ' ')
                 {
-                    gotoxy(curX + 8 * j, curY + 4 * (i + 1));
-                    for (int k = 0; k < 9; k++)
+                    if (j == COLS - 1)
                     {
-                        cout << char(196);
+                        gotoxy(curX + 8 * j + 1, curY + 4 * (i + 1));
+                        for (int k = 0; k < 7; k++)
+                        {
+                            cout << char(196);
+                        }
+                    }
+                    else
+                    {
+                        gotoxy(curX + 8 * j + 1, curY + 4 * (i + 1));
+                        for (int k = 0; k < 9; k++)
+                        {
+                            cout << char(196);
+                        }
                     }
                 }
             }
         }
     }
+    //print border clockwise
+    gotoxy(curX, curY);
+    cout << char(201);
+    for (int i = 1; i < 8 * COLS; i++)
+    {
+        cout << char(205);
+    }
+    cout << char(187);
+    for (int i = 1; i < 4 * ROWS; i++)
+    {
+        gotoxy(curX, curY + i);
+        cout << char(186);
+        gotoxy(curX + 8 * COLS, curY + i);
+        cout << char(186);
+    }
+    gotoxy(curX, curY + 4 * ROWS);
+    cout << char(200);
+    for (int i = 1; i < 8 * COLS; i++)
+    {
+        cout << char(205);
+    }
+    cout << char(188);
 }
 
 void printScreen(char** table, const int ROWS, const int COLS, string user, int points, int stages, int cordX, int cordY)
@@ -757,7 +768,7 @@ int Help(char** table,const int ROWS, const int COLS, int DifX,int DifY)
                             Sleep(1000);
                             return 1;
                         }
-                        else if (i == 0 && a == 0 || i == ROWS - 1 && a == ROWS - 1 || j == 0 && b == 0 || j == COLS - 1 && b == COLS - 1)
+                        /*else if (i == 0 && a == 0 || i == ROWS - 1 && a == ROWS - 1 || j == 0 && b == 0 || j == COLS - 1 && b == COLS - 1)
                         {
                             marginPath(coord, coord1, ROWS, COLS, DifX, DifY);
                             Sleep(1000);
@@ -777,7 +788,7 @@ int Help(char** table,const int ROWS, const int COLS, int DifX,int DifY)
                         {
                             Sleep(1000);
                             return 1;
-                        }
+                        }*/
                     }
                 }
             }
