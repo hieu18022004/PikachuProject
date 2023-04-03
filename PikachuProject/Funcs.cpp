@@ -130,7 +130,7 @@ void printTableV2(char** table, const int ROWS, const int COLS, int curX, int cu
                     else
                     {
                         gotoxy(curX + 8 * j + 1, curY + 4 * (i + 1));
-                        for (int k = 0; k < 9; k++)
+                        for (int k = 0; k < 7; k++)
                         {
                             cout << char(196);
                         }
@@ -768,13 +768,13 @@ int Help(char** table,const int ROWS, const int COLS, int DifX,int DifY)
                             Sleep(1000);
                             return 1;
                         }
-                        /*else if (i == 0 && a == 0 || i == ROWS - 1 && a == ROWS - 1 || j == 0 && b == 0 || j == COLS - 1 && b == COLS - 1)
+                        else if (i == 0 && a == 0 || i == ROWS - 1 && a == ROWS - 1 || j == 0 && b == 0 || j == COLS - 1 && b == COLS - 1)
                         {
                             marginPath(coord, coord1, ROWS, COLS, DifX, DifY);
                             Sleep(1000);
                             return 1;
                         }
-                        else if (LCheck(coord, coord1, table, DifX, DifY))
+                        /*else if (LCheck(coord, coord1, table, DifX, DifY))
                         {
                             Sleep(1000);
                             return 1;
