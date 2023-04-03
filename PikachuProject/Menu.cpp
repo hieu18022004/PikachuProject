@@ -251,6 +251,8 @@ int difficultyMenu()
 			cout << "   HARD   ";
 			gotoxy(100, 27);
 			cout << "   ASIAN:)   ";
+			gotoxy(100, 28);
+			cout << "   RETURN   ";
 			switch (choice)
 			{
 			case 1:
@@ -293,12 +295,22 @@ int difficultyMenu()
 				cout << char(17) << char(196) << char(196);
 				break;
 			}
+			case 5:
+			{
+				gotoxy(100, 28);
+				cout << char(196) << char(196) << char(16);
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15 * 9 + 0);
+				cout << "RETURN";
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+				cout << char(17) << char(196) << char(196);
+				break;
+			}
 			}
 			switch (_getch())
 			{
 			case KEY_DOWN:
 			{
-				if (choice == 4)
+				if (choice == 5)
 				{
 					choice = 1;
 					break;
@@ -310,7 +322,7 @@ int difficultyMenu()
 			{
 				if (choice == 1)
 				{
-					choice = 4;
+					choice = 5;
 					break;
 				}
 				choice--;

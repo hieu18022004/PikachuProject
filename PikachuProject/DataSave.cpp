@@ -53,26 +53,6 @@ void SignUp()
 }
 
 
-void displayMainMenu() 
-{
-    cout << "==== GAME MENU ====" << endl;
-    cout << "1. Log In" << endl;
-    cout << "2. Register" << endl;
-    cout << "3. Exit" << endl;
-    cout << "===================" << endl;
-}
-
-void displayDifficultyMenu() 
-{
-    cout << "==== DIFFICULTY MENU ====" << endl;
-    cout << "1. Easy" << endl;
-    cout << "2. Medium" << endl;
-    cout << "3. Hard" << endl;
-    cout << "4. Asian+" << endl;
-    cout << "0. Exit" << endl;
-    cout << "========================" << endl;
-}
-
 
 //convert ascii art in file txt to file .bin
 //ascii_art.txt & ascii_art.bin

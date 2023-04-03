@@ -43,6 +43,10 @@ int main()
 				gameInit("Hieu", 0, 0, ASIAN_ROWS, ASIAN_COLS);
 				break;
 			}
+			case 5:
+			{
+				break;
+			}
 			}
 			system("cls");
 			break;

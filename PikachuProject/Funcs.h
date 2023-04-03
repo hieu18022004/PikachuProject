@@ -120,7 +120,5 @@ struct LeaderboardEntry
 
 void saveGameData();
 void SignUp();
-void displayMainMenu();
-void displayDifficultyMenu();
 void convertTxtToBin(const char* txtFileName, const char* binFileName);
 
