@@ -18,6 +18,14 @@ void gameInit(string user,int points, int stages, const int ROWS, const int COLS
 	{
 		FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
 		if (ROWS == ASIAN_ROWS && COLS == ASIAN_COLS) asianDif(table, ROWS, COLS);
+		if (moveAvailability(table, ROWS, COLS) == false)
+		{
+			system("cls");
+			gotoxy(106 - 11, DifY - 2);
+			cout << "Out of move! Shuffling!";
+			tableShuffle(table, ROWS, COLS);
+			Sleep(1000);
+		}
 		printScreen(table, ROWS, COLS, user, points, stages, DifX, DifY);
 		printHighlighted(curX, curY, table, coordX, coordY);
 		cout << endl;
@@ -28,15 +36,6 @@ void gameInit(string user,int points, int stages, const int ROWS, const int COLS
 			if (Help(table, ROWS, COLS, DifX, DifY) == 1)
 			{
 				system("cls");
-				break;
-			}
-			else
-			{
-				system("cls");
-				gotoxy(106 - 11, DifY - 2);
-				cout << "Out of move! Shuffling!";
-				tableShuffle(table, ROWS, COLS);
-				printScreen(table, ROWS, COLS, user, points, stages, DifX, DifY);
 				break;
 			}
 		}

@@ -58,6 +58,10 @@ void pathI(COORD start, COORD end, int cordX, int cordY);
 void marginPath(COORD coord, COORD coord1, const int ROWS, const int COLS, int cordX, int cordY);
 void pathCorner(COORD start, COORD corner, COORD end, int cordX, int cordY);
 //help move
+bool L_Availability(COORD start, COORD end, char** table);
+bool Z_Availability(COORD start, COORD end, char** table);
+bool U_Availability(COORD start, COORD end, char** table, const int ROWS, const int COLS);
+bool moveAvailability(char** table, const int ROWS, const int COLS);
 int Help(char** table, const int ROWS, const int COLS, int DifX, int DifY);
 //ASIAN Difficulty
 void swapChar(char& a, char& b);
