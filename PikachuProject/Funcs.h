@@ -57,6 +57,9 @@ void marginPath(COORD coord, COORD coord1, const int ROWS, const int COLS, int c
 void pathCorner(COORD start, COORD corner, COORD end, int cordX, int cordY);
 //help move
 int Help(char** table, const int ROWS, const int COLS, int DifX, int DifY);
+//ASIAN Difficulty
+void swapChar(char& a, char& b);
+void asianDif(char** &table, const int ROWS, const int COLS);
 
 //Game
 void gameInit(string user, int points, int stages, const int ROWS, const int COLS);

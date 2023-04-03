@@ -166,8 +166,8 @@ void printTableV2(char** table, const int ROWS, const int COLS, int curX, int cu
 void printScreen(char** table, const int ROWS, const int COLS, string user, int points, int stages, int cordX, int cordY)
 {
     gotoxy(0, 0);
-    cout << "Username: " << user << endl << "Points: " << points << endl << "Stages completed: " << stages << endl << "Press x to exit to menu - "
-         << "Press s to shuffle ( 10% chance of getting punished :/ )" << endl;
+    cout << "\n\n\n\nUsername: " << user << endl << "Points: " << points << endl << "Stages completed: " << stages << endl << "Press h for Help" << endl
+         << "Press x to exit (will not save progress)" << endl;
     gotoxy(cordX, cordY);
     printTableV2(table, ROWS, COLS, cordX, cordY);
 }
@@ -860,4 +860,26 @@ int Help(char** table,const int ROWS, const int COLS, int DifX,int DifY)
         }
     }
     return 0;
+}
+
+//ASIAN Difficulty
+void swapChar(char &a, char &b)
+{
+    char temp = a;
+    a = b;
+    b = temp;
+}
+void asianDif(char** &table, const int ROWS, const int COLS)
+{
+    for (int j = 0; j < COLS; j++)
+    {
+        for (int i = 0; i < ROWS - 1; i++)
+        {
+            if (table[i][j] != ' ' && table[i + 1][j] == ' ')
+            {
+                swapChar(table[i][j], table[i + 1][j]);
+                i = -1;
+            }
+        }
+    }
 }

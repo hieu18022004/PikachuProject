@@ -9,7 +9,7 @@ int main()
 	ShowWindow(hWnd, SW_SHOWMAXIMIZED);
 	ShowConsoleCursor(false);
 	playBG(true);
-	gameInit("Hieu", 0, 0, MED_ROWS, MED_COLS);
+	gameInit("Hieu", 0, 0, HARD_ROWS, HARD_COLS);
 	return 1;
 }
 
