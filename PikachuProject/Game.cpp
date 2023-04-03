@@ -2,8 +2,6 @@
 #include <conio.h>
 #include <Windows.h>
 #include "Funcs.h"
-#include <chrono>
-#include <thread>
 #include <random>
 using namespace std;
 
