@@ -50,6 +50,7 @@ void undoHighlighted(int curX, int curY, char** table, int cordX, int cordY);
 bool ICheck(COORD start, COORD end, char** table);
 bool LCheck(COORD start, COORD end, char** table, int cordX, int cordY);
 bool ZCheck(COORD start, COORD end, char** table, int cordX, int cordY);
+bool validCheck(COORD corner, const int ROWS, const int COLS);
 bool UCheck(COORD start, COORD end, char** table, const int ROWS, const int COLS, int cordX, int cordY);
 void pathI(COORD start, COORD end, int cordX, int cordY);
 void marginPath(COORD coord, COORD coord1, const int ROWS, const int COLS, int cordX, int cordY);

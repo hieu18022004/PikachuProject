@@ -774,7 +774,7 @@ int Help(char** table,const int ROWS, const int COLS, int DifX,int DifY)
                             Sleep(1000);
                             return 1;
                         }
-                        /*else if (LCheck(coord, coord1, table, DifX, DifY))
+                        else if (LCheck(coord, coord1, table, DifX, DifY))
                         {
                             Sleep(1000);
                             return 1;
@@ -788,7 +788,7 @@ int Help(char** table,const int ROWS, const int COLS, int DifX,int DifY)
                         {
                             Sleep(1000);
                             return 1;
-                        }*/
+                        }
                     }
                 }
             }
