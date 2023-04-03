@@ -43,21 +43,15 @@ void gameInit(string user,int points, int stages, const int ROWS, const int COLS
 		{
 		case 'h':
 		{
+			/*random_device rd;
+			mt19937 gen(rd());
+			uniform_int_distribution<> distr(1, 10);
+			if (distr(gen) == 4) exit(1);*/
 			if (Help(table, ROWS, COLS, DifX, DifY) == 1)
 			{
 				system("cls");
 				break;
 			}
-		}
-		case 's':
-		{
-			/*random_device rd;
-			mt19937 gen(rd());
-			uniform_int_distribution<> distr(1, 10);
-			if (distr(gen) == 4) exit(1);*/
-			tableShuffle(table, ROWS, COLS);
-			printScreen(table, ROWS, COLS, user, points, stages, DifX, DifY);
-			break;
 		}
 		case 'x':
 		{

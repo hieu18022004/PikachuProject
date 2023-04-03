@@ -215,13 +215,12 @@ int launchMenu()
 		case KEY_RETURN:
 		{
 			matchMusic();
-			Sleep(500);
+			Sleep(250);
 			return choice;
 		}
 		}
 	}
 }
-
 int difficultyMenu()
 {
 	{
@@ -308,7 +307,7 @@ int difficultyMenu()
 			case KEY_RETURN:
 			{
 				matchMusic();
-				Sleep(500);
+				Sleep(250);
 				return choice;
 			}
 			}
