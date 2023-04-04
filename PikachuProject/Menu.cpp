@@ -336,8 +336,7 @@ void gameFinishAnnounce(chrono::duration<double> elapsed_seconds)
 	printLogo();
 	gotoxy(106 - 7, 24);
 	cout << "CONGRATULATION!\n";
-	gotoxy(106 - 12, 25);
+	gotoxy(106 - 16, 25);
 	cout << "THE GAME TOOK YOU " << elapsed_seconds.count() << " TO FINISH IT!";
-	cin.get();
-	cin.ignore();
+	_getch();
 }
