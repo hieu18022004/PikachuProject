@@ -146,11 +146,13 @@ void printLogo()
 	}
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
 }
-int launchMenu()
+int launchMenu(string displayname)
 {
 	int choice = 1;
 	gotoxy(0, 0);
 	printLogo();
+	gotoxy(106 - (15 + displayname.length()) / 2, 23);
+	cout << "Welcome back, " << displayname << "!";
 	while (true)
 	{
 		gotoxy(101, 24);
@@ -181,7 +183,7 @@ int launchMenu()
 			cout << char(17) << char(196) << char(196);
 			break;
 		}
-		case 4:
+		case 3:
 		{
 			gotoxy(101, 26);
 			cout << char(196) << char(196) << char(16);
