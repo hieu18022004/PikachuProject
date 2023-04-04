@@ -341,11 +341,11 @@ int difficultyMenu()
 }
 void gameFinishAnnounce(chrono::duration<double> elapsed_seconds)
 {
-		gotoxy(0, 0);
-		printLogo();
-		gotoxy(106 - 7, 24);
-		cout << "CONGRATULATION!\n";
-		gotoxy(106 - 12, 25);
-		cout << "THE GAME TOOK YOU " << elapsed_seconds.count() << " TO FINISH IT!";
-		_getch();
+	gotoxy(0, 0);
+	printLogo();
+	gotoxy(106 - 7, 24);
+	cout << "CONGRATULATION!\n";
+	gotoxy(106 - 12, 25);
+	cout << "THE GAME TOOK YOU " << elapsed_seconds.count() << " TO FINISH IT!";
+	_getch();
 }

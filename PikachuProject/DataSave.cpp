@@ -6,7 +6,7 @@
 
 using namespace std;
 
-void saveGameData() 
+/*void saveGameData()
 {
     Player player;
     cout << "Enter player name: ";
@@ -29,7 +29,7 @@ void saveGameData()
         //cout << "Error!" << endl;
     }
     outFile.close();
-}
+}*/
 
 void SignUp() 
 {
@@ -52,6 +52,39 @@ void SignUp()
     cout << "Player account created successfully!" << endl;
 }
 
+void SignIn()
+{
+    string username, password;
+
+    cout << "Enter username: ";
+    cin >> username;
+    cout << "Enter password: ";
+    cin >> password;
+
+    LogIn player;
+    bool found = false;
+
+    // Open the binary file to search for the player
+    ifstream infile("players.bin", ios::binary);
+    while (infile.read(reinterpret_cast<char*>(&player), sizeof(Player)))
+    {
+        if (player.username == username && player.password == password)
+        {
+            found = true;
+            break;
+        }
+    }
+    infile.close();
+
+    if (found)
+    {
+        cout << "Welcome back, " << username << "!" << endl;
+    }
+    else
+    {
+        cout << "Incorrect username or password. Please try again." << endl;
+    }
+}
 
 
 //convert ascii art in file txt to file .bin
