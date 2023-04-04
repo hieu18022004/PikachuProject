@@ -19,24 +19,24 @@ void ShowConsoleCursor(bool showFlag) //hide cursor ref:https://stackoverflow.co
 
 void playBG(bool flag)
 {
-    mciSendString(L" open \"music\\BG.mp3\" type mpegvideo alias mp3", NULL, 0, NULL);
+    mciSendString(TEXT(" open \"music\\BG.mp3\" type mpegvideo alias mp3"), NULL, 0, NULL);
     if (flag)
     {
-        mciSendString(L"setaudio mp3 volume to 250", NULL, 0, NULL);
-        mciSendString(L"play mp3 repeat", NULL, 0, NULL);
+        mciSendString(TEXT("setaudio mp3 volume to 250"), NULL, 0, NULL);
+        mciSendString(TEXT("play mp3 repeat"), NULL, 0, NULL);
     }
     if (!flag)
     {
-        mciSendString(L"close mp3", NULL, 0, NULL);
+        mciSendString(TEXT("close mp3"), NULL, 0, NULL);
     }
 }
 
 void matchMusic()
 {
-    mciSendString(L" open \"music\\match.wav\" type waveaudio alias match", NULL, 0, NULL);
-    mciSendString(L"setaudio match volume to 1000", NULL, 0, NULL);
-    mciSendString(L"play match wait", NULL, 0, NULL);
-    mciSendString(L"close match", NULL, 0, NULL);
+    mciSendString(TEXT(" open \"music\\match.wav\" type waveaudio alias match"), NULL, 0, NULL);
+    mciSendString(TEXT("setaudio match volume to 1000"), NULL, 0, NULL);
+    mciSendString(TEXT("play match wait"), NULL, 0, NULL);
+    mciSendString(TEXT("close match"), NULL, 0, NULL);
 }
 
 void printCharizardMascot()

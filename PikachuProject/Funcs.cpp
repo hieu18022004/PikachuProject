@@ -2,6 +2,7 @@
 #include <iomanip>
 #include <random>
 #include <windows.h>
+#include <algorithm>
 #include "Funcs.h"
 using namespace std;
 
