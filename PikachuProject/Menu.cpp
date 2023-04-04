@@ -151,7 +151,7 @@ int launchMenu(string displayname)
 	int choice = 1;
 	gotoxy(0, 0);
 	printLogo();
-	gotoxy(106 - (15 + displayname.length()) / 2, 23);
+	gotoxy(106 - (13 + displayname.length()) / 2, 23);
 	cout << "Welcome back, " << displayname << "!";
 	while (true)
 	{

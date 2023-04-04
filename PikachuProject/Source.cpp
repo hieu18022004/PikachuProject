@@ -14,12 +14,12 @@ int main()
 	playBG(true);
 	bool exitFlag = false;
 	string username = "Guest";
-	while (true)
+	/*while (true)
 	{
 		bool signInCheck = SignIn(username);
 		if (signInCheck == true) break;
 		else continue;
-	}
+	}*/
 	chrono::time_point<std::chrono::system_clock> start, end;
 	while (exitFlag == false)
 	{
