@@ -1,4 +1,4 @@
-
+﻿
 #include <iostream>
 #include <fstream>
 #include "Funcs.h"
@@ -97,6 +97,28 @@ bool SignIn(string &displayname)
     }
 }
 
+
+void addUserToLeaderboard(const string& username)
+{
+    LogIn player = { username };
+    ofstream outfile("userleaderboard.bin", ios::binary | ios::app);
+    if (outfile.is_open())
+    {
+        // Ghi thông tin người chơi vào file binary
+        outfile.write((char*)&player, sizeof(LogIn));
+        outfile.close();
+    }
+}
+
+void saveScoreLeaderboard(pair<string, double> leaderboard[], int size) 
+{
+    FILE* fp;
+    fp = fopen("scoreleaderboard.bin", "wb");
+    if (fp != NULL) {
+        fwrite(leaderboard, sizeof(pair<string, double>), size, fp);
+        fclose(fp);
+    }
+}
 
 //convert ascii art in file txt to file .bin
 //ascii_art.txt & ascii_art.bin
