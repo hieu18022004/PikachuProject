@@ -1,7 +1,10 @@
 #include <iostream>
 #include<conio.h>
 #include "Funcs.h"
+#include <ctime>
+#include <chrono>
 using namespace std;
+//time <chrono> ref:https://www.geeksforgeeks.org/chrono-in-c/
 int main()
 {
 	// y: 0->48 || x: 0 -> 210 center x=106 y=25
@@ -10,6 +13,7 @@ int main()
 	ShowConsoleCursor(false);
 	bool exitFlag = false;
 	playBG(true);
+	chrono::time_point<std::chrono::system_clock> start, end;
 	while (exitFlag == false)
 	{
 		switch (launchMenu())
@@ -21,26 +25,50 @@ int main()
 			{
 			case 1:
 			{
+				start = chrono::system_clock::now();
 				system("cls");
-				gameInit("Hieu", 0, 0, EZ_ROWS, EZ_COLS);
+				if (gameInit("Hieu", 0, 0, EZ_ROWS, EZ_COLS) == 1)
+				{
+					end = chrono::system_clock::now();
+					chrono::duration<double> elapsed_seconds = end - start;
+					gameFinishAnnounce(elapsed_seconds);
+				}
 				break;
 			}
 			case 2:
 			{
+				start = chrono::system_clock::now();
 				system("cls");
-				gameInit("Hieu", 0, 0, MED_ROWS, MED_COLS);
+				if (gameInit("Hieu", 0, 0, MED_ROWS, MED_COLS) == 1)
+				{
+					end = chrono::system_clock::now();
+					chrono::duration<double> elapsed_seconds = end - start;
+					gameFinishAnnounce(elapsed_seconds);
+				}
 				break;
 			}
 			case 3:
 			{
+				start = chrono::system_clock::now();
 				system("cls");
-				gameInit("Hieu", 0, 0, HARD_ROWS, HARD_COLS);
+				if (gameInit("Hieu", 0, 0, HARD_ROWS, HARD_COLS) == 1)
+				{
+					end = chrono::system_clock::now();
+					chrono::duration<double> elapsed_seconds = end - start;
+					gameFinishAnnounce(elapsed_seconds);
+				}
 				break;
 			}
 			case 4:
 			{
+				start = chrono::system_clock::now();
 				system("cls");
-				gameInit("Hieu", 0, 0, ASIAN_ROWS, ASIAN_COLS);
+				if (gameInit("Hieu", 0, 0, ASIAN_ROWS, ASIAN_COLS) == 1)
+				{
+					end = chrono::system_clock::now();
+					chrono::duration<double> elapsed_seconds = end - start;
+					gameFinishAnnounce(elapsed_seconds);
+				}
 				break;
 			}
 			case 5:

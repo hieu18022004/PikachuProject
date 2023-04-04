@@ -196,7 +196,7 @@ int launchMenu()
 			gotoxy(98, 26);
 			cout << char(196) << char(196) << char(16);
 			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15 * 9 + 0);
-			cout << "BEST SCORE";
+			cout << "BEST SCORES";
 			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
 			cout << char(17) << char(196) << char(196);
 			break;

@@ -5,8 +5,19 @@
 #include <random>
 using namespace std;
 
+bool checkEndCondition(char** table, const int ROWS, const int COLS)
+{
+	for (int i = 0; i < ROWS; i++)
+	{
+		for (int j = 0; j < COLS; j++)
+		{
+			if (table[i][j] != ' ') return false;
+		}
+	}
+	return true;
+}
 
-void gameInit(string user,int points, int stages, const int ROWS, const int COLS)
+int gameInit(string user,int points, int stages, const int ROWS, const int COLS)
 {
 	int DifX = 106 - COLS / 2 * 8 + 32, DifY = 25 - ROWS / 2 * 4;
 	char** table = tableInit(ROWS, COLS);
@@ -14,6 +25,10 @@ void gameInit(string user,int points, int stages, const int ROWS, const int COLS
 	printScreen(table, ROWS, COLS, user, points, stages, DifX, DifY);
 	while (true)
 	{
+		if (checkEndCondition(table, ROWS, COLS) == true)
+		{
+			return 1;
+		}
 		if (ROWS == EZ_ROWS && COLS == EZ_COLS)
 		{
 			printVenusaurMascot();
@@ -46,7 +61,7 @@ void gameInit(string user,int points, int stages, const int ROWS, const int COLS
 			/*random_device rd;
 			mt19937 gen(rd());
 			uniform_int_distribution<> distr(1, 10);
-			if (distr(gen) == 4) exit(1);*/
+			if (distr(gen) == 4) return 0;*/
 			if (Help(table, ROWS, COLS, DifX, DifY) == 1)
 			{
 				system("cls");
@@ -59,7 +74,7 @@ void gameInit(string user,int points, int stages, const int ROWS, const int COLS
 			cout << "Do you want to exit to main menu? ";
 			char confirm; cin >> confirm;
 			if (confirm == 'y')
-				return;
+				return 0;
 			else
 				system("cls");
 			break;
@@ -259,4 +274,6 @@ void gameInit(string user,int points, int stages, const int ROWS, const int COLS
 		}
 		}
 	}
+	return 0;
 }
+

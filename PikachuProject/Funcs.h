@@ -72,7 +72,8 @@ void swapChar(char& a, char& b);
 void asianDif(char** &table, const int ROWS, const int COLS);
 
 //Game
-void gameInit(string user, int points, int stages, const int ROWS, const int COLS);
+bool checkEndCondition(char** table, const int ROWS, const int COLS);
+int gameInit(string user, int points, int stages, const int ROWS, const int COLS);
 
 // UI & VFX Funcs
 void ShowConsoleCursor(bool showFlag);
@@ -86,6 +87,7 @@ void printBlastoiseMascot();
 void printLogo();
 int launchMenu();
 int difficultyMenu();
+void gameFinishAnnounce(chrono::duration<double> elapsed_seconds);
 
 // Data and player infor
 struct Player 
