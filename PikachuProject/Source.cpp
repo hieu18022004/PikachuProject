@@ -11,9 +11,15 @@ int main()
 	HWND hWnd = GetConsoleWindow(); //console full screen ref: https://www.daniweb.com/programming/software-development/threads/31665/how-to-make-console-programs-full-screen.
 	ShowWindow(hWnd, SW_SHOWMAXIMIZED);
 	ShowConsoleCursor(false);
+	playBG(true);
 	bool exitFlag = false;
 	string username = "Guest";
-	playBG(true);
+	while (true)
+	{
+		bool signInCheck = SignIn(username);
+		if (signInCheck == true) break;
+		else continue;
+	}
 	chrono::time_point<std::chrono::system_clock> start, end;
 	while (exitFlag == false)
 	{

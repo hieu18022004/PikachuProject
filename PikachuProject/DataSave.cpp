@@ -55,6 +55,7 @@ void SignUp()
 bool SignIn(string &displayname)
 {
     string username, password;
+    system("cls");
     gotoxy(0, 0);
     printLogo();
     gotoxy(99, 24);
@@ -86,8 +87,12 @@ bool SignIn(string &displayname)
     }
     else
     {
-        gotoxy(106 - 25, 25);
+        system("cls");
+        printLogo();
+        gotoxy(106 - 20, 25);
         cout << "Incorrect username or password. Please try again!" << endl;
+        cin.get();
+        cin.ignore();
         return false;
     }
 }
