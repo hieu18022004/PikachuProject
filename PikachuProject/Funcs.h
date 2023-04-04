@@ -121,8 +121,8 @@ struct LeaderboardEntry
 };
 
 
-void saveGameData();
+//void saveGameData();
 void SignUp();
-void SignIn();
+bool SignIn(string& username);
 void convertTxtToBin(const char* txtFileName, const char* binFileName);
 

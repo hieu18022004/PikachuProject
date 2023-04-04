@@ -52,7 +52,7 @@ void SignUp()
     cout << "Player account created successfully!" << endl;
 }
 
-void SignIn()
+bool SignIn(string &username)
 {
     string username, password;
 
@@ -79,10 +79,12 @@ void SignIn()
     if (found)
     {
         cout << "Welcome back, " << username << "!" << endl;
+        return true;
     }
     else
     {
         cout << "Incorrect username or password. Please try again." << endl;
+        return false;
     }
 }
 
