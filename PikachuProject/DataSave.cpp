@@ -55,9 +55,12 @@ void SignUp()
 bool SignIn(string &displayname)
 {
     string username, password;
-
+    gotoxy(0, 0);
+    printLogo();
+    gotoxy(99, 24);
     cout << "Enter username: ";
     cin >> username;
+    gotoxy(99, 25);
     cout << "Enter password: ";
     cin >> password;
 
@@ -78,12 +81,13 @@ bool SignIn(string &displayname)
 
     if (found)
     {
-        cout << "Welcome back, " << username << "!" << endl;
+        displayname = username;
         return true;
     }
     else
     {
-        cout << "Incorrect username or password. Please try again." << endl;
+        gotoxy(106 - 25, 25);
+        cout << "Incorrect username or password. Please try again!" << endl;
         return false;
     }
 }

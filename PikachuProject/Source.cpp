@@ -12,11 +12,12 @@ int main()
 	ShowWindow(hWnd, SW_SHOWMAXIMIZED);
 	ShowConsoleCursor(false);
 	bool exitFlag = false;
+	string username = "Guest";
 	playBG(true);
 	chrono::time_point<std::chrono::system_clock> start, end;
 	while (exitFlag == false)
 	{
-		switch (launchMenu())
+		switch (launchMenu(username))
 		{
 		case 1:
 		{
@@ -27,7 +28,7 @@ int main()
 			{
 				start = chrono::system_clock::now();
 				system("cls");
-				if (gameInit("Hieu", 0, 0, EZ_ROWS, EZ_COLS) == 1)
+				if (gameInit(username, 0, 0, EZ_ROWS, EZ_COLS) == 1)
 				{
 					end = chrono::system_clock::now();
 					chrono::duration<double> elapsed_seconds = end - start;
@@ -39,7 +40,7 @@ int main()
 			{
 				start = chrono::system_clock::now();
 				system("cls");
-				if (gameInit("Hieu", 0, 0, MED_ROWS, MED_COLS) == 1)
+				if (gameInit(username, 0, 0, MED_ROWS, MED_COLS) == 1)
 				{
 					end = chrono::system_clock::now();
 					chrono::duration<double> elapsed_seconds = end - start;
@@ -51,7 +52,7 @@ int main()
 			{
 				start = chrono::system_clock::now();
 				system("cls");
-				if (gameInit("Hieu", 0, 0, HARD_ROWS, HARD_COLS) == 1)
+				if (gameInit(username, 0, 0, HARD_ROWS, HARD_COLS) == 1)
 				{
 					end = chrono::system_clock::now();
 					chrono::duration<double> elapsed_seconds = end - start;
@@ -63,7 +64,7 @@ int main()
 			{
 				start = chrono::system_clock::now();
 				system("cls");
-				if (gameInit("Hieu", 0, 0, ASIAN_ROWS, ASIAN_COLS) == 1)
+				if (gameInit(username, 0, 0, ASIAN_ROWS, ASIAN_COLS) == 1)
 				{
 					end = chrono::system_clock::now();
 					chrono::duration<double> elapsed_seconds = end - start;

@@ -149,6 +149,7 @@ void printLogo()
 int launchMenu()
 {
 	int choice = 1;
+	gotoxy(0, 0);
 	printLogo();
 	while (true)
 	{
@@ -156,9 +157,7 @@ int launchMenu()
 		cout << "   START   ";
 		gotoxy(98, 25);
 		cout << "   LEADERBOARD   ";
-		gotoxy(98, 26);
-		cout << "   BEST SCORES   ";
-		gotoxy(101, 27);
+		gotoxy(101, 26);
 		cout << "   EXIT   ";
 		switch (choice)
 		{
@@ -184,20 +183,10 @@ int launchMenu()
 		}
 		case 4:
 		{
-			gotoxy(101, 27);
+			gotoxy(101, 26);
 			cout << char(196) << char(196) << char(16);
 			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15 * 9 + 0);
 			cout << "EXIT";
-			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
-			cout << char(17) << char(196) << char(196);
-			break;
-		}
-		case 3:
-		{
-			gotoxy(98, 26);
-			cout << char(196) << char(196) << char(16);
-			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15 * 9 + 0);
-			cout << "BEST SCORES";
 			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
 			cout << char(17) << char(196) << char(196);
 			break;
@@ -207,7 +196,7 @@ int launchMenu()
 		{
 		case KEY_DOWN:
 		{
-			if (choice == 4)
+			if (choice == 3)
 			{
 				choice = 1;
 				break;
@@ -219,7 +208,7 @@ int launchMenu()
 		{
 			if (choice == 1)
 			{
-				choice = 4;
+				choice = 3;
 				break;
 			}
 			choice--;
