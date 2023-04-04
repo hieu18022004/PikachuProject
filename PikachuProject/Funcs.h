@@ -123,6 +123,6 @@ struct LeaderboardEntry
 
 //void saveGameData();
 void SignUp();
-bool SignIn(string& username);
+bool SignIn(string& displayname);
 void convertTxtToBin(const char* txtFileName, const char* binFileName);
 

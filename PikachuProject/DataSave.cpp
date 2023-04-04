@@ -52,7 +52,7 @@ void SignUp()
     cout << "Player account created successfully!" << endl;
 }
 
-bool SignIn(string &username)
+bool SignIn(string &displayname)
 {
     string username, password;
 
