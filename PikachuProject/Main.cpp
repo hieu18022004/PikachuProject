@@ -28,7 +28,7 @@ int main()
 	string username;
 	bool exitFlag = false;
 	//log in and sign up
-	/*while (exitFlag == false)
+	while (exitFlag == false)
 	{
 		switch (joinMenu())
 		{
@@ -51,7 +51,7 @@ int main()
 			break;
 		}
 		}
-	}*/
+	}
 	chrono::time_point<std::chrono::system_clock> start, end;
 	while (true)
 	{
