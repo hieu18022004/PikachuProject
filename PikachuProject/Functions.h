@@ -4,6 +4,7 @@
 #include <ctime>
 #include <chrono>
 #include <cstring>
+#include <string>
 #include <fstream>
 #include <iomanip>
 #include <conio.h>

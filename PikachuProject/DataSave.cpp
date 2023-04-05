@@ -36,10 +36,10 @@ void SignUp()
     printLogo();
     gotoxy(99, 24);
     cout << "Enter username: ";
-    cin >> username;
+    getline(cin, username);
     gotoxy(99, 25);
     cout << "Enter password: ";
-    cin >> password;
+    getline(cin, password);
 
     LogIn newPlayer;
     newPlayer.username = username;
@@ -47,7 +47,9 @@ void SignUp()
 
     // Save player information to binary file
     ofstream outfile("data\\players.bin", ios::binary | ios::app);
-    outfile.write(reinterpret_cast<char*>(&newPlayer), sizeof(Player));
+    outfile.write(newPlayer.username.c_str(), newPlayer.username.size() + 1);
+    outfile.write(newPlayer.password.c_str(), newPlayer.password.size() + 1);
+    //outfile.write(reinterpret_cast<const char*>(&newPlayer.password[0]), newPlayer.password.size() + 1);
     outfile.close();
     system("cls");
     printLogo();
@@ -65,17 +67,17 @@ bool SignIn(string &displayname)
     printLogo();
     gotoxy(99, 24);
     cout << "Enter username: ";
-    cin >> username;
+    getline(cin, username);
     gotoxy(99, 25);
     cout << "Enter password: ";
-    cin >> password;
+    getline(cin, password);
 
     LogIn player;
     bool found = false;
 
     // Open the binary file to search for the player
     ifstream infile("data\\players.bin", ios::binary);
-    while (infile.read(reinterpret_cast<char*>(&player), sizeof(Player)))
+    while (getline(infile, player.username, '\0') && getline(infile, player.password, '\0'))
     {
         if (player.username == username && player.password == password)
         {
