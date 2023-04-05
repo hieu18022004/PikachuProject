@@ -9,8 +9,8 @@
 #include <conio.h>
 #include <algorithm>
 #include <random>
-
 #pragma comment (lib,"Winmm.lib")
+
 using namespace std;
 #define KEY_UP 72
 #define KEY_DOWN 80
