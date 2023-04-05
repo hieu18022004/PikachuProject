@@ -337,10 +337,74 @@ void displayLeaderboard(pair <string, chrono::duration<double>> leaderboard[], i
 {
 	system("cls");
 	printLogo();
+	gotoxy(90, 18);
+	for (int i = 90; i < 115; i++)
+	{
+		cout << char(205);
+	}
+	Sleep(5);
+	gotoxy(90, 18);
+	cout << char(201);
+	gotoxy(106, 18);
+	cout << char(203);
+	gotoxy(115, 18);
+	cout << char(187);
+	gotoxy(96, 19);
+	Sleep(5);
+	cout << "NAME";
+	gotoxy(108, 19);
+	cout << "TIME";
+	Sleep(5);
+	gotoxy(90, 20);
+	for (int i = 90; i < 115; i++)
+	{
+		cout << char(205);
+	}
+	Sleep(5);
+	for (int i = 1; i < size + 4; i++)
+	{
+		gotoxy(106, 18 + i);
+		cout << char(186);
+		gotoxy(90, 18 + i);
+		cout << char(186);
+		gotoxy(115, 18 + i);
+		cout << char(186);
+		Sleep(5);
+	}
+	gotoxy(90, 20);
+	for (int i = 90; i < 115; i++)
+	{
+		cout << char(205);
+	}
+	Sleep(5);
+	gotoxy(90, 20);
+	cout << char(204);
+	gotoxy(106, 20);
+	cout << char(206);
+	gotoxy(115, 20);
+	cout << char(185);
+	Sleep(5);
+	gotoxy(90, 31);
+	for (int i = 90; i < 115; i++)
+	{
+		cout << char(205);
+	}
+	Sleep(5);
+	gotoxy(90, 31);
+	cout << char(200);
+	gotoxy(106, 31);
+	cout << char(202);
+	gotoxy(115, 31);
+	cout << char(188);
+	Sleep(5);
 	for (int i = 0; i < size; i++)
 	{
-		gotoxy(100, 20 + i);
-		cout << leaderboard[i].first << ": " << fixed << setprecision(2) << leaderboard[i].second.count() << "s" << endl;
+		gotoxy(91, 21 + i);
+		cout << leaderboard[i].first;
+		gotoxy(108, 21 + i);
+		cout << fixed << setprecision(2) << leaderboard[i].second.count() << "s";
+		Sleep(5);
 	}
+
 	_getch();
 }
