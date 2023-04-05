@@ -31,9 +31,13 @@ using namespace std;
 void SignUp() 
 {
     string username, password;
-
+    system("cls");
+    gotoxy(0, 0);
+    printLogo();
+    gotoxy(99, 24);
     cout << "Enter username: ";
     cin >> username;
+    gotoxy(99, 25);
     cout << "Enter password: ";
     cin >> password;
 
@@ -42,11 +46,15 @@ void SignUp()
     newPlayer.password = password;
 
     // Save player information to binary file
-    ofstream outfile("players.bin", ios::binary | ios::app);
+    ofstream outfile("data\\players.bin", ios::binary | ios::app);
     outfile.write(reinterpret_cast<char*>(&newPlayer), sizeof(Player));
     outfile.close();
-
+    system("cls");
+    printLogo();
+    gotoxy(106 - 17, 25);
     cout << "Player account created successfully!" << endl;
+    cin.get();
+    cin.ignore();
 }
 
 bool SignIn(string &displayname)
@@ -66,7 +74,7 @@ bool SignIn(string &displayname)
     bool found = false;
 
     // Open the binary file to search for the player
-    ifstream infile("players.bin", ios::binary);
+    ifstream infile("data\\players.bin", ios::binary);
     while (infile.read(reinterpret_cast<char*>(&player), sizeof(Player)))
     {
         if (player.username == username && player.password == password)
@@ -95,7 +103,7 @@ bool SignIn(string &displayname)
 }
 
 
-void addUserToLeaderboard(const string& username)
+/*void addUserToLeaderboard(const string& username)
 {
     LogIn player = { username };
     ofstream outfile("userleaderboard.bin", ios::binary | ios::app);
@@ -105,13 +113,13 @@ void addUserToLeaderboard(const string& username)
         outfile.write((char*)&player, sizeof(LogIn));
         outfile.close();
     }
-}
+}*/
 
 void saveScoreLeaderboard(pair<string, chrono::duration<double>> leaderboard[], int size)
 {
     //ref: https://www.geeksforgeeks.org/reinterpret_cast-in-c-type-casting-operators/
     fstream outfile;
-    outfile.open("scoreleaderboard.bin", ios::binary | ios::out);
+    outfile.open("data\\scoreleaderboard.bin", ios::binary | ios::out);
     for (int i = 0; i < size; i++)
     {
         const string& name = leaderboard[i].first.c_str();
@@ -126,7 +134,7 @@ void saveScoreLeaderboard(pair<string, chrono::duration<double>> leaderboard[], 
 void loadScoreLeaderboard(pair <string, chrono::duration<double>> leaderboard[], int size)
 {
     fstream infile;
-    infile.open("scoreleaderboard.bin", ios::binary | ios::in);
+    infile.open("data\\scoreleaderboard.bin", ios::binary | ios::in);
     for (int i = 0; i < size; i++)
     {
         string name;

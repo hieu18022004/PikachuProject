@@ -13,13 +13,30 @@ int main()
 	//leaderboardInit(leaderboard, 10);
 	//saveScoreLeaderboard(leaderboard, 10);
 	loadScoreLeaderboard(leaderboard, 10);
-	string username = "Guest";
-	/*while (true)
+	string username;
+	bool exitFlag = false;
+	while (exitFlag == false)
 	{
-		bool signInCheck = SignIn(username);
-		if (signInCheck == true) break;
-		else continue;
-	}*/
+		switch (joinMenu())
+		{
+		case 1:
+		{
+			bool signInCheck = SignIn(username);
+			if (signInCheck == true)
+			{
+				exitFlag = true;
+				system("cls");
+				break;
+			}
+
+		}
+		case 2:
+		{
+			SignUp();
+			break;
+		}
+		}
+	}
 	chrono::time_point<std::chrono::system_clock> start, end;
 	while (true)
 	{

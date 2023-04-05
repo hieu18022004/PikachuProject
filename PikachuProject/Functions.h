@@ -95,6 +95,7 @@ void printBlastoiseMascot();
 
 //menu and leaderboard
 void printLogo();
+int joinMenu();
 int launchMenu(string displayname);
 int difficultyMenu();
 void gameFinishAnnounce(chrono::duration<double> elapsed_seconds);

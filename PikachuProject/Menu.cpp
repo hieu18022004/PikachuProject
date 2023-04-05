@@ -139,6 +139,75 @@ void printLogo()
 	}
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
 }
+int joinMenu()
+{
+	{
+		{
+			gotoxy(0, 0);
+			int choice = 1;
+			printLogo();
+			while (true)
+			{
+				gotoxy(103, 24);
+				cout << "   LOG IN   ";
+				gotoxy(103, 25);
+				cout << "   SIGN UP   ";
+				switch (choice)
+				{
+				case 1:
+				{
+					gotoxy(103, 24);
+					cout << char(196) << char(196) << char(16);
+					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15 * 9 + 0);
+					cout << "LOG IN";
+					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+					cout << char(17) << char(196) << char(196);
+					break;
+				}
+				case 2:
+				{
+					gotoxy(103, 25);
+					cout << char(196) << char(196) << char(16);
+					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15 * 9 + 0);
+					cout << "SIGN UP";
+					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+					cout << char(17) << char(196) << char(196);
+					break;
+				}
+				}
+				switch (_getch())
+				{
+				case KEY_DOWN:
+				{
+					if (choice == 2)
+					{
+						choice = 1;
+						break;
+					}
+					choice++;
+					break;
+				}
+				case KEY_UP:
+				{
+					if (choice == 1)
+					{
+						choice = 2;
+						break;
+					}
+					choice--;
+					break;
+				}
+				case KEY_RETURN:
+				{
+					matchMusic();
+					Sleep(250);
+					return choice;
+				}
+				}
+			}
+		}
+	}
+}
 int launchMenu(string displayname)
 {
 	int choice = 1;
