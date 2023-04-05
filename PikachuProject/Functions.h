@@ -99,6 +99,7 @@ int launchMenu(string displayname);
 int difficultyMenu();
 void gameFinishAnnounce(chrono::duration<double> elapsed_seconds);
 void displayLeaderboard(pair <string, chrono::duration<double>> leaderboard[], int size);
+void goodbyeMenu();
 
 // Data and player infor
 struct Player 

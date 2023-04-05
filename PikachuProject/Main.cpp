@@ -8,6 +8,7 @@ int main()
 	ShowWindow(hWnd, SW_SHOWMAXIMIZED);
 	ShowConsoleCursor(false);
 	playBG(true);
+	goodbyeMenu();
 	pair <string, chrono::duration<double>> leaderboard[10];
 	//this two lines is to re-initiate the scoreleaderboard.bin do not uncomment these two unless you are sure about what you are doing
 	//leaderboardInit(leaderboard, 10);
