@@ -137,8 +137,8 @@ struct LeaderboardEntry
 //void saveGameData();
 void SignUp();
 bool SignIn(string& displayname);
-void saveScoreLeaderboard(pair<string, chrono::duration<double>> leaderboard[], int size);
-void loadScoreLeaderboard(pair <string, chrono::duration<double>> leaderboard[], int size);
+void saveScoreLeaderboard(pair<string, chrono::duration<double>> leaderboard[], int size, string mode);
+void loadScoreLeaderboard(pair <string, chrono::duration<double>> leaderboard[], int size, string mode);
 void leaderboardInit(pair <string, chrono::duration<double>> leaderboard[], int size);
 void convertTxtToBin(const char* txtFileName, const char* binFileName);
 int updateLeaderboard(pair<string, chrono::duration<double>> leaderboard[], int size, string name, chrono::duration<double> time_elapsed);

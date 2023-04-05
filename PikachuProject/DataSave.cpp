@@ -117,11 +117,14 @@ bool SignIn(string &displayname)
     }
 }*/
 
-void saveScoreLeaderboard(pair<string, chrono::duration<double>> leaderboard[], int size)
+void saveScoreLeaderboard(pair<string, chrono::duration<double>> leaderboard[], int size, string mode)
 {
     //ref: https://www.geeksforgeeks.org/reinterpret_cast-in-c-type-casting-operators/
     fstream outfile;
-    outfile.open("data\\scoreleaderboard.bin", ios::binary | ios::out);
+    if (mode == "EZ") outfile.open("data\\scoreleaderboard1.bin", ios::binary | ios::out);
+    if (mode == "MED") outfile.open("data\\scoreleaderboard2.bin", ios::binary | ios::out);
+    if (mode == "HARD") outfile.open("data\\scoreleaderboard3.bin", ios::binary | ios::out);
+    if (mode == "A+") outfile.open("data\\scoreleaderboard4.bin", ios::binary | ios::out);
     for (int i = 0; i < size; i++)
     {
         const string& name = leaderboard[i].first.c_str();
@@ -133,10 +136,13 @@ void saveScoreLeaderboard(pair<string, chrono::duration<double>> leaderboard[], 
     outfile.close();
 }
 
-void loadScoreLeaderboard(pair <string, chrono::duration<double>> leaderboard[], int size)
+void loadScoreLeaderboard(pair <string, chrono::duration<double>> leaderboard[], int size, string mode)
 {
     fstream infile;
-    infile.open("data\\scoreleaderboard.bin", ios::binary | ios::in);
+    if (mode == "EZ") infile.open("data\\scoreleaderboard1.bin", ios::binary | ios::in);
+    if (mode == "MED") infile.open("data\\scoreleaderboard2.bin", ios::binary | ios::in);
+    if (mode == "HARD") infile.open("data\\scoreleaderboard3.bin", ios::binary | ios::in);
+    if (mode == "A+") infile.open("data\\scoreleaderboard4.bin", ios::binary | ios::in);
     for (int i = 0; i < size; i++)
     {
         string name;

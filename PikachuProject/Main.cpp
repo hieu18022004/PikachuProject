@@ -8,14 +8,24 @@ int main()
 	ShowWindow(hWnd, SW_SHOWMAXIMIZED);
 	ShowConsoleCursor(false);
 	playBG(true);
-	pair <string, chrono::duration<double>> leaderboard[10];
+	pair <string, chrono::duration<double>> leaderboardEZ[10];
+	pair <string, chrono::duration<double>> leaderboardMED[10];
+	pair <string, chrono::duration<double>> leaderboardHARD[10];
+	pair <string, chrono::duration<double>> leaderboardA[10];
 	//this two lines is to re-initiate the scoreleaderboard.bin do not uncomment these two unless you are sure about what you are doing
-	//leaderboardInit(leaderboard, 10);
-	//saveScoreLeaderboard(leaderboard, 10);
-	loadScoreLeaderboard(leaderboard, 10);
+	leaderboardInit(leaderboardEZ, 10);
+	leaderboardInit(leaderboardMED, 10);
+	leaderboardInit(leaderboardHARD, 10);
+	leaderboardInit(leaderboardA, 10);
+	saveScoreLeaderboard(leaderboardEZ, 10, "EZ");
+	saveScoreLeaderboard(leaderboardMED, 10, "MED");
+	saveScoreLeaderboard(leaderboardHARD, 10, "HARD");
+	saveScoreLeaderboard(leaderboardA, 10, "A+");
+	//loadScoreLeaderboard(leaderboard, 10);
 	string username;
 	bool exitFlag = false;
-	while (exitFlag == false)
+	//log in and sign up
+	/*while (exitFlag == false)
 	{
 		switch (joinMenu())
 		{
@@ -38,7 +48,7 @@ int main()
 			break;
 		}
 		}
-	}
+	}*/
 	chrono::time_point<std::chrono::system_clock> start, end;
 	while (true)
 	{
@@ -58,7 +68,7 @@ int main()
 					end = chrono::system_clock::now();
 					chrono::duration<double> elapsed_seconds = end - start;
 					gameFinishAnnounce(elapsed_seconds);
-					updateLeaderboard(leaderboard, 10, username, elapsed_seconds);
+					updateLeaderboard(leaderboardEZ, 10, username, elapsed_seconds);
 				}
 				break;
 			}
@@ -71,6 +81,7 @@ int main()
 					end = chrono::system_clock::now();
 					chrono::duration<double> elapsed_seconds = end - start;
 					gameFinishAnnounce(elapsed_seconds);
+					updateLeaderboard(leaderboardMED, 10, username, elapsed_seconds);
 				}
 				break;
 			}
@@ -83,6 +94,7 @@ int main()
 					end = chrono::system_clock::now();
 					chrono::duration<double> elapsed_seconds = end - start;
 					gameFinishAnnounce(elapsed_seconds);
+					updateLeaderboard(leaderboardHARD, 10, username, elapsed_seconds);
 				}
 				break;
 			}
@@ -95,6 +107,7 @@ int main()
 					end = chrono::system_clock::now();
 					chrono::duration<double> elapsed_seconds = end - start;
 					gameFinishAnnounce(elapsed_seconds);
+					updateLeaderboard(leaderboardA, 10, username, elapsed_seconds);
 				}
 				break;
 			}
@@ -109,20 +122,26 @@ int main()
 		case 3:
 		{
 			goodbyeMenu();
-			saveScoreLeaderboard(leaderboard, 10);
+			saveScoreLeaderboard(leaderboardEZ, 10, "EZ");
+			saveScoreLeaderboard(leaderboardMED, 10, "MED");
+			saveScoreLeaderboard(leaderboardHARD, 10, "HARD");
+			saveScoreLeaderboard(leaderboardA, 10, "A+");
 			return 1;
 		}
 		case 2:
 		{
 			system("cls");
-			displayLeaderboard(leaderboard, 10);
+			//displayLeaderboard(leaderboard, 10);
 			system("cls");
 			break;
 		}
 		}
 	}
 	goodbyeMenu();
-	saveScoreLeaderboard(leaderboard, 10);
+	saveScoreLeaderboard(leaderboardEZ, 10, "EZ");
+	saveScoreLeaderboard(leaderboardMED, 10, "MED");
+	saveScoreLeaderboard(leaderboardHARD, 10, "HARD");
+	saveScoreLeaderboard(leaderboardA, 10, "A+");
 	return 1;
 }
 
