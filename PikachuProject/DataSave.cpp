@@ -137,7 +137,7 @@ void leaderboardInit(pair <string, chrono::duration<double>> leaderboard[], int 
     for (int i = 0; i < size; i++)
     {
         leaderboard[i].first = "...";
-        leaderboard[i].second = 0s;
+        leaderboard[i].second = 99999999999999999s;
     }
 }
 
@@ -147,6 +147,7 @@ int updateLeaderboard(pair<string, chrono::duration<double>> leaderboard[], int 
     {
         return 0;
     }
+    pair <string, chrono::duration<double>> newboard[10] ;
     int rankindex = 0;
     for (int i = 0; i < size; i++)
     {
@@ -156,17 +157,19 @@ int updateLeaderboard(pair<string, chrono::duration<double>> leaderboard[], int 
             break;
         }
     }
-    pair <string, chrono::duration<double>>* tempboard = new pair <string, chrono::duration<double>>[size - 2 - rankindex];
-    for (int i = rankindex; i < size - 1; i++)
+    for (int i = 0; i < rankindex; i++)
     {
-        tempboard[i - rankindex] = leaderboard[i];
+        newboard[i] = leaderboard[i];
     }
-    leaderboard[rankindex] = { name,time_elapsed };
+    newboard[rankindex] = { name,time_elapsed };
     for (int i = rankindex + 1; i < size; i++)
     {
-        leaderboard[i] = tempboard[i - rankindex - 1];
+        newboard[i] = leaderboard[i - 1];
     }
-    delete[] tempboard;
+    for (int i = 0; i < size; i++)
+    {
+        leaderboard[i] = newboard[i];
+    }
 }
 
 //convert ascii art in file txt to file .bin

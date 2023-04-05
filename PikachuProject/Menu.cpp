@@ -338,7 +338,7 @@ void displayLeaderboard(pair <string, chrono::duration<double>> leaderboard[], i
 	system("cls");
 	printLogo();
 	gotoxy(90, 18);
-	for (int i = 90; i < 115; i++)
+	for (int i = 90; i < 145; i++)
 	{
 		cout << char(205);
 	}
@@ -347,7 +347,7 @@ void displayLeaderboard(pair <string, chrono::duration<double>> leaderboard[], i
 	cout << char(201);
 	gotoxy(106, 18);
 	cout << char(203);
-	gotoxy(115, 18);
+	gotoxy(145, 18);
 	cout << char(187);
 	gotoxy(96, 19);
 	Sleep(5);
@@ -356,7 +356,7 @@ void displayLeaderboard(pair <string, chrono::duration<double>> leaderboard[], i
 	cout << "TIME";
 	Sleep(5);
 	gotoxy(90, 20);
-	for (int i = 90; i < 115; i++)
+	for (int i = 90; i < 145; i++)
 	{
 		cout << char(205);
 	}
@@ -367,12 +367,12 @@ void displayLeaderboard(pair <string, chrono::duration<double>> leaderboard[], i
 		cout << char(186);
 		gotoxy(90, 18 + i);
 		cout << char(186);
-		gotoxy(115, 18 + i);
+		gotoxy(145, 18 + i);
 		cout << char(186);
 		Sleep(5);
 	}
 	gotoxy(90, 20);
-	for (int i = 90; i < 115; i++)
+	for (int i = 90; i < 145; i++)
 	{
 		cout << char(205);
 	}
@@ -381,11 +381,11 @@ void displayLeaderboard(pair <string, chrono::duration<double>> leaderboard[], i
 	cout << char(204);
 	gotoxy(106, 20);
 	cout << char(206);
-	gotoxy(115, 20);
+	gotoxy(145, 20);
 	cout << char(185);
 	Sleep(5);
 	gotoxy(90, 31);
-	for (int i = 90; i < 115; i++)
+	for (int i = 90; i < 145; i++)
 	{
 		cout << char(205);
 	}
@@ -394,7 +394,7 @@ void displayLeaderboard(pair <string, chrono::duration<double>> leaderboard[], i
 	cout << char(200);
 	gotoxy(106, 31);
 	cout << char(202);
-	gotoxy(115, 31);
+	gotoxy(145, 31);
 	cout << char(188);
 	Sleep(5);
 	for (int i = 0; i < size; i++)
