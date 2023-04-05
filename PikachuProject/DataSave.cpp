@@ -146,7 +146,7 @@ void leaderboardInit(pair <string, chrono::duration<double>> leaderboard[], int 
 {
     for (int i = 0; i < size; i++)
     {
-        leaderboard[i].first = "haha";
+        leaderboard[i].first = "Nemo";
         leaderboard[i].second = 99999999999999999s;
     }
 }
