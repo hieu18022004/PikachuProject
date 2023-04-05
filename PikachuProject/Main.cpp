@@ -28,11 +28,13 @@ int main()
 				system("cls");
 				break;
 			}
+			system("cls");
 			break;
 		}
 		case 2:
 		{
 			SignUp();
+			system("cls");
 			break;
 		}
 		}
