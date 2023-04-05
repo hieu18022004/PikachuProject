@@ -12,7 +12,7 @@ int main()
 	pair <string, chrono::duration<double>> leaderboardMED[10];
 	pair <string, chrono::duration<double>> leaderboardHARD[10];
 	pair <string, chrono::duration<double>> leaderboardA[10];
-	//this two lines is to re-initiate the scoreleaderboard.bin do not uncomment these two unless you are sure about what you are doing
+	//this eight lines is to re-initiate the scoreleaderboard.bin do not uncomment these two unless you are sure about what you are doing
 	leaderboardInit(leaderboardEZ, 10);
 	leaderboardInit(leaderboardMED, 10);
 	leaderboardInit(leaderboardHARD, 10);
@@ -131,7 +131,37 @@ int main()
 		case 2:
 		{
 			system("cls");
-			//displayLeaderboard(leaderboard, 10);
+			switch (difficultyMenu())
+			{
+			case 1:
+			{
+				system("cls");
+				displayLeaderboard(leaderboardEZ, 10);
+				break;
+			}
+			case 2:
+			{
+				system("cls");
+				displayLeaderboard(leaderboardMED, 10);
+				break;
+			}
+			case 3:
+			{
+				system("cls");
+				displayLeaderboard(leaderboardHARD, 10);
+				break;
+			}
+			case 4:
+			{
+				system("cls");
+				displayLeaderboard(leaderboardA, 10);
+				break;
+			}
+			case 5:
+			{
+				break;
+			}
+			}
 			system("cls");
 			break;
 		}
