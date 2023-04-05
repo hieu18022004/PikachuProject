@@ -8,14 +8,8 @@ int main()
 	ShowWindow(hWnd, SW_SHOWMAXIMIZED);
 	ShowConsoleCursor(false);
 	playBG(true);
-	chrono::time_point<std::chrono::system_clock> starttest, endtest;
-	starttest = chrono::system_clock::now();
-	endtest = chrono::system_clock::now();
-	chrono::duration<double> elapsed_second = endtest - starttest;
 	pair <string, chrono::duration<double>> leaderboard[10];
 	leaderboardInit(leaderboard, 10);
-	leaderboard[0].first = "Test";
-	leaderboard[0].second = elapsed_second;
 	saveScoreLeaderboard(leaderboard, 10);
 	loadScoreLeaderboard(leaderboard, 10);
 	bool exitFlag = false;
