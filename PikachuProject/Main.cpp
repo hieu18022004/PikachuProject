@@ -12,7 +12,6 @@ int main()
 	leaderboardInit(leaderboard, 10);
 	saveScoreLeaderboard(leaderboard, 10);
 	loadScoreLeaderboard(leaderboard, 10);
-	bool exitFlag = false;
 	string username = "Guest";
 	/*while (true)
 	{
@@ -21,7 +20,7 @@ int main()
 		else continue;
 	}*/
 	chrono::time_point<std::chrono::system_clock> start, end;
-	while (exitFlag == false)
+	while (true)
 	{
 		switch (launchMenu(username))
 		{
@@ -39,8 +38,7 @@ int main()
 					end = chrono::system_clock::now();
 					chrono::duration<double> elapsed_seconds = end - start;
 					gameFinishAnnounce(elapsed_seconds);
-					leaderboard[0] = { username,elapsed_seconds };
-					//saveScoreLeaderboard(leaderboard, 10);
+					updateLeaderboard(leaderboard, 10, username, elapsed_seconds);
 				}
 				break;
 			}
@@ -90,16 +88,20 @@ int main()
 		}
 		case 3:
 		{
+			saveScoreLeaderboard(leaderboard, 10);
 			return 1;
 		}
 		case 2:
 		{
+			system("cls");
 			displayLeaderboard(leaderboard, 10);
+			system("cls");
 			break;
 		}
 		}
-		return 1;
 	}
+	saveScoreLeaderboard(leaderboard, 10);
+	return 1;
 }
 
 

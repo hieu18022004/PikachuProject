@@ -138,4 +138,5 @@ void saveScoreLeaderboard(pair<string, chrono::duration<double>> leaderboard[], 
 void loadScoreLeaderboard(pair <string, chrono::duration<double>> leaderboard[], int size);
 void leaderboardInit(pair <string, chrono::duration<double>> leaderboard[], int size);
 void convertTxtToBin(const char* txtFileName, const char* binFileName);
+int updateLeaderboard(pair<string, chrono::duration<double>> leaderboard[], int size, string name, chrono::duration<double> time_elapsed);
 

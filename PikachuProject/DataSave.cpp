@@ -136,9 +136,37 @@ void leaderboardInit(pair <string, chrono::duration<double>> leaderboard[], int 
 {
     for (int i = 0; i < size; i++)
     {
-        leaderboard[i].first = "Nemo";
+        leaderboard[i].first = "...";
         leaderboard[i].second = 0s;
     }
+}
+
+int updateLeaderboard(pair<string, chrono::duration<double>> leaderboard[], int size, string name, chrono::duration<double> time_elapsed)
+{
+    if (time_elapsed.count() > leaderboard[size - 1].second.count())
+    {
+        return 0;
+    }
+    int rankindex = 0;
+    for (int i = 0; i < size; i++)
+    {
+        if (time_elapsed.count() < leaderboard[i].second.count())
+        {
+            rankindex = i;
+            break;
+        }
+    }
+    pair <string, chrono::duration<double>>* tempboard = new pair <string, chrono::duration<double>>[size - 2 - rankindex];
+    for (int i = rankindex; i < size - 1; i++)
+    {
+        tempboard[i - rankindex] = leaderboard[i];
+    }
+    leaderboard[rankindex] = { name,time_elapsed };
+    for (int i = rankindex + 1; i < size; i++)
+    {
+        leaderboard[i] = tempboard[i - rankindex - 1];
+    }
+    delete[] tempboard;
 }
 
 //convert ascii art in file txt to file .bin
@@ -172,8 +200,6 @@ void convertTxtToBin(const char* txtFileName, const char* binFileName)
     output.close(); 
 }
 
-
-
 void displayAsciiArt(const char* fileName) 
 {
     ifstream file(fileName, ios::in | ios::binary);
@@ -204,3 +230,4 @@ void displayAsciiArt(const char* fileName)
         }
     }
 }
+
