@@ -133,7 +133,7 @@
     <ClCompile Include="Funcs.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Menu.cpp" />
-    <ClCompile Include="Source.cpp" />
+    <ClCompile Include="Main.cpp" />
     <ClCompile Include="Stack&amp;Queue.cpp" />
     <ClCompile Include="UI&amp;VFX.cpp" />
   </ItemGroup>
