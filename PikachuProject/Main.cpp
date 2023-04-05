@@ -24,7 +24,7 @@ int main()
 	loadScoreLeaderboard(leaderboardEZ, 10, "EZ");
 	loadScoreLeaderboard(leaderboardMED, 10, "MED");
 	loadScoreLeaderboard(leaderboardHARD, 10, "HARD");
-	loadScoreLeaderboard(leaderboardA, 10, "A");
+	loadScoreLeaderboard(leaderboardA, 10, "A+");
 	string username;
 	bool exitFlag = false;
 	//log in and sign up
