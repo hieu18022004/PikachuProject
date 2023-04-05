@@ -9,6 +9,7 @@ int main()
 	ShowConsoleCursor(false);
 	playBG(true);
 	pair <string, chrono::duration<double>> leaderboard[10];
+	//this two lines is to re-initiate the scoreleaderboard.bin do not uncomment these two unless you are sure about what you are doing
 	//leaderboardInit(leaderboard, 10);
 	//saveScoreLeaderboard(leaderboard, 10);
 	loadScoreLeaderboard(leaderboard, 10);
