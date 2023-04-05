@@ -109,25 +109,40 @@ void addUserToLeaderboard(const string& username)
 
 void saveScoreLeaderboard(pair<string, chrono::duration<double>> leaderboard[], int size)
 {
-    FILE* fp;
+    /*FILE* fp;
     fopen_s(&fp, "scoreleaderboard.bin", "wb");
     if (fp != NULL) {
-        fwrite(leaderboard, sizeof(pair<string, double>), size, fp);
+        fwrite(leaderboard, sizeof(pair<string, chrono::duration<double>>), size, fp);
         fclose(fp);
     }
+    */
+    fstream outfile;
+    outfile.open("scoreleaderboard.bin", ios::binary | ios::out);
+    for (int i = 0; i < size; i++)
+    {
+        const string& name = leaderboard[i].first.c_str();
+        double score = leaderboard[i].second.count();
+        outfile.write(reinterpret_cast<const char*>(&name[0]), name.size() + 1);
+        outfile.write(reinterpret_cast<const char*>(&score), sizeof(score));
+    }
+    outfile.close();
 }
 
 void loadScoreLeaderboard(pair <string, chrono::duration<double>> leaderboard[], int size)
 {
     fstream infile;
     infile.open("scoreleaderboard.bin", ios::binary | ios::in);
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < size; i++)
     {
         string name;
-        chrono::duration<double> score;
-        infile.read(reinterpret_cast<char*>(&name), sizeof(name));
+        char namePart;
+        while (infile.get(namePart) && namePart != '\0')
+        {
+            name = name + namePart;
+        }
+        double score;
         infile.read(reinterpret_cast<char*>(&score), sizeof(score));
-        leaderboard[i] = make_pair(name, score);
+        leaderboard[i] = make_pair(name, chrono::duration<double>(score));
     }
     infile.close();
 }
@@ -136,7 +151,7 @@ void leaderboardInit(pair <string, chrono::duration<double>> leaderboard[], int 
 {
     for (int i = 0; i < size; i++)
     {
-        leaderboard[i].first = "...";
+        leaderboard[i].first = "haha";
         leaderboard[i].second = 99999999999999999s;
     }
 }

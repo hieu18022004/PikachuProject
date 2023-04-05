@@ -9,8 +9,8 @@ int main()
 	ShowConsoleCursor(false);
 	playBG(true);
 	pair <string, chrono::duration<double>> leaderboard[10];
-	leaderboardInit(leaderboard, 10);
-	saveScoreLeaderboard(leaderboard, 10);
+	//leaderboardInit(leaderboard, 10);
+	//saveScoreLeaderboard(leaderboard, 10);
 	loadScoreLeaderboard(leaderboard, 10);
 	string username = "Guest";
 	/*while (true)
