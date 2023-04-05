@@ -109,19 +109,14 @@ void addUserToLeaderboard(const string& username)
 
 void saveScoreLeaderboard(pair<string, chrono::duration<double>> leaderboard[], int size)
 {
-    /*FILE* fp;
-    fopen_s(&fp, "scoreleaderboard.bin", "wb");
-    if (fp != NULL) {
-        fwrite(leaderboard, sizeof(pair<string, chrono::duration<double>>), size, fp);
-        fclose(fp);
-    }
-    */
+    //ref: https://www.geeksforgeeks.org/reinterpret_cast-in-c-type-casting-operators/
     fstream outfile;
     outfile.open("scoreleaderboard.bin", ios::binary | ios::out);
     for (int i = 0; i < size; i++)
     {
         const string& name = leaderboard[i].first.c_str();
         double score = leaderboard[i].second.count();
+        //reinterpret_cast : convert a pointer of some data type into a pointer of another data type
         outfile.write(reinterpret_cast<const char*>(&name[0]), name.size() + 1);
         outfile.write(reinterpret_cast<const char*>(&score), sizeof(score));
     }
