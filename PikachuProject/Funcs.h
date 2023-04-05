@@ -3,12 +3,10 @@
 #include <iostream>
 #include <ctime>
 #include <chrono>
-#include <stdio.h>
 #include <cstring>
 #include <fstream>
 #include <iomanip>
-#include<conio.h>
-#include <cwchar>
+#include <conio.h>
 #include <algorithm>
 #include <random>
 
