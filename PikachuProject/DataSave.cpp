@@ -1,5 +1,5 @@
 ﻿
-#include "Funcs.h"
+#include "Functions.h"
 
 using namespace std;
 

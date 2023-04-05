@@ -130,7 +130,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DataSave.cpp" />
-    <ClCompile Include="Funcs.cpp" />
+    <ClCompile Include="GameFunctions.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -138,7 +138,7 @@
     <ClCompile Include="UI&amp;VFX.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Funcs.h" />
+    <ClInclude Include="Functions.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

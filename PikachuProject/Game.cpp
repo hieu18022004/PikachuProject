@@ -1,4 +1,4 @@
-#include "Funcs.h"
+#include "Functions.h"
 using namespace std;
 
 bool checkEndCondition(char** table, const int ROWS, const int COLS)

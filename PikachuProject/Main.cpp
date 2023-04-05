@@ -1,4 +1,4 @@
-#include "Funcs.h"
+#include "Functions.h"
 using namespace std;
 //time <chrono> ref:https://www.geeksforgeeks.org/chrono-in-c/
 int main()
