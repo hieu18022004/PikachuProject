@@ -28,7 +28,7 @@ int main()
 				system("cls");
 				break;
 			}
-
+			break;
 		}
 		case 2:
 		{
