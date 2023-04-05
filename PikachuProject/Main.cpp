@@ -13,15 +13,18 @@ int main()
 	pair <string, chrono::duration<double>> leaderboardHARD[10];
 	pair <string, chrono::duration<double>> leaderboardA[10];
 	//this eight lines is to re-initiate the scoreleaderboard.bin do not uncomment these two unless you are sure about what you are doing
-	leaderboardInit(leaderboardEZ, 10);
+	/*leaderboardInit(leaderboardEZ, 10);
 	leaderboardInit(leaderboardMED, 10);
 	leaderboardInit(leaderboardHARD, 10);
 	leaderboardInit(leaderboardA, 10);
 	saveScoreLeaderboard(leaderboardEZ, 10, "EZ");
 	saveScoreLeaderboard(leaderboardMED, 10, "MED");
 	saveScoreLeaderboard(leaderboardHARD, 10, "HARD");
-	saveScoreLeaderboard(leaderboardA, 10, "A+");
-	//loadScoreLeaderboard(leaderboard, 10);
+	saveScoreLeaderboard(leaderboardA, 10, "A+");*/
+	loadScoreLeaderboard(leaderboardEZ, 10, "EZ");
+	loadScoreLeaderboard(leaderboardMED, 10, "MED");
+	loadScoreLeaderboard(leaderboardHARD, 10, "HARD");
+	loadScoreLeaderboard(leaderboardA, 10, "A");
 	string username;
 	bool exitFlag = false;
 	//log in and sign up
