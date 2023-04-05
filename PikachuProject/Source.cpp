@@ -39,9 +39,8 @@ int main()
 					end = chrono::system_clock::now();
 					chrono::duration<double> elapsed_seconds = end - start;
 					gameFinishAnnounce(elapsed_seconds);
-					double period = chrono::duration<double>(elapsed_seconds).count();
-					//pair <string, double> leaderboard[1] = { {username,period} };
-					//saveScoreLeaderboard(leaderboard, sizeof(leaderboard));
+					leaderboard[0] = { username,elapsed_seconds };
+					//saveScoreLeaderboard(leaderboard, 10);
 				}
 				break;
 			}
@@ -86,6 +85,9 @@ int main()
 				break;
 			}
 			}
+			system("cls");
+			break;
+		}
 		case 3:
 		{
 			return 1;
@@ -93,14 +95,11 @@ int main()
 		case 2:
 		{
 			displayLeaderboard(leaderboard, 10);
-		}
-			system("cls");
 			break;
 		}
 		}
+		return 1;
 	}
-	return 1;
-}
 
 
 
