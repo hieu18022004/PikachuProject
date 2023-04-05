@@ -100,6 +100,7 @@ void printLogo();
 int launchMenu(string displayname);
 int difficultyMenu();
 void gameFinishAnnounce(chrono::duration<double> elapsed_seconds);
+void displayLeaderboard(pair <string, chrono::duration<double>> leaderboard[], int size);
 
 // Data and player infor
 struct Player 
@@ -135,5 +136,8 @@ struct LeaderboardEntry
 //void saveGameData();
 void SignUp();
 bool SignIn(string& displayname);
+void saveScoreLeaderboard(pair<string, chrono::duration<double>> leaderboard[], int size);
+void loadScoreLeaderboard(pair <string, chrono::duration<double>> leaderboard[], int size);
+void leaderboardInit(pair <string, chrono::duration<double>> leaderboard[], int size);
 void convertTxtToBin(const char* txtFileName, const char* binFileName);
 

@@ -330,6 +330,17 @@ void gameFinishAnnounce(chrono::duration<double> elapsed_seconds)
 	gotoxy(106 - 7, 24);
 	cout << "CONGRATULATION!\n";
 	gotoxy(106 - 16, 25);
-	cout << "THE GAME TOOK YOU " << elapsed_seconds.count() << " TO FINISH IT!";
+	cout << "THE GAME TOOK YOU " << elapsed_seconds.count() << "s TO FINISH IT!";
+	_getch();
+}
+void displayLeaderboard(pair <string, chrono::duration<double>> leaderboard[], int size)
+{
+	system("cls");
+	printLogo();
+	for (int i = 0; i < size; i++)
+	{
+		gotoxy(100, 20 + i);
+		cout << leaderboard[i].first << ": " << fixed << setprecision(2) << leaderboard[i].second.count() << "s" << endl;
+	}
 	_getch();
 }

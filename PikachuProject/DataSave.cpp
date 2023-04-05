@@ -107,13 +107,37 @@ void addUserToLeaderboard(const string& username)
     }
 }
 
-void saveScoreLeaderboard(pair<string, double> leaderboard[], int size) 
+void saveScoreLeaderboard(pair<string, chrono::duration<double>> leaderboard[], int size)
 {
     FILE* fp;
     fopen_s(&fp, "scoreleaderboard.bin", "wb");
     if (fp != NULL) {
         fwrite(leaderboard, sizeof(pair<string, double>), size, fp);
         fclose(fp);
+    }
+}
+
+void loadScoreLeaderboard(pair <string, chrono::duration<double>> leaderboard[], int size)
+{
+    fstream infile;
+    infile.open("scoreleaderboard.bin", ios::binary | ios::in);
+    for (int i = 0; i < 10; i++)
+    {
+        string name;
+        chrono::duration<double> score;
+        infile.read(reinterpret_cast<char*>(&name), sizeof(name));
+        infile.read(reinterpret_cast<char*>(&score), sizeof(score));
+        leaderboard[i] = make_pair(name, score);
+    }
+    infile.close();
+}
+
+void leaderboardInit(pair <string, chrono::duration<double>> leaderboard[], int size)
+{
+    for (int i = 0; i < size; i++)
+    {
+        leaderboard[i].first = "Nemo";
+        leaderboard[i].second = 0s;
     }
 }
 

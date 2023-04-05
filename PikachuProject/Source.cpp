@@ -8,6 +8,16 @@ int main()
 	ShowWindow(hWnd, SW_SHOWMAXIMIZED);
 	ShowConsoleCursor(false);
 	playBG(true);
+	chrono::time_point<std::chrono::system_clock> starttest, endtest;
+	starttest = chrono::system_clock::now();
+	endtest = chrono::system_clock::now();
+	chrono::duration<double> elapsed_second = endtest - starttest;
+	pair <string, chrono::duration<double>> leaderboard[10];
+	leaderboardInit(leaderboard, 10);
+	leaderboard[0].first = "Test";
+	leaderboard[0].second = elapsed_second;
+	saveScoreLeaderboard(leaderboard, 10);
+	loadScoreLeaderboard(leaderboard, 10);
 	bool exitFlag = false;
 	string username = "Guest";
 	/*while (true)
@@ -35,6 +45,9 @@ int main()
 					end = chrono::system_clock::now();
 					chrono::duration<double> elapsed_seconds = end - start;
 					gameFinishAnnounce(elapsed_seconds);
+					double period = chrono::duration<double>(elapsed_seconds).count();
+					//pair <string, double> leaderboard[1] = { {username,period} };
+					//saveScoreLeaderboard(leaderboard, sizeof(leaderboard));
 				}
 				break;
 			}
@@ -79,6 +92,14 @@ int main()
 				break;
 			}
 			}
+		case 3:
+		{
+			return 1;
+		}
+		case 2:
+		{
+			displayLeaderboard(leaderboard, 10);
+		}
 			system("cls");
 			break;
 		}
