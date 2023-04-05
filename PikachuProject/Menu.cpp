@@ -1,11 +1,4 @@
 #include "Funcs.h"
-#include <iomanip>
-#include <chrono>
-#include <windows.h>
-#include <conio.h>
-#include <iostream>
-#include <cwchar>
-#include <random>
 using namespace std;
 void printLogo()
 {

@@ -1,8 +1,4 @@
-#include <iostream>
-#include<conio.h>
 #include "Funcs.h"
-#include <ctime>
-#include <chrono>
 using namespace std;
 //time <chrono> ref:https://www.geeksforgeeks.org/chrono-in-c/
 int main()

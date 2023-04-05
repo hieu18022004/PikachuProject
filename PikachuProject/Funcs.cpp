@@ -1,9 +1,4 @@
-﻿#include <iostream>
-#include <iomanip>
-#include <random>
-#include <windows.h>
-#include <algorithm>
-#include "Funcs.h"
+﻿#include "Funcs.h"
 using namespace std;
 
 

@@ -1,7 +1,18 @@
 #pragma once
 #include <Windows.h>
 #include <iostream>
+#include <ctime>
 #include <chrono>
+#include <stdio.h>
+#include <cstring>
+#include <fstream>
+#include <iomanip>
+#include<conio.h>
+#include <cwchar>
+#include <algorithm>
+#include <random>
+
+#pragma comment (lib,"Winmm.lib")
 using namespace std;
 #define KEY_UP 72
 #define KEY_DOWN 80

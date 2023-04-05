@@ -1,8 +1,5 @@
 ﻿
-#include <iostream>
-#include <fstream>
 #include "Funcs.h"
-#include <cstring>
 
 using namespace std;
 
@@ -113,7 +110,7 @@ void addUserToLeaderboard(const string& username)
 void saveScoreLeaderboard(pair<string, double> leaderboard[], int size) 
 {
     FILE* fp;
-    fp = fopen("scoreleaderboard.bin", "wb");
+    fopen_s(&fp, "scoreleaderboard.bin", "wb");
     if (fp != NULL) {
         fwrite(leaderboard, sizeof(pair<string, double>), size, fp);
         fclose(fp);

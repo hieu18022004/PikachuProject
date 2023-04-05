@@ -1,8 +1,4 @@
 #include "Funcs.h"
-#include <iostream>
-#include <random>
-#include <windows.h>
-#pragma comment (lib,"Winmm.lib")
 using namespace std;
 
 

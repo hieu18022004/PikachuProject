@@ -1,8 +1,4 @@
-#include <iostream>
-#include <conio.h>
-#include <Windows.h>
 #include "Funcs.h"
-#include <random>
 using namespace std;
 
 bool checkEndCondition(char** table, const int ROWS, const int COLS)

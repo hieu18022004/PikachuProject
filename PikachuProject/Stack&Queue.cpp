@@ -1,7 +1,4 @@
-#include <iostream>
 #include "Funcs.h"
-#include <stdio.h>
-#include <Windows.h>
 using namespace std;
 
 Node* nodeCreate(int x, int y)
