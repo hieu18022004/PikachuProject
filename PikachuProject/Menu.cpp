@@ -136,8 +136,8 @@ void printLogo()
 		break;
 	}
 	}
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
 	}
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
 }
 int joinMenu()
 {
