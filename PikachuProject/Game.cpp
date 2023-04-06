@@ -23,6 +23,11 @@ int gameInit(string user,int points, int stages, const int ROWS, const int COLS)
 	{
 		if (checkEndCondition(table, ROWS, COLS) == true)
 		{
+			for (int i = 0; i < COLS; i++)
+			{
+				delete[] table[i];
+			}
+			delete[] table;
 			return 1;
 		}
 		if (ROWS == EZ_ROWS && COLS == EZ_COLS)

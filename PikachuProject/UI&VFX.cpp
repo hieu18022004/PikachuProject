@@ -167,3 +167,13 @@ void printBlastoiseMascot()
                         --------""' )";
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
 }
+
+void getBackground(string mode)
+{
+
+}
+
+void displayBackground()
+{
+
+}
