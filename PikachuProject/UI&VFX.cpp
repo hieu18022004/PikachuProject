@@ -168,8 +168,17 @@ void printBlastoiseMascot()
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
 }
 
-void getBackground(string mode)
+void getBackground(char** bg, string mode)
 {
+    fstream outfile;
+    if (mode == "EZ")
+    {
+        outfile.open("data\\bgEZ.txt", ios::in);
+
+    }
+    if (mode == "MED") outfile.open("data\\bgMED.txt", ios::in);
+    if (mode == "HARD") outfile.open("data\\bgHARD.txt", ios::in);
+    if (mode == "A+") outfile.open("data\\bgEZ.txt", ios::in);
 
 }
 
