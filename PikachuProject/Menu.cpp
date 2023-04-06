@@ -3,7 +3,7 @@ using namespace std;
 void printLogo()
 {
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
-	cout<< R"(
+	cout << R"(
 
 
 
@@ -94,7 +94,6 @@ void printLogo()
                 7____,,..--'      /          |
                                   `---.__,--.')";
 		break;
-	}
 	case 3:
 	{
 		cout << "\n\n";
@@ -138,6 +137,7 @@ void printLogo()
 	}
 	}
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	}
 }
 int joinMenu()
 {
@@ -504,3 +504,4 @@ void goodbyeMenu()
 )";
 	Sleep(2500);
 }
+
