@@ -159,10 +159,10 @@ void printTableV2(char** table, const int ROWS, const int COLS, int curX, int cu
     cout << char(188);
 }
 
-void printScreen(char** table, const int ROWS, const int COLS, string user, int points, int stages, int cordX, int cordY)
+void printScreen(char** table, const int ROWS, const int COLS, string user, string stages, int cordX, int cordY)
 {
     gotoxy(0, 0);
-    cout << "\n\n\nUsername: " << user << endl << "Points: " << points << endl << "Stages completed: " << stages << endl << "Press h for Help" << endl
+    cout << "\n\n\nUsername: " << user << endl << "Stage: " << stages << endl << "Press h for Help" << endl
          << "Press x to exit" << endl << "Your progress will ONLY be save when you clear the board!";
     gotoxy(cordX, cordY);
     printTableV2(table, ROWS, COLS, cordX, cordY);

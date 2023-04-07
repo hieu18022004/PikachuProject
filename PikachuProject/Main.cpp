@@ -65,9 +65,11 @@ int main()
 			{
 			case 1:
 			{
+				char** bg;
+				getBackground(bg, "EZ");
 				start = chrono::system_clock::now();
 				system("cls");
-				if (gameInit(username, 0, 0, EZ_ROWS, EZ_COLS) == 1)
+				if (gameInit(username, "EASY", EZ_ROWS, EZ_COLS, bg) == 1)
 				{
 					end = chrono::system_clock::now();
 					chrono::duration<double> elapsed_seconds = end - start;
@@ -78,9 +80,11 @@ int main()
 			}
 			case 2:
 			{
+				char** bg;
+				getBackground(bg, "MED");
 				start = chrono::system_clock::now();
 				system("cls");
-				if (gameInit(username, 0, 0, MED_ROWS, MED_COLS) == 1)
+				if (gameInit(username, "MEDIUM", MED_ROWS, MED_COLS, bg) == 1)
 				{
 					end = chrono::system_clock::now();
 					chrono::duration<double> elapsed_seconds = end - start;
@@ -91,9 +95,11 @@ int main()
 			}
 			case 3:
 			{
+				char** bg;
+				getBackground(bg, "HARD");
 				start = chrono::system_clock::now();
 				system("cls");
-				if (gameInit(username, 0, 0, HARD_ROWS, HARD_COLS) == 1)
+				if (gameInit(username, "HARD", HARD_ROWS, HARD_COLS, bg) == 1)
 				{
 					end = chrono::system_clock::now();
 					chrono::duration<double> elapsed_seconds = end - start;
@@ -104,9 +110,11 @@ int main()
 			}
 			case 4:
 			{
+				char** bg;
+				getBackground(bg, "A+");
 				start = chrono::system_clock::now();
 				system("cls");
-				if (gameInit(username, 0, 0, ASIAN_ROWS, ASIAN_COLS) == 1)
+				if (gameInit(username, "ASIAN", ASIAN_ROWS, ASIAN_COLS, bg) == 1)
 				{
 					end = chrono::system_clock::now();
 					chrono::duration<double> elapsed_seconds = end - start;

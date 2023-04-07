@@ -84,7 +84,7 @@ void asianDif(char** &table, const int ROWS, const int COLS);
 
 //Game
 bool checkEndCondition(char** table, const int ROWS, const int COLS);
-int gameInit(string user, int points, int stages, const int ROWS, const int COLS);
+int gameInit(string user, string stages, const int ROWS, const int COLS, char** bg);
 
 // UI & VFX Funcs
 void ShowConsoleCursor(bool showFlag);
@@ -93,6 +93,8 @@ void matchMusic();
 void printCharizardMascot();
 void printVenusaurMascot();
 void printBlastoiseMascot();
+void getBackground(char** bg, string mode);
+void displayBackground(char** table, const int ROWS, int curX, int curY, const int COLS, char** bg);
 
 //menu and leaderboard
 void printLogo();

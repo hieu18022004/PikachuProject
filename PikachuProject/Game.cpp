@@ -13,12 +13,12 @@ bool checkEndCondition(char** table, const int ROWS, const int COLS)
 	return true;
 }
 
-int gameInit(string user,int points, int stages, const int ROWS, const int COLS)
+int gameInit(string user, string stages, const int ROWS, const int COLS, char** bg)
 {
 	int DifX = 106 - COLS / 2 * 8 + 32, DifY = 25 - ROWS / 2 * 4;
 	char** table = tableInit(ROWS, COLS);
 	int coordX = 0, coordY = 0, curX = DifX + 4, curY = DifY + 2;
-	printScreen(table, ROWS, COLS, user, points, stages, DifX, DifY);
+	printScreen(table, ROWS, COLS, user, stages, DifX, DifY);
 	while (true)
 	{
 		if (checkEndCondition(table, ROWS, COLS) == true)

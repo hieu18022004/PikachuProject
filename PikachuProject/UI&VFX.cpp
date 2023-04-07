@@ -173,16 +173,99 @@ void getBackground(char** bg, string mode)
     fstream outfile;
     if (mode == "EZ")
     {
+        bg = new char* [15];
+        for (int i = 0; i < 15; i++)
+        {
+            bg[i] = new char[68];
+        }
         outfile.open("data\\bgEZ.txt", ios::in);
-
+        for (int i = 0; i < 15; i++)
+        {
+            for (int j = 0; j < 68; j++)
+            {
+                outfile >> bg[i];
+            }
+        }
+        outfile.close();
     }
-    if (mode == "MED") outfile.open("data\\bgMED.txt", ios::in);
-    if (mode == "HARD") outfile.open("data\\bgHARD.txt", ios::in);
-    if (mode == "A+") outfile.open("data\\bgEZ.txt", ios::in);
-
+    if (mode == "MED")
+    {
+        bg = new char* [28];
+        for (int i = 0; i < 28; i++)
+        {
+            bg[i] = new char[59];
+        }
+        outfile.open("data\\bgMED.txt", ios::in);
+        for (int i = 0; i < 28; i++)
+        {
+            for (int j = 0; j < 59; j++)
+            {
+                outfile >> bg[i];
+            }
+        }
+        outfile.close();
+    }
+    if (mode == "HARD")
+    {
+        bg = new char* [36];
+        for (int i = 0; i < 36; i++)
+        {
+            bg[i] = new char[69];
+        }
+        outfile.open("data\\bgHARD.txt", ios::in);
+        for (int i = 0; i < 36; i++)
+        {
+            for (int j = 0; j < 69; j++)
+            {
+                outfile >> bg[i];
+            }
+        }
+        outfile.close();
+    }
+    if (mode == "A+")
+    {
+        bg = new char* [39];
+        for (int i = 0; i < 39; i++)
+        {
+            bg[i] = new char[72];
+        }
+        outfile.open("data\\bgA.txt", ios::in);
+        for (int i = 0; i < 39; i++)
+        {
+            for (int j = 0; j < 72; j++)
+            {
+                outfile >> bg[i];
+            }
+        }
+        outfile.close();
+    }
 }
 
-void displayBackground()
+void displayBackground(char** table, const int ROWS, int curX, int curY, const int COLS, char** bg)
 {
+    for (int i = 0; i < ROWS; i++)
+    {
+        for (int j = 0; j < COLS; j++)
+        {
+            if (table[i][j] == ' ')
+            {
+                gotoxy(curX + 1 + j * 8, curY + 1 + i * 4);
+                for (int k = 0; k < 7; k++)
+                {
+                    cout << bg[8 * i + k][j * 4];
+                }
+                gotoxy(curX + 1 + j * 8, curY + 2 + i * 4);
+                for (int k = 0; k < 7; k++)
+                {
+                    cout << bg[8 * i + k][j * 4 + 1];
+                }
 
+                gotoxy(curX + 1 + j * 8, curY + 3 + i * 4);
+                for (int k = 0; k < 7; k++)
+                {
+                    cout << bg[8 * i + k][j * 4 + 2];
+                }
+            }
+        }
+    }
 }
