@@ -18,7 +18,7 @@ int gameInit(string user, string stages, const int ROWS, const int COLS, char** 
 	int DifX = 106 - COLS / 2 * 8 + 32, DifY = 25 - ROWS / 2 * 4;
 	char** table = tableInit(ROWS, COLS);
 	int coordX = 0, coordY = 0, curX = DifX + 4, curY = DifY + 2;
-	printScreen(table, ROWS, COLS, user, stages, DifX, DifY);
+	printScreen(table, ROWS, COLS, user, stages, DifX, DifY, bg);
 	while (true)
 	{
 		if (checkEndCondition(table, ROWS, COLS) == true)
@@ -52,7 +52,7 @@ int gameInit(string user, string stages, const int ROWS, const int COLS, char** 
 			tableShuffle(table, ROWS, COLS);
 			Sleep(1000);
 		}
-		printScreen(table, ROWS, COLS, user, points, stages, DifX, DifY);
+		printScreen(table, ROWS, COLS, user, stages, DifX, DifY, bg);
 		printHighlighted(curX, curY, table, coordX, coordY);
 		cout << endl;
 		switch (_getch())
@@ -151,6 +151,7 @@ int gameInit(string user, string stages, const int ROWS, const int COLS, char** 
 				case KEY_UP:
 				{
 					undoHighlighted(curX1, curY1, table, coordX1, coordY1);
+					displayBackground(table, ROWS, COLS, DifX, DifY, bg);
 					if (coordX1 == 0)
 					{
 						coordX1 = ROWS - 1;
@@ -165,6 +166,7 @@ int gameInit(string user, string stages, const int ROWS, const int COLS, char** 
 				case KEY_DOWN:
 				{
 					undoHighlighted(curX1, curY1, table, coordX1, coordY1);
+					displayBackground(table, ROWS, COLS, DifX, DifY, bg);
 					if (coordX1 == ROWS - 1)
 					{
 						coordX1 = 0;
@@ -178,6 +180,7 @@ int gameInit(string user, string stages, const int ROWS, const int COLS, char** 
 				case KEY_LEFT:
 				{
 					undoHighlighted(curX1, curY1, table, coordX1, coordY1);
+					displayBackground(table, ROWS, COLS, DifX, DifY, bg);
 					if (coordY1 == 0)
 					{
 						coordY1 = COLS - 1;
@@ -194,6 +197,7 @@ int gameInit(string user, string stages, const int ROWS, const int COLS, char** 
 				case KEY_RIGHT:
 				{
 					undoHighlighted(curX1, curY1, table, coordX1, coordY1);
+					displayBackground(table, ROWS, COLS, DifX, DifY, bg);
 					if (coordY1 == COLS - 1)
 					{
 						coordY1 = 0;

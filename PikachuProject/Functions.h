@@ -50,10 +50,10 @@ void removeAll(List& list);
 
 //Functions
 int randomInt(); //ref: https://stackoverflow.com/questions/7560114/random-number-c-in-some-range
-void printTableV2(char** table, const int ROWS, const int COLS,int curX,int curY); //ref:https://cplusplus.com/forum/beginner/248878/
+void printTableV2(char** table, const int ROWS, const int COLS,int curX,int curY, char** bg); //ref:https://cplusplus.com/forum/beginner/248878/
 char** tableInit(const int ROWS, const int COLS);
 void tableShuffle(char** &table, const int ROWS, const int COLS);
-void printScreen(char** table, const int ROWS, const int COLS, string user, int points, int stages, int cordX, int cordY);
+void printScreen(char** table, const int ROWS, const int COLS, string user, string stages, int cordX, int cordY, char** bg);
 
 void gotoxy(int x, int y); //ref:https://stackoverflow.com/questions/55635791/how-to-use-function-gotoxyint-x-int-y
 
@@ -93,8 +93,8 @@ void matchMusic();
 void printCharizardMascot();
 void printVenusaurMascot();
 void printBlastoiseMascot();
-void getBackground(char** bg, string mode);
-void displayBackground(char** table, const int ROWS, int curX, int curY, const int COLS, char** bg);
+char** getBackground( string mode);
+void displayBackground(char** table, const int ROWS, const int COLS, int curX, int curY, char** bg);
 
 //menu and leaderboard
 void printLogo();

@@ -65,8 +65,8 @@ int main()
 			{
 			case 1:
 			{
-				char** bg;
-				getBackground(bg, "EZ");
+				char** bg = getBackground( "EZ");
+				
 				start = chrono::system_clock::now();
 				system("cls");
 				if (gameInit(username, "EASY", EZ_ROWS, EZ_COLS, bg) == 1)
@@ -80,8 +80,8 @@ int main()
 			}
 			case 2:
 			{
-				char** bg;
-				getBackground(bg, "MED");
+				char** bg = getBackground( "MED");
+				
 				start = chrono::system_clock::now();
 				system("cls");
 				if (gameInit(username, "MEDIUM", MED_ROWS, MED_COLS, bg) == 1)
@@ -95,8 +95,8 @@ int main()
 			}
 			case 3:
 			{
-				char** bg;
-				getBackground(bg, "HARD");
+				char** bg = getBackground( "HARD");
+				
 				start = chrono::system_clock::now();
 				system("cls");
 				if (gameInit(username, "HARD", HARD_ROWS, HARD_COLS, bg) == 1)
@@ -110,8 +110,8 @@ int main()
 			}
 			case 4:
 			{
-				char** bg;
-				getBackground(bg, "A+");
+				char** bg = getBackground( "A+");
+
 				start = chrono::system_clock::now();
 				system("cls");
 				if (gameInit(username, "ASIAN", ASIAN_ROWS, ASIAN_COLS, bg) == 1)

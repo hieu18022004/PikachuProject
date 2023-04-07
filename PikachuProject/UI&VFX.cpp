@@ -168,8 +168,9 @@ void printBlastoiseMascot()
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
 }
 
-void getBackground(char** bg, string mode)
+char** getBackground( string mode)
 {
+    char** bg = NULL;
     fstream outfile;
     if (mode == "EZ")
     {
@@ -181,9 +182,11 @@ void getBackground(char** bg, string mode)
         outfile.open("data\\bgEZ.txt", ios::in);
         for (int i = 0; i < 15; i++)
         {
+            string g;
+            getline(outfile,g);
             for (int j = 0; j < 68; j++)
             {
-                outfile >> bg[i];
+                bg[i][j] = g[j];
             }
         }
         outfile.close();
@@ -198,9 +201,11 @@ void getBackground(char** bg, string mode)
         outfile.open("data\\bgMED.txt", ios::in);
         for (int i = 0; i < 28; i++)
         {
+            string g;
+            getline(outfile, g);
             for (int j = 0; j < 59; j++)
             {
-                outfile >> bg[i];
+                bg[i][j] = g[j];
             }
         }
         outfile.close();
@@ -215,9 +220,11 @@ void getBackground(char** bg, string mode)
         outfile.open("data\\bgHARD.txt", ios::in);
         for (int i = 0; i < 36; i++)
         {
+            string g;
+            getline(outfile, g);
             for (int j = 0; j < 69; j++)
             {
-                outfile >> bg[i];
+                bg[i][j] = g[j];
             }
         }
         outfile.close();
@@ -232,16 +239,19 @@ void getBackground(char** bg, string mode)
         outfile.open("data\\bgA.txt", ios::in);
         for (int i = 0; i < 39; i++)
         {
+            string g;
+            getline(outfile, g);
             for (int j = 0; j < 72; j++)
             {
-                outfile >> bg[i];
+                bg[i][j] = g[j];
             }
         }
         outfile.close();
     }
+    return bg;
 }
 
-void displayBackground(char** table, const int ROWS, int curX, int curY, const int COLS, char** bg)
+void displayBackground(char** table, const int ROWS, const int COLS, int curX, int curY, char** bg)
 {
     for (int i = 0; i < ROWS; i++)
     {
@@ -252,18 +262,18 @@ void displayBackground(char** table, const int ROWS, int curX, int curY, const i
                 gotoxy(curX + 1 + j * 8, curY + 1 + i * 4);
                 for (int k = 0; k < 7; k++)
                 {
-                    cout << bg[8 * i + k][j * 4];
+                    cout << bg[4 * i][j * 8 + k];
                 }
                 gotoxy(curX + 1 + j * 8, curY + 2 + i * 4);
                 for (int k = 0; k < 7; k++)
                 {
-                    cout << bg[8 * i + k][j * 4 + 1];
+                    cout << bg[4 * i + 1][j * 8 + k];
                 }
 
                 gotoxy(curX + 1 + j * 8, curY + 3 + i * 4);
                 for (int k = 0; k < 7; k++)
                 {
-                    cout << bg[8 * i + k][j * 4 + 2];
+                    cout << bg[4 * i + 2][j * 8 + k];
                 }
             }
         }
