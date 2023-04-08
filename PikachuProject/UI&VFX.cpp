@@ -291,6 +291,14 @@ void displayBackground(char** table, const int ROWS, const int COLS, int curX, i
                 gotoxy(curX + (j + 1) * 8, curY + 3 + i * 4);
                 cout << bg[i * 3 + 2][7 * (j + 1) + j];
             }
+            if (table[i][j] == table[i + 1][j])
+            {
+                gotoxy(curX + 1 + j * 8, curY + 4 + i * 4);
+                for (int k = 0; k < 7; k++)
+                {
+                    cout << bg[4 * i + 2][j * 8 + k];
+                }
+            }
         }
     }
 }
