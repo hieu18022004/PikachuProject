@@ -51,6 +51,13 @@ int main()
 			system("cls");
 			break;
 		}
+		case 3:
+		{
+			username = "Guest";
+			system("cls");
+			exitFlag = true;
+			break;
+		}
 		}
 	}
 	chrono::time_point<std::chrono::system_clock> start, end;

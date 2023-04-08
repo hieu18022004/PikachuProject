@@ -152,6 +152,8 @@ int joinMenu()
 				cout << "   LOG IN   ";
 				gotoxy(103, 25);
 				cout << "   SIGN UP   ";
+				gotoxy(100, 26);
+				cout << "   Play as Guest   ";
 				switch (choice)
 				{
 				case 1:
@@ -174,12 +176,22 @@ int joinMenu()
 					cout << char(17) << char(196) << char(196);
 					break;
 				}
+				case 3:
+				{
+					gotoxy(100, 26);
+					cout << char(196) << char(196) << char(16);
+					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15 * 9 + 0);
+					cout << "Play as Guest";
+					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+					cout << char(17) << char(196) << char(196);
+					break;
+				}
 				}
 				switch (_getch())
 				{
 				case KEY_DOWN:
 				{
-					if (choice == 2)
+					if (choice == 3)
 					{
 						choice = 1;
 						break;
@@ -191,7 +203,7 @@ int joinMenu()
 				{
 					if (choice == 1)
 					{
-						choice = 2;
+						choice = 3;
 						break;
 					}
 					choice--;
@@ -200,7 +212,6 @@ int joinMenu()
 				case KEY_RETURN:
 				{
 					matchMusic();
-					Sleep(250);
 					return choice;
 				}
 				}
@@ -281,7 +292,6 @@ int launchMenu(string displayname)
 		case KEY_RETURN:
 		{
 			matchMusic();
-			Sleep(250);
 			return choice;
 		}
 		}
@@ -385,7 +395,6 @@ int difficultyMenu()
 			case KEY_RETURN:
 			{
 				matchMusic();
-				Sleep(250);
 				return choice;
 			}
 			}
