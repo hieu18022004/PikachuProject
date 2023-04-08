@@ -296,7 +296,7 @@ void displayBackground(char** table, const int ROWS, const int COLS, int curX, i
                 gotoxy(curX + 1 + j * 8, curY + 4 + i * 4);
                 for (int k = 0; k < 7; k++)
                 {
-                    cout << bg[4 * i + 2][j * 8 + k];
+                    cout << bg[4 * i + 2][j * 8 + k + 1];
                 }
             }
         }
