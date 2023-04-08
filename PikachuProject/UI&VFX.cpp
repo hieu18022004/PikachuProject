@@ -193,17 +193,17 @@ char** getBackground( string mode)
     }
     if (mode == "MED")
     {
-        bg = new char* [28];
-        for (int i = 0; i < 28; i++)
+        bg = new char* [33];
+        for (int i = 0; i < 33; i++)
         {
-            bg[i] = new char[59];
+            bg[i] = new char[90];
         }
         outfile.open("data\\bgMED.txt", ios::in);
-        for (int i = 0; i < 28; i++)
+        for (int i = 0; i < 33; i++)
         {
             string g;
             getline(outfile, g);
-            for (int j = 0; j < 59; j++)
+            for (int j = 0; j < 90; j++)
             {
                 bg[i][j] = g[j];
             }
@@ -212,17 +212,17 @@ char** getBackground( string mode)
     }
     if (mode == "HARD")
     {
-        bg = new char* [36];
-        for (int i = 0; i < 36; i++)
+        bg = new char* [42];
+        for (int i = 0; i < 42; i++)
         {
-            bg[i] = new char[69];
+            bg[i] = new char[120];
         }
         outfile.open("data\\bgHARD.txt", ios::in);
-        for (int i = 0; i < 36; i++)
+        for (int i = 0; i < 42; i++)
         {
             string g;
             getline(outfile, g);
-            for (int j = 0; j < 69; j++)
+            for (int j = 0; j < 120; j++)
             {
                 bg[i][j] = g[j];
             }
@@ -231,17 +231,17 @@ char** getBackground( string mode)
     }
     if (mode == "A+")
     {
-        bg = new char* [39];
-        for (int i = 0; i < 39; i++)
+        bg = new char* [42];
+        for (int i = 0; i < 42; i++)
         {
-            bg[i] = new char[72];
+            bg[i] = new char[132];
         }
         outfile.open("data\\bgA.txt", ios::in);
-        for (int i = 0; i < 39; i++)
+        for (int i = 0; i < 42; i++)
         {
             string g;
             getline(outfile, g);
-            for (int j = 0; j < 72; j++)
+            for (int j = 0; j < 132; j++)
             {
                 bg[i][j] = g[j];
             }
