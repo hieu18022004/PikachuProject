@@ -488,6 +488,7 @@ void displayLeaderboard(pair <string, chrono::duration<double>> leaderboard[], i
 }
 void goodbyeMenu()
 {
+	gotoxy(0, 0);
 	system("cls");
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
 	cout << R"(

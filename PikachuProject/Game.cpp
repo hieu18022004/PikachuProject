@@ -59,10 +59,17 @@ int gameInit(string user, string stages, const int ROWS, const int COLS, char** 
 		{
 		case 'h':
 		{
-			/*random_device rd;
-			mt19937 gen(rd());
-			uniform_int_distribution<> distr(1, 10);
-			if (distr(gen) == 4) return 0;*/
+			if (ROWS == ASIAN_ROWS && COLS == ASIAN_COLS)
+			{
+				random_device rd;
+				mt19937 gen(rd());
+				uniform_int_distribution<> distr(1, 10);
+				if (distr(gen) == 4)
+				{
+					goodbyeMenu();
+					exit(1);
+				}
+			}
 			if (Help(table, ROWS, COLS, DifX, DifY) == 1)
 			{
 				system("cls");
