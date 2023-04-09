@@ -90,6 +90,7 @@ int gameInit(string user, string stages, const int ROWS, const int COLS, char** 
 void ShowConsoleCursor(bool showFlag);
 void playBG(bool flag);
 void matchMusic();
+void selectMusic();
 void printCharizardMascot();
 void printVenusaurMascot();
 void printBlastoiseMascot();

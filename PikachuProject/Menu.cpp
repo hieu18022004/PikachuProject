@@ -211,7 +211,7 @@ int joinMenu()
 				}
 				case KEY_RETURN:
 				{
-					matchMusic();
+					selectMusic();
 					return choice;
 				}
 				}
@@ -291,7 +291,7 @@ int launchMenu(string displayname)
 		}
 		case KEY_RETURN:
 		{
-			matchMusic();
+			selectMusic();
 			return choice;
 		}
 		}
@@ -394,7 +394,7 @@ int difficultyMenu()
 			}
 			case KEY_RETURN:
 			{
-				matchMusic();
+				selectMusic();
 				return choice;
 			}
 			}

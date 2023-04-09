@@ -35,6 +35,15 @@ void matchMusic()
     mciSendString(TEXT("close match"), NULL, 0, NULL);
 }
 
+void selectMusic()
+{
+    mciSendString(TEXT(" open \"music\\select.mp3\" type mpegvideo alias select"), NULL, 0, NULL);
+    mciSendString(TEXT("setaudio select volume to 1000"), NULL, 0, NULL);
+    mciSendString(TEXT("play select wait"), NULL, 0, NULL);
+    mciSendString(TEXT("close select"), NULL, 0, NULL);
+}
+
+
 void printCharizardMascot()
 {
     gotoxy(0, 0);
