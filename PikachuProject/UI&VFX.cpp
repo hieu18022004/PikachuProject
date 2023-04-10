@@ -360,24 +360,39 @@ void displayBackground(char** table, const int ROWS, const int COLS, int curX, i
     }
     for (int i = 0; i < ROWS - 1; i++)
     {
+        for (int j = 0; j < COLS; j++)
+        {
+            if (table[i][j] == table[i + 1][j] && table[i][j] == ' ')
+            {
+                if (j == COLS - 1)
+                {
+                    gotoxy(curX + 1 + j * 8, curY + 4 + i * 4);
+                    for (int k = 0; k < 6; k++)
+                    {
+                        cout << bg[4 * i + 3][j * 8 + k];
+                    }
+                    break;
+                }
+                gotoxy(curX + 1 + j * 8, curY + 4 + i * 4);
+                for (int k = 0; k <= 7; k++)
+                {
+                    cout << bg[4 * i + 3][j * 8 + k];
+                }
+            }
+        }
+    }
+    for (int i = 0; i < ROWS; i++)
+    {
         for (int j = 0; j < COLS - 1; j++)
         {
             if (table[i][j] == table[i][j + 1] && table[i][j] == ' ')
             {
                 gotoxy(curX + (j + 1) * 8, curY + 1 + i * 4);
-                cout << bg[i * 3][7 * (j + 1) + j];
+                cout << bg[i * 4][8 * (j + 1) - 1];
                 gotoxy(curX + (j + 1) * 8, curY + 2 + i * 4);
-                cout << bg[i * 3 + 1][7 * (j + 1) + j];
+                cout << bg[i * 4 + 1][8 * (j + 1) - 1];
                 gotoxy(curX + (j + 1) * 8, curY + 3 + i * 4);
-                cout << bg[i * 3 + 2][7 * (j + 1) + j];
-            }
-            if (table[i][j] == table[i + 1][j] && table[i][j] == ' ')
-            {
-                gotoxy(curX + 1 + j * 8, curY + 4 + i * 4);
-                for (int k = 0; k < 7; k++)
-                {
-                    cout << bg[4 * i + 2][j * 8 + k + 1];
-                }
+                cout << bg[i * 4 + 2][8 * (j + 1) - 1];
             }
         }
     }
