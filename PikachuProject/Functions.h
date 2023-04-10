@@ -37,6 +37,13 @@ struct List {
     Node* pHead = NULL;
 };
 
+// Struct to store player information
+struct LogIn
+{
+    string username;
+    string password;
+};
+
 //list
 Node* nodeCreate(int x, int y);
 bool emptyCheck(List list);
@@ -109,17 +116,6 @@ int difficultyMenu();
 void gameFinishAnnounce(chrono::duration<double> elapsed_seconds);
 void displayLeaderboard(pair <string, chrono::duration<double>> leaderboard[], int size);
 void goodbyeMenu();
-
-
-// Struct to store player information
-struct LogIn 
-{
-    string username;
-    string password;
-};
-
-
-
 
 //void saveGameData();
 void SignUp();
