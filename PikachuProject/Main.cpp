@@ -56,7 +56,6 @@ int main()
 			username = "Guest";
 			system("cls");
 			exitFlag = true;
-			playBG(false);
 			break;
 		}
 		}
