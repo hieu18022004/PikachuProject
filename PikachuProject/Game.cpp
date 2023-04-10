@@ -23,6 +23,7 @@ int gameInit(string user, string stages, const int ROWS, const int COLS, char** 
 	{
 		if (checkEndCondition(table, ROWS, COLS) == true)
 		{
+			gameFinishMusic();
 			for (int i = 0; i < ROWS; i++)
 			{
 				delete[] table[i];
