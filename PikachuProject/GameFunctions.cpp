@@ -1229,5 +1229,3 @@ void asianDif(char** &table, const int ROWS, const int COLS)
         }
     }
 }
-
-//timer

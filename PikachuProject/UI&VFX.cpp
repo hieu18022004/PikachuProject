@@ -29,7 +29,7 @@ void playBG(bool flag)
 
 void matchMusic()
 {
-    mciSendString(TEXT(" open \"music\\match.wav\" type waveaudio alias match"), NULL, 0, NULL);
+    mciSendString(TEXT(" open \"music\\match.mp3\" type mpegvideo alias match"), NULL, 0, NULL);
     mciSendString(TEXT("setaudio match volume to 1000"), NULL, 0, NULL);
     mciSendString(TEXT("play match wait"), NULL, 0, NULL);
     mciSendString(TEXT("close match"), NULL, 0, NULL);
@@ -50,6 +50,16 @@ void gameFinishMusic()
     mciSendString(TEXT("setaudio endgame volume to 1000"), NULL, 0, NULL);
     mciSendString(TEXT("play endgame wait"), NULL, 0, NULL);
     mciSendString(TEXT("close endgame"), NULL, 0, NULL);
+    playBG(true);
+}
+
+void roundstartMusic()
+{
+    playBG(false);
+    mciSendString(TEXT(" open \"music\\roundstart.mp3\" type mpegvideo alias start"), NULL, 0, NULL);
+    mciSendString(TEXT("setaudio start volume to 1000"), NULL, 0, NULL);
+    mciSendString(TEXT("play start wait"), NULL, 0, NULL);
+    mciSendString(TEXT("close start"), NULL, 0, NULL);
     playBG(true);
 }
 
@@ -268,6 +278,42 @@ char** getBackground( string mode)
         outfile.close();
     }
     return bg;
+}
+
+void deleteBackground(char** bg, string mode)
+{
+    if (mode == "EZ")
+    {
+        for (int i = 0; i < 15; i++)
+        {
+            delete[] bg[i];
+        }
+        delete[] bg;
+    }
+    if (mode == "MED")
+    {
+        for (int i = 0; i < 33; i++)
+        {
+            delete[] bg[i];
+        }
+        delete[] bg;
+    }
+    if (mode == "HARD")
+    {
+        for (int i = 0; i < 42; i++)
+        {
+            delete[] bg[i];
+        }
+        delete[] bg;
+    }
+    if (mode == "A+")
+    {
+        for (int i = 0; i < 42; i++)
+        {
+            delete[] bg[i];
+        }
+        delete[] bg;
+    }
 }
 
 void displayBackground(char** table, const int ROWS, const int COLS, int curX, int curY, char** bg)

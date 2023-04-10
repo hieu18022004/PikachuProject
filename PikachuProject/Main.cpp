@@ -73,7 +73,7 @@ int main()
 			case 1:
 			{
 				char** bg = getBackground( "EZ");
-				
+				roundstartMusic();
 				start = chrono::system_clock::now();
 				system("cls");
 				if (gameInit(username, "EASY", EZ_ROWS, EZ_COLS, bg) == 1)
@@ -82,13 +82,14 @@ int main()
 					chrono::duration<double> elapsed_seconds = end - start;
 					gameFinishAnnounce(elapsed_seconds);
 					updateLeaderboard(leaderboardEZ, 10, username, elapsed_seconds);
+					deleteBackground(bg, "EZ");
 				}
 				break;
 			}
 			case 2:
 			{
 				char** bg = getBackground( "MED");
-				
+				roundstartMusic();
 				start = chrono::system_clock::now();
 				system("cls");
 				if (gameInit(username, "MEDIUM", MED_ROWS, MED_COLS, bg) == 1)
@@ -97,13 +98,14 @@ int main()
 					chrono::duration<double> elapsed_seconds = end - start;
 					gameFinishAnnounce(elapsed_seconds);
 					updateLeaderboard(leaderboardMED, 10, username, elapsed_seconds);
+					deleteBackground(bg, "MED");
 				}
 				break;
 			}
 			case 3:
 			{
 				char** bg = getBackground( "HARD");
-				
+				roundstartMusic();
 				start = chrono::system_clock::now();
 				system("cls");
 				if (gameInit(username, "HARD", HARD_ROWS, HARD_COLS, bg) == 1)
@@ -112,13 +114,14 @@ int main()
 					chrono::duration<double> elapsed_seconds = end - start;
 					gameFinishAnnounce(elapsed_seconds);
 					updateLeaderboard(leaderboardHARD, 10, username, elapsed_seconds);
+					deleteBackground(bg, "HARD");
 				}
 				break;
 			}
 			case 4:
 			{
 				char** bg = getBackground( "A+");
-
+				roundstartMusic();
 				start = chrono::system_clock::now();
 				system("cls");
 				if (gameInit(username, "ASIAN", ASIAN_ROWS, ASIAN_COLS, bg) == 1)
@@ -127,6 +130,7 @@ int main()
 					chrono::duration<double> elapsed_seconds = end - start;
 					gameFinishAnnounce(elapsed_seconds);
 					updateLeaderboard(leaderboardA, 10, username, elapsed_seconds);
+					deleteBackground(bg, "A+");
 				}
 				break;
 			}
