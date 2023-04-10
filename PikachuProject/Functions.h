@@ -117,7 +117,7 @@ void gameFinishAnnounce(chrono::duration<double> elapsed_seconds);
 void displayLeaderboard(pair <string, chrono::duration<double>> leaderboard[], int size);
 void goodbyeMenu();
 
-//void saveGameData();
+//Data save
 void SignUp();
 bool SignIn(string& displayname);
 void saveScoreLeaderboard(pair<string, chrono::duration<double>> leaderboard[], int size, string mode);
