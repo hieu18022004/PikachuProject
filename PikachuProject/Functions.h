@@ -110,14 +110,6 @@ void gameFinishAnnounce(chrono::duration<double> elapsed_seconds);
 void displayLeaderboard(pair <string, chrono::duration<double>> leaderboard[], int size);
 void goodbyeMenu();
 
-// Data and player infor
-struct Player 
-{
-    char name[50];
-    int yearOfBirth;
-    int records;
-    int saveStages;
-};
 
 // Struct to store player information
 struct LogIn 
@@ -126,19 +118,7 @@ struct LogIn
     string password;
 };
 
-// Struct to store game information
-struct Game 
-{
-    string account;
-    int currentStage;
-};
 
-// Struct to store leaderboard entry
-struct LeaderboardEntry 
-{
-    string username;
-    int timeTaken;
-};
 
 
 //void saveGameData();
