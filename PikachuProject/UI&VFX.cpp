@@ -43,6 +43,16 @@ void selectMusic()
     mciSendString(TEXT("close select"), NULL, 0, NULL);
 }
 
+void gameFinishMusic()
+{
+    playBG(false);
+    mciSendString(TEXT(" open \"music\\endgame.mp3\" type mpegvideo alias endgame"), NULL, 0, NULL);
+    mciSendString(TEXT("setaudio endgame volume to 1000"), NULL, 0, NULL);
+    mciSendString(TEXT("play endgame wait"), NULL, 0, NULL);
+    mciSendString(TEXT("close endgame"), NULL, 0, NULL);
+    playBG(true);
+}
+
 
 void printCharizardMascot()
 {

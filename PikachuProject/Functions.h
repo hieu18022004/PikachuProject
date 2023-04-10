@@ -91,6 +91,7 @@ void ShowConsoleCursor(bool showFlag);
 void playBG(bool flag);
 void matchMusic();
 void selectMusic();
+void gameFinishMusic();
 void printCharizardMascot();
 void printVenusaurMascot();
 void printBlastoiseMascot();

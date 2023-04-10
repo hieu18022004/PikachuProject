@@ -403,6 +403,7 @@ int difficultyMenu()
 }
 void gameFinishAnnounce(chrono::duration<double> elapsed_seconds)
 {
+	gameFinishMusic();
 	gotoxy(0, 0);
 	printLogo();
 	gotoxy(106 - 7, 24);
