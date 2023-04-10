@@ -27,6 +27,21 @@ void playBG(bool flag)
     }
 }
 
+void playBGAsian(bool flag)
+{
+    mciSendString(TEXT(" open \"music\\asian.mp3\" type mpegvideo alias mp3"), NULL, 0, NULL);
+    if (flag)
+    {
+        mciSendString(TEXT("setaudio mp3 volume to 250"), NULL, 0, NULL);
+        mciSendString(TEXT("play mp3 repeat"), NULL, 0, NULL);
+    }
+    if (!flag)
+    {
+        mciSendString(TEXT("close mp3"), NULL, 0, NULL);
+    }
+}
+
+
 void matchMusic()
 {
     mciSendString(TEXT(" open \"music\\match.mp3\" type mpegvideo alias match"), NULL, 0, NULL);

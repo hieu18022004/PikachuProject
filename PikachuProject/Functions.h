@@ -89,6 +89,7 @@ int gameInit(string user, string stages, const int ROWS, const int COLS, char** 
 // UI & VFX Funcs
 void ShowConsoleCursor(bool showFlag);
 void playBG(bool flag);
+void playBGAsian(bool flag);
 void matchMusic();
 void selectMusic();
 void gameFinishMusic();
@@ -97,7 +98,7 @@ void printCharizardMascot();
 void printVenusaurMascot();
 void printBlastoiseMascot();
 char** getBackground( string mode);
-void deleteBackground(char** bg, string mode)
+void deleteBackground(char** bg, string mode);
 void displayBackground(char** table, const int ROWS, const int COLS, int curX, int curY, char** bg);
 
 //menu and leaderboard

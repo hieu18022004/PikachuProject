@@ -120,6 +120,8 @@ int main()
 			}
 			case 4:
 			{
+				playBG(false);
+				playBGAsian(true);
 				char** bg = getBackground( "A+");
 				roundstartMusic();
 				start = chrono::system_clock::now();
@@ -131,6 +133,8 @@ int main()
 					gameFinishAnnounce(elapsed_seconds);
 					updateLeaderboard(leaderboardA, 10, username, elapsed_seconds);
 					deleteBackground(bg, "A+");
+					playBGAsian(false);
+					playBG(true);
 				}
 				break;
 			}
