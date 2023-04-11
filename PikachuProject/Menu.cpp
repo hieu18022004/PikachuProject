@@ -1,5 +1,6 @@
 #include "Functions.h"
 using namespace std;
+//print the logo and title
 void printLogo()
 {
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
@@ -139,6 +140,7 @@ void printLogo()
 	}
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
 }
+//print the log in and sign up menu
 int joinMenu()
 {
 	{
@@ -219,6 +221,7 @@ int joinMenu()
 		}
 	}
 }
+//print the game main menu
 int launchMenu(string displayname)
 {
 	int choice = 1;
@@ -297,6 +300,7 @@ int launchMenu(string displayname)
 		}
 	}
 }
+//print the menu to choose difficulty
 int difficultyMenu()
 {
 	{
@@ -401,6 +405,7 @@ int difficultyMenu()
 		}
 	}
 }
+//print the announcement when finished the game and game completing time
 void gameFinishAnnounce(chrono::duration<double> elapsed_seconds)
 {
 	gotoxy(0, 0);
@@ -411,6 +416,7 @@ void gameFinishAnnounce(chrono::duration<double> elapsed_seconds)
 	cout << "THE GAME TOOK YOU " << elapsed_seconds.count() << "s TO FINISH IT!";
 	_getch();
 }
+//print the leaderboard
 void displayLeaderboard(pair <string, chrono::duration<double>> leaderboard[], int size)
 {
 	system("cls");
@@ -486,6 +492,7 @@ void displayLeaderboard(pair <string, chrono::duration<double>> leaderboard[], i
 
 	_getch();
 }
+//print the exit menu
 void goodbyeMenu()
 {
 	gotoxy(0, 0);

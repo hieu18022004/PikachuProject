@@ -1,7 +1,7 @@
 #include "Functions.h"
 using namespace std;
 
-
+//whether or not displaying the console cursor
 void ShowConsoleCursor(bool showFlag) //hide cursor ref:https://stackoverflow.com/questions/18028808/remove-blinking-underscore-on-console-cmd-prompt
 {
     HANDLE out = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -12,7 +12,7 @@ void ShowConsoleCursor(bool showFlag) //hide cursor ref:https://stackoverflow.co
     cursorInfo.bVisible = showFlag; // set the cursor visibility
     SetConsoleCursorInfo(out, &cursorInfo);
 }
-
+//play normal background music
 void playBG(bool flag)
 {
     mciSendString(TEXT(" open \"music\\BG.mp3\" type mpegvideo alias mp3"), NULL, 0, NULL);
@@ -26,7 +26,7 @@ void playBG(bool flag)
         mciSendString(TEXT("close mp3"), NULL, 0, NULL);
     }
 }
-
+//play asian mode's background music
 void playBGAsian(bool flag)
 {
     mciSendString(TEXT(" open \"music\\asian.mp3\" type mpegvideo alias mp3"), NULL, 0, NULL);
@@ -40,8 +40,7 @@ void playBGAsian(bool flag)
         mciSendString(TEXT("close mp3"), NULL, 0, NULL);
     }
 }
-
-
+//play the sound when successfully match a pair
 void matchMusic()
 {
     mciSendString(TEXT(" open \"music\\match.mp3\" type mpegvideo alias match"), NULL, 0, NULL);
@@ -49,7 +48,7 @@ void matchMusic()
     mciSendString(TEXT("play match wait"), NULL, 0, NULL);
     mciSendString(TEXT("close match"), NULL, 0, NULL);
 }
-
+//play the sound when you select an item in menu
 void selectMusic()
 {
     mciSendString(TEXT(" open \"music\\select.mp3\" type mpegvideo alias select"), NULL, 0, NULL);
@@ -57,7 +56,7 @@ void selectMusic()
     mciSendString(TEXT("play select wait"), NULL, 0, NULL);
     mciSendString(TEXT("close select"), NULL, 0, NULL);
 }
-
+//play music when a player finishes the game
 void gameFinishMusic()
 {
     playBG(false);
@@ -67,7 +66,7 @@ void gameFinishMusic()
     mciSendString(TEXT("close endgame"), NULL, 0, NULL);
     playBG(true);
 }
-
+//play music when a game start
 void roundstartMusic()
 {
     playBG(false);
@@ -77,8 +76,7 @@ void roundstartMusic()
     mciSendString(TEXT("close start"), NULL, 0, NULL);
     playBG(true);
 }
-
-
+//print the mascots
 void printCharizardMascot()
 {
     gotoxy(0, 0);
@@ -126,7 +124,6 @@ void printCharizardMascot()
                  / ,"'"\,'               `/  `-.|" )";
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
 }
-
 void printVenusaurMascot()
 {
     gotoxy(0, 0);
@@ -166,7 +163,6 @@ void printVenusaurMascot()
               \_/"""-'                           `-'--(_,`"`-`)";
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
 }
-
 void printBlastoiseMascot()
 {
     gotoxy(0, 0);
@@ -211,7 +207,7 @@ void printBlastoiseMascot()
                         --------""' )";
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
 }
-
+//get corresponding background from file
 char** getBackground( string mode)
 {
     char** bg = NULL;
@@ -294,7 +290,7 @@ char** getBackground( string mode)
     }
     return bg;
 }
-
+//delete the background
 void deleteBackground(char** bg, string mode)
 {
     if (mode == "EZ")
@@ -330,7 +326,7 @@ void deleteBackground(char** bg, string mode)
         delete[] bg;
     }
 }
-
+//display background when pairs disappear
 void displayBackground(char** table, const int ROWS, const int COLS, int curX, int curY, char** bg)
 {
     for (int i = 0; i < ROWS; i++)

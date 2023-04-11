@@ -1,7 +1,7 @@
 ﻿#include "Functions.h"
 using namespace std;
 
-
+//go to (x,y) coordinate of the console
 void gotoxy(int x, int y) {
     HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
     COORD cursorCoord;
@@ -10,7 +10,7 @@ void gotoxy(int x, int y) {
     SetConsoleCursorPosition(consoleHandle, cursorCoord);
     
 }
-
+//highlight the square 
 void printHighlighted(int curX, int curY, char** table, int cordX, int cordY)
 {
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 116);
@@ -22,7 +22,7 @@ void printHighlighted(int curX, int curY, char** table, int cordX, int cordY)
     cout << "       ";
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
 }
-
+//unhighlight the square
 void undoHighlighted(int curX, int curY, char** table, int cordX, int cordY)
 {
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
@@ -33,7 +33,7 @@ void undoHighlighted(int curX, int curY, char** table, int cordX, int cordY)
     gotoxy(curX - 3, curY + 1);
     cout << "       ";
 }
-
+//random integer numbers in a specific range
 int randomInt()
 {
     random_device rd;
@@ -41,7 +41,7 @@ int randomInt()
     uniform_int_distribution<> distr(65, 90);
     return distr(gen);
 } 
-
+//shuffle the table
 void tableShuffle(char** &table, const int ROWS, const int COLS)
 {
     char* setChar = new char[ROWS * COLS];
@@ -92,7 +92,7 @@ void tableShuffle(char** &table, const int ROWS, const int COLS)
         }
     }
 }
-
+//print the table 
 void printTableV2(char** table, const int ROWS, const int COLS, int curX, int curY, char** bg) //ref https://cplusplus.com/forum/beginner/248878/
 {
     //print table
@@ -159,7 +159,7 @@ void printTableV2(char** table, const int ROWS, const int COLS, int curX, int cu
     cout << char(188);
     displayBackground(table, ROWS, COLS, curX, curY, bg);
 }
-
+//print the screen (it includes printTableV2)
 void printScreen(char** table, const int ROWS, const int COLS, string user, string stages, int cordX, int cordY, char** bg)
 {
     gotoxy(0, 0);
@@ -168,7 +168,7 @@ void printScreen(char** table, const int ROWS, const int COLS, string user, stri
     gotoxy(cordX, cordY);
     printTableV2(table, ROWS, COLS, cordX, cordY, bg);
 }
-
+//initiate game board
 char** tableInit(const int ROWS, const int COLS)
 {
     char** table = new char* [ROWS];
@@ -203,6 +203,7 @@ char** tableInit(const int ROWS, const int COLS)
 }
 
 //path check
+//check I shaped path
 bool ICheck(COORD start, COORD end, char** table)
 {
     if (start.X == end.X)
@@ -245,7 +246,7 @@ bool ICheck(COORD start, COORD end, char** table)
     }
     return false;
 }
-
+//check L shaped path (ICheck included) and print the path
 bool LCheck(COORD start, COORD end, char** table, int cordX, int cordY)
 {
     COORD corner;
@@ -267,7 +268,7 @@ bool LCheck(COORD start, COORD end, char** table, int cordX, int cordY)
     }
     return false;
 }
-
+//check Z shaped path (ICheck included) and print the path
 bool ZCheck(COORD start, COORD end, char** table, int cordX, int cordY)
 {
     COORD corner1, corner2;
@@ -339,12 +340,12 @@ bool ZCheck(COORD start, COORD end, char** table, int cordX, int cordY)
     }
     return false;
 }
-
+//check if a coordinate is within the game board
 bool validCheck(COORD corner, const int ROWS, const int COLS)
 {
     return corner.X >= 0 && corner.X < ROWS && corner.Y >= 0 && corner.Y < COLS;
 }
-
+//check U shaped path (ICheck included) and print the path
 bool UCheck(COORD start, COORD end, char** table, const int ROWS, const int COLS, int cordX, int cordY)
 {
     COORD corner1, corner2;
@@ -673,6 +674,7 @@ bool UCheck(COORD start, COORD end, char** table, const int ROWS, const int COLS
     return false;
 }
  //path print
+//print I shaped path
 void pathI(COORD start, COORD end, int cordX, int cordY)
 {
     if (start.X == end.X)
@@ -718,6 +720,7 @@ void pathI(COORD start, COORD end, int cordX, int cordY)
         }
     }
 }
+//print path when a pair lying in the board's margin is matched 
 void marginPath(COORD coord, COORD coord1, const int ROWS, const int COLS, int cordX, int cordY)
 {
     if (coord.X == 0 && coord1.X == 0)
@@ -769,7 +772,7 @@ void marginPath(COORD coord, COORD coord1, const int ROWS, const int COLS, int c
         return;
     }
 }
-
+//print the corner of a path
 void pathCorner(COORD start, COORD corner, COORD end, int cordX, int cordY)
 {
     for (int i = 0; i < 2; i++)
@@ -804,6 +807,7 @@ void pathCorner(COORD start, COORD corner, COORD end, int cordX, int cordY)
 }
 
 //help move
+//check L shaped path (ICheck included) but not print the path
 bool L_Availability(COORD start, COORD end, char** table)
 {
     COORD corner;
@@ -819,7 +823,7 @@ bool L_Availability(COORD start, COORD end, char** table)
     }
     return false;
 }
-
+//check Z shaped path (ICheck included) but not print the path
 bool Z_Availability(COORD start, COORD end, char** table)
 {
     COORD corner1, corner2;
@@ -871,7 +875,7 @@ bool Z_Availability(COORD start, COORD end, char** table)
     }
     return false;
 }
-
+//check U shaped path (ICheck included) but not print the path
 bool U_Availability(COORD start, COORD end, char** table, const int ROWS, const int COLS)
 {
     COORD corner1, corner2;
@@ -1107,7 +1111,7 @@ bool U_Availability(COORD start, COORD end, char** table, const int ROWS, const 
     }
     return false;
 }
-
+//check if there is a valid pair
 bool moveAvailability(char** table, const int ROWS, const int COLS)
 {
     for (int i = 0; i < ROWS; i++)
@@ -1153,7 +1157,7 @@ bool moveAvailability(char** table, const int ROWS, const int COLS)
     }
     return false;
 }
-
+//display a valid pair (for help feature)
 int Help(char** table,const int ROWS, const int COLS, int DifX,int DifY)
 {
     for (int i = 0; i < ROWS; i++)
@@ -1209,12 +1213,14 @@ int Help(char** table,const int ROWS, const int COLS, int DifX,int DifY)
 }
 
 //ASIAN Difficulty
+//swap two char variables
 void swapChar(char &a, char &b)
 {
     char temp = a;
     a = b;
     b = temp;
 }
+//sliding down columns
 void asianDif(char** &table, const int ROWS, const int COLS)
 {
     for (int j = 0; j < COLS; j++)

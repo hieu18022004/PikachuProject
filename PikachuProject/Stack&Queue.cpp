@@ -1,6 +1,6 @@
 #include "Functions.h"
 using namespace std;
-
+//create a node
 Node* nodeCreate(int x, int y)
 {
 	Node* pNew = new Node;
@@ -9,7 +9,7 @@ Node* nodeCreate(int x, int y)
 	pNew->pNext = NULL;
 	return pNew;
 }
-
+//get the size of a list
 int getSize(List list)
 {
 	if (emptyCheck(list))
@@ -25,7 +25,7 @@ int getSize(List list)
 	}
 	return n;
 }
-
+//remove list
 void removeAll(List& list)
 {
 	if (list.pHead == NULL)
@@ -49,7 +49,7 @@ void removeAll(List& list)
 	}
 	list.pHead = NULL;
 }
-
+//check if the list is empty
 bool emptyCheck(List list)
 {
 	if (list.pHead == NULL)
@@ -58,7 +58,7 @@ bool emptyCheck(List list)
 	}
 	return false;
 }
-
+//push to the head of a linked list
 void headPush(List& list, int x, int y)
 {
 	if (list.pHead == NULL)
@@ -72,7 +72,7 @@ void headPush(List& list, int x, int y)
 	list.pHead = pNew;
 	return;
 }
-
+//push to the tail
 void tailPush(List& list, int x, int y)
 {
 	if (list.pHead == NULL)
@@ -85,7 +85,7 @@ void tailPush(List& list, int x, int y)
 		pCur = pCur->pNext;
 	pCur->pNext = nodeCreate(x, y);
 }
-
+//pop the head of teh linked list
 COORD headPop(List& list)
 {
 	COORD data;
@@ -103,7 +103,7 @@ COORD headPop(List& list)
 	list.pHead = pCur;
 	return data;
 }
-
+//get the head of a linked list
 COORD headGet(List list)
 {
 	COORD data;
@@ -118,7 +118,7 @@ COORD headGet(List list)
 	data.Y = pCur->n.Y;
 	return data;
 }
-
+//get the tail of a linked list
 COORD tailGet(List list)
 {
 	COORD data;

@@ -1,6 +1,6 @@
 #include "Functions.h"
 using namespace std;
-
+//check if the game is ended or not
 bool checkEndCondition(char** table, const int ROWS, const int COLS)
 {
 	for (int i = 0; i < ROWS; i++)
@@ -12,7 +12,7 @@ bool checkEndCondition(char** table, const int ROWS, const int COLS)
 	}
 	return true;
 }
-
+//initiate the game
 int gameInit(string user, string stages, const int ROWS, const int COLS, char** bg)
 {
 	int DifX = 106 - COLS / 2 * 8 + 32, DifY = 25 - ROWS / 2 * 4;
