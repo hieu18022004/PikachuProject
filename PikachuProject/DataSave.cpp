@@ -3,31 +3,6 @@
 
 using namespace std;
 
-/*void saveGameData()
-{
-    Player player;
-    cout << "Enter player name: ";
-    cin.getline(player.name, 50);
-    cout << "Enter year of birth: ";
-    cin >> player.yearOfBirth;
-    cout << "Enter records: ";
-    cin >> player.records;
-    cout << "Enter save stages: ";
-    cin >> player.saveStages;
-
-    ofstream outFile("savegame.bin", ios::binary);
-    if (outFile) 
-    {
-        outFile.write(reinterpret_cast<char*>(&player), sizeof(player));
-        //cout << "Game data saved successfully." << endl;
-    }
-    else 
-    {
-        //cout << "Error!" << endl;
-    }
-    outFile.close();
-}*/
-
 void SignUp() 
 {
     string username, password;
@@ -103,19 +78,6 @@ bool SignIn(string &displayname)
         return false;
     }
 }
-
-
-/*void addUserToLeaderboard(const string& username)
-{
-    LogIn player = { username };
-    ofstream outfile("userleaderboard.bin", ios::binary | ios::app);
-    if (outfile.is_open())
-    {
-        // Ghi thông tin người chơi vào file binary
-        outfile.write((char*)&player, sizeof(LogIn));
-        outfile.close();
-    }
-}*/
 
 void saveScoreLeaderboard(pair<string, chrono::duration<double>> leaderboard[], int size, string mode)
 {
