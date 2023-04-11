@@ -2,7 +2,7 @@
 #include "Functions.h"
 
 using namespace std;
-
+//signing up and save account to a file
 void SignUp() 
 {
     string username, password;
@@ -33,7 +33,7 @@ void SignUp()
     cin.get();
     cin.ignore();
 }
-
+//signing in using accounts in a file
 bool SignIn(string &displayname)
 {
     string username, password;
@@ -78,7 +78,7 @@ bool SignIn(string &displayname)
         return false;
     }
 }
-
+//save score to the leaderboard of corresponding mode to a specific file
 void saveScoreLeaderboard(pair<string, chrono::duration<double>> leaderboard[], int size, string mode)
 {
     //ref: https://www.geeksforgeeks.org/reinterpret_cast-in-c-type-casting-operators/
@@ -97,7 +97,7 @@ void saveScoreLeaderboard(pair<string, chrono::duration<double>> leaderboard[], 
     }
     outfile.close();
 }
-
+//save score to the leaderboard of corresponding mode to a specific file
 void loadScoreLeaderboard(pair <string, chrono::duration<double>> leaderboard[], int size, string mode)
 {
     fstream infile;
@@ -119,7 +119,7 @@ void loadScoreLeaderboard(pair <string, chrono::duration<double>> leaderboard[],
     }
     infile.close();
 }
-
+//initiate the leaderboard (first time uses only)
 void leaderboardInit(pair <string, chrono::duration<double>> leaderboard[], int size)
 {
     for (int i = 0; i < size; i++)
@@ -128,7 +128,7 @@ void leaderboardInit(pair <string, chrono::duration<double>> leaderboard[], int 
         leaderboard[i].second = 99999999999999999s;
     }
 }
-
+//update the leaderboard after a game
 int updateLeaderboard(pair<string, chrono::duration<double>> leaderboard[], int size, string name, chrono::duration<double> time_elapsed)
 {
     if (time_elapsed.count() > leaderboard[size - 1].second.count())
@@ -159,7 +159,6 @@ int updateLeaderboard(pair<string, chrono::duration<double>> leaderboard[], int 
         leaderboard[i] = newboard[i];
     }
 }
-
 //convert ascii art in file txt to file .bin
 //ascii_art.txt & ascii_art.bin
 void convertTxtToBin(const char* txtFileName, const char* binFileName) 
@@ -190,7 +189,6 @@ void convertTxtToBin(const char* txtFileName, const char* binFileName)
 
     output.close(); 
 }
-
 void displayAsciiArt(const char* fileName) 
 {
     ifstream file(fileName, ios::in | ios::binary);
