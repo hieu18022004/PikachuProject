@@ -21,16 +21,6 @@ int gameInit(string user, string stages, const int ROWS, const int COLS, char** 
 	printScreen(table, ROWS, COLS, user, stages, DifX, DifY, bg);
 	while (true)
 	{
-		if (checkEndCondition(table, ROWS, COLS) == true)
-		{
-			gameFinishMusic();
-			for (int i = 0; i < ROWS; i++)
-			{
-				delete[] table[i];
-			}
-			delete[] table;
-			return 1;
-		}
 		if (ROWS == EZ_ROWS && COLS == EZ_COLS)
 		{
 			printVenusaurMascot();
@@ -43,6 +33,18 @@ int gameInit(string user, string stages, const int ROWS, const int COLS, char** 
 		{
 			printBlastoiseMascot();
 		}
+		if (checkEndCondition(table, ROWS, COLS) == true)
+		{
+			printScreen(table, ROWS, COLS, user, stages, DifX, DifY, bg);
+			displayBackground(table, ROWS, COLS, DifX, DifY, bg);
+			gameFinishMusic();
+			for (int i = 0; i < ROWS; i++)
+			{
+				delete[] table[i];
+			}
+			delete[] table;
+			return 1;
+		}
 		FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
 		if (ROWS == ASIAN_ROWS && COLS == ASIAN_COLS) asianDif(table, ROWS, COLS);
 		if (moveAvailability(table, ROWS, COLS) == false)
@@ -54,6 +56,7 @@ int gameInit(string user, string stages, const int ROWS, const int COLS, char** 
 			Sleep(1000);
 		}
 		printScreen(table, ROWS, COLS, user, stages, DifX, DifY, bg);
+		displayBackground(table, ROWS, COLS, DifX, DifY, bg);
 		printHighlighted(curX, curY, table, coordX, coordY);
 		cout << endl;
 		switch (_getch())
@@ -159,7 +162,6 @@ int gameInit(string user, string stages, const int ROWS, const int COLS, char** 
 				case KEY_UP:
 				{
 					undoHighlighted(curX1, curY1, table, coordX1, coordY1);
-					displayBackground(table, ROWS, COLS, DifX, DifY, bg);
 					if (coordX1 == 0)
 					{
 						coordX1 = ROWS - 1;
@@ -174,7 +176,6 @@ int gameInit(string user, string stages, const int ROWS, const int COLS, char** 
 				case KEY_DOWN:
 				{
 					undoHighlighted(curX1, curY1, table, coordX1, coordY1);
-					displayBackground(table, ROWS, COLS, DifX, DifY, bg);
 					if (coordX1 == ROWS - 1)
 					{
 						coordX1 = 0;
@@ -188,7 +189,6 @@ int gameInit(string user, string stages, const int ROWS, const int COLS, char** 
 				case KEY_LEFT:
 				{
 					undoHighlighted(curX1, curY1, table, coordX1, coordY1);
-					displayBackground(table, ROWS, COLS, DifX, DifY, bg);
 					if (coordY1 == 0)
 					{
 						coordY1 = COLS - 1;
@@ -205,7 +205,6 @@ int gameInit(string user, string stages, const int ROWS, const int COLS, char** 
 				case KEY_RIGHT:
 				{
 					undoHighlighted(curX1, curY1, table, coordX1, coordY1);
-					displayBackground(table, ROWS, COLS, DifX, DifY, bg);
 					if (coordY1 == COLS - 1)
 					{
 						coordY1 = 0;
