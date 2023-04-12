@@ -408,6 +408,7 @@ int difficultyMenu()
 //print the announcement when finished the game and game completing time
 void gameFinishAnnounce(chrono::duration<double> elapsed_seconds)
 {
+	system("cls");
 	gotoxy(0, 0);
 	printLogo();
 	gotoxy(106 - 7, 24);

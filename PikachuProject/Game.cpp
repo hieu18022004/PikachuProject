@@ -17,6 +17,7 @@ int gameInit(string user, string stages, const int ROWS, const int COLS, char** 
 {
 	int DifX = 106 - COLS / 2 * 8 + 32, DifY = 25 - ROWS / 2 * 4;
 	char** table = tableInit(ROWS, COLS);
+	int help = 4;
 	int coordX = 0, coordY = 0, curX = DifX + 4, curY = DifY + 2;
 	printScreen(table, ROWS, COLS, user, stages, DifX, DifY, bg);
 	while (true)
@@ -71,10 +72,14 @@ int gameInit(string user, string stages, const int ROWS, const int COLS, char** 
 					exit(1);
 				}
 			}
-			if (Help(table, ROWS, COLS, DifX, DifY) == 1)
+			if (help > 0)
 			{
-				system("cls");
-				break;
+				if (Help(table, ROWS, COLS, DifX, DifY) == 1)
+				{
+					system("cls");
+					help--;
+					break;
+				}
 			}
 		}
 		case 'x':
