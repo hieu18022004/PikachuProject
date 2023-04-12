@@ -414,6 +414,10 @@ void gameFinishAnnounce(chrono::duration<double> elapsed_seconds)
 	cout << "CONGRATULATION!\n";
 	gotoxy(106 - 16, 25);
 	cout << "THE GAME TOOK YOU " << elapsed_seconds.count() << "s TO FINISH IT!";
+	playBG(false);
+	playBGAsian(false);
+	gameFinishMusic();
+	playBG(true);
 	_getch();
 }
 //print the leaderboard

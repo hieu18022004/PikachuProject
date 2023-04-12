@@ -154,6 +154,7 @@ int gameInit(string user, string stages, const int ROWS, const int COLS, char** 
 			while (matchCheck==true)
 			{
 				FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
+				displayBackground(table, ROWS, COLS, DifX, DifY, bg);
 				printHighlighted(curX, curY, table, coordX, coordY);
 				printHighlighted(curX1, curY1, table, coordX1, coordY1);
 				cout << endl;
