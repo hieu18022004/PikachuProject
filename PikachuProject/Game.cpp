@@ -35,9 +35,6 @@ int gameInit(string user, string stages, const int ROWS, const int COLS, char** 
 		}
 		if (checkEndCondition(table, ROWS, COLS) == true)
 		{
-			printScreen(table, ROWS, COLS, user, stages, DifX, DifY, bg);
-			displayBackground(table, ROWS, COLS, DifX, DifY, bg);
-			gameFinishMusic();
 			for (int i = 0; i < ROWS; i++)
 			{
 				delete[] table[i];
